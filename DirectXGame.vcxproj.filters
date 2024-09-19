@@ -7,31 +7,60 @@
     <Filter Include="Engine">
       <UniqueIdentifier>{4fff6b0a-33a0-46e0-a662-819686ea3b12}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{e896d784-ea12-4fdf-a04d-ba3c44c5f233}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>App</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp" />
     <ClCompile Include="AppWindow.cpp">
       <Filter>App</Filter>
     </ClCompile>
-    <ClCompile Include="DeviceContext.cpp" />
-    <ClCompile Include="GraphicsEngine.cpp" />
-    <ClCompile Include="SwapChain.cpp" />
-    <ClCompile Include="VertexBuffer.cpp" />
+    <ClCompile Include="Window.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceContext.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsEngine.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="SwapChain.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBuffer.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Quad.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Window.h" />
     <ClInclude Include="AppWindow.h">
       <Filter>App</Filter>
     </ClInclude>
-    <ClInclude Include="DeviceContext.h" />
-    <ClInclude Include="GraphicsEngine.h" />
-    <ClInclude Include="SwapChain.h" />
-    <ClInclude Include="VertexBuffer.h" />
+    <ClInclude Include="Window.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceContext.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsEngine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="SwapChain.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBuffer.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Quad.h" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="shader.fx" />
+    <FxCompile Include="shader.fx">
+      <Filter>Engine</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
