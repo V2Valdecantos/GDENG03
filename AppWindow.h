@@ -22,5 +22,6 @@ private:
 	VertexBuffer* m_vb;
 	VertexShader* m_vs;
 	PixelShader* m_ps;
-};
+	PixelShader* g_ps;
+}; 
 

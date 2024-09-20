@@ -31,11 +31,23 @@ void AppWindow::onCreate()
 
 	vertex list[] = 
 	{
-		//X - Y - Z
-		{-0.5f,-0.5f,0.0f,   0,0,0}, // POS1
-		{-0.5f,0.5f,0.0f,    1,1,0}, // POS2
-		{ 0.5f,-0.5f,0.0f,   0,0,1},// POS2
-		{ 0.5f,0.5f,0.0f,    1,1,1}
+		//RAINBOW QUAD
+		{0.1f,0.1f,0.0f,   1,0,0}, // POS1
+		{0.1f,0.9f,0.0f,    0,1,0}, // POS2
+		{0.9f,0.1f,0.0f,   0,0,1},// POS2
+		{0.9f,0.9f,0.0f,    1,1,1},
+
+		//RAINBOW TRIANGLE
+		{-0.9f,0.1f,0.0f,   1,0,0},
+		{-0.5f,0.9f,0.0f,   0,1,0}, // POS1
+		{-0.1f,0.1f,0.0f,    0,0,1}, // POS2
+		
+
+		//GREEN QUAD
+		{-0.5f,-0.9f,0.0f,   0,0,0}, // POS1
+		{-0.5f,-0.1,0.0f,    1,1,0}, // POS2
+		{0.5f,-0.9f,0.0f,   0,0,1},// POS2
+		{0.5f,-0.1f,0.0f,    1,1,1},
 	};
 
 	m_vb=GraphicsEngine::get()->createVertexBuffer();
@@ -50,11 +62,15 @@ void AppWindow::onCreate()
 
 	GraphicsEngine::get()->releaseCompiledShader();
 
-
+	//RAINBOW PS
 	GraphicsEngine::get()->compilePixelShader(L"PixelShader.hlsl", "psmain", &shader_byte_code, &size_shader);
 	m_ps = GraphicsEngine::get()->createPixelShader(shader_byte_code, size_shader);
 	GraphicsEngine::get()->releaseCompiledShader();
 
+	//GREEN
+	GraphicsEngine::get()->compilePixelShader(L"GreenPixelShader.hlsl", "psmain", &shader_byte_code, &size_shader);
+	g_ps = GraphicsEngine::get()->createPixelShader(shader_byte_code, size_shader);
+	GraphicsEngine::get()->releaseCompiledShader();
 }
 
 void AppWindow::onUpdate()
@@ -69,13 +85,15 @@ void AppWindow::onUpdate()
 	//SET DEFAULT SHADER IN THE GRAPHICS PIPELINE TO BE ABLE TO DRAW
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexShader(m_vs);
 	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(m_ps);
-
-
-	//SET THE VERTICES OF THE TRIANGLE TO DRAW
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
 
-	// FINALLY DRAW THE TRIANGLE
-	GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(m_vb->getSizeVertexList(), 0);
+	// draw the rainbow quad and triangle
+	GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(7, 0);
+
+	//switch shaders and draw the quad
+	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(g_ps);
+	GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(4, 7);
+
 	m_swap_chain->present(true);
 }
 
