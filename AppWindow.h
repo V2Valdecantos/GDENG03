@@ -1,12 +1,18 @@
 #pragma once
 #include "Window.h"
+#include "ObjectManager.h"
+#include "Quad.h"
 #include "GraphicsEngine.h"
+#include "Structs.h"
+
 #include "SwapChain.h"
 #include "DeviceContext.h"
 #include "VertexBuffer.h"
 #include "ConstantBuffer.h"
 #include "VertexShader.h"
 #include "PixelShader.h"
+
+#include <iostream>
 
 class AppWindow: public Window
 {

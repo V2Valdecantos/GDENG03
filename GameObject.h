@@ -1,30 +1,28 @@
 #pragma once
 
-struct vec3
-{
-	float x, y, z;
-};
-
-struct vertex
-{
-	vec3 position;
-};
+#include <vector>
+#include "ObjectManager.h"
+#include "Structs.h"
 
 class GameObject
-{	
-
-	private:
+{
+	public:		
 		GameObject();
+		GameObject(vec3 pos);
 		~GameObject();
-
-	protected:
-		vertex vertices;
-		vec3 offset;
-
-	public:
 		virtual void OnEnable();
 		virtual void Update();
-		virtual void Draw() = 0;
+
+		vec3 GetPosition();
+		virtual void Move(vec3 newPos);
+		std::vector<vertex> GetVertices();
+
+	protected:
+		vec3 position;
+		float scale;
+		vec3 color;
+		std::vector<vertex> vertices;
+
+
 		
 };
-

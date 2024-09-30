@@ -1,27 +1,11 @@
 #include "AppWindow.h"
 #include <Windows.h>
 
-
-struct vec3
-{
-	float x, y, z;
-};
-
-struct vertex
-{
-	vec3 position;
-	vec3 position1;
-	vec3 color;
-	vec3 color1;
-};
-
-
 __declspec(align(16))
 struct constant
 {
 	float m_angle;
 };
-
 
 AppWindow::AppWindow()
 {
@@ -41,24 +25,32 @@ void AppWindow::onCreate()
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
-	vertex list[] = 
-	{
-		//X - Y - Z
-		{-0.5f,-0.5f,0.0f,    -0.32f,-0.11f,0.0f,   0,0,0,  0,1,0 }, // POS1
-		{-0.5f,0.5f,0.0f,     -0.11f,0.78f,0.0f,    1,1,0,  0,1,1 }, // POS2
-		{ 0.5f,-0.5f,0.0f,     0.75f,-0.73f,0.0f,   0,0,1,  1,0,0 },// POS2
-		{ 0.5f,0.5f,0.0f,      0.88f,0.77f,0.0f,    1,1,1,  0,0,1 }
-	};
+	//vertex list[] = 
+	//{
+	//	//X - Y - Z
+	//	{-0.5f,-0.5f,0.0f,    -0.32f,-0.11f,0.0f,   0,0,0,  0,1,0 }, // POS1
+	//	{-0.5f,0.5f,0.0f,     -0.11f,0.78f,0.0f,    1,1,0,  0,1,1 }, // POS2
+	//	{ 0.5f,-0.5f,0.0f,     0.75f,-0.73f,0.0f,   0,0,1,  1,0,0 },// POS2
+	//	{ 0.5f,0.5f,0.0f,      0.88f,0.77f,0.0f,    1,1,1,  0,0,1 }
+	//}; 
+	
+	Quad* quad1 = new Quad({-0.5f, 0.25f, 0.0f});
 
-	m_vb=GraphicsEngine::get()->createVertexBuffer();
-	UINT size_list = ARRAYSIZE(list);
+	std::cout << ObjectManager::getInstance()->getObjects().size() << std::endl;
+	std::cout << ObjectManager::getInstance()->getVertexList().size() << std::endl;
+	//std::vector<std::vector<vertex>> list = ObjectManager::get()->getVertexList();
+
+	std::vector<vertex> list = ObjectManager::getInstance()->getVertexList();
+	
+	m_vb = GraphicsEngine::get()->createVertexBuffer();
+	UINT size_list = sizeof(list);
 
 	void* shader_byte_code = nullptr;
 	size_t size_shader = 0;
 	GraphicsEngine::get()->compileVertexShader(L"VertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
 
 	m_vs=GraphicsEngine::get()->createVertexShader(shader_byte_code, size_shader);
-	m_vb->load(list, sizeof(vertex), size_list, shader_byte_code, size_shader);
+	m_vb->load(&list, sizeof(vertex), size_list, shader_byte_code, size_shader);
 
 	GraphicsEngine::get()->releaseCompiledShader();
 
@@ -67,17 +59,18 @@ void AppWindow::onCreate()
 	m_ps = GraphicsEngine::get()->createPixelShader(shader_byte_code, size_shader);
 	GraphicsEngine::get()->releaseCompiledShader();
 
-	constant cc;
-	cc.m_angle = 0;
+	//constant cc;
+	//cc.m_angle = 0;
 
-	m_cb = GraphicsEngine::get()->createConstantBuffer();
-	m_cb->load(&cc, sizeof(constant));
+	//m_cb = GraphicsEngine::get()->createConstantBuffer();
+	//m_cb->load(&cc, sizeof(constant));
 
 }
 
 void AppWindow::onUpdate()
 {
 	Window::onUpdate();
+
 	//CLEAR THE RENDER TARGET 
 	GraphicsEngine::get()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain,
 		0, 0.3f,0.4f, 1);
@@ -91,14 +84,14 @@ void AppWindow::onUpdate()
 	m_delta_time = new_time / 1000.0f;
 	m_old_time = ::GetTickCount();
 
-	m_angle += 1.57f*m_delta_time;
-	constant cc;
-	cc.m_angle = m_angle;
+	//m_angle += 1.57f*m_delta_time;
+	//constant cc;
+	//cc.m_angle = m_angle;
 
-	m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cc);
+	//m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cc);
 
-	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_vs, m_cb);
-	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_ps, m_cb);
+	//GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_vs, m_cb);
+	//GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_ps, m_cb);
 
 	//SET DEFAULT SHADER IN THE GRAPHICS PIPELINE TO BE ABLE TO DRAW
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexShader(m_vs);
@@ -109,7 +102,15 @@ void AppWindow::onUpdate()
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
 
 	// FINALLY DRAW THE TRIANGLE
-	GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(m_vb->getSizeVertexList(), 0);
+	//GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(m_vb->getSizeVertexList(), 0);
+
+	int v_drawn = 0;
+	for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++)
+	{
+		GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(m_vb->getSizeVertexList(), v_drawn + ObjectManager::getInstance()->getObjects()[i]->GetVertices().size());
+		v_drawn = v_drawn + int(ObjectManager::getInstance()->getObjects()[i]->GetVertices().size());
+	}
+	
 	m_swap_chain->present(true);
 }
 

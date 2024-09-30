@@ -3,13 +3,16 @@
 
 class Quad : public GameObject
 { 
-	private:
+	public:
 		Quad();
+		Quad(vec3 pos);
 		~Quad();
 
-	public:
 		void OnEnable() override;
 		void Update() override;
-		void Draw() override;
+
+		void Move(vec3 newPos) override;
+		void UpdateVertices();
 };
+
 
