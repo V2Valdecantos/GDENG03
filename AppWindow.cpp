@@ -1,18 +1,13 @@
 #include "AppWindow.h"
 
-struct vec3
-{
-	float x, y, z;
-};
-
-struct vertex
-{
-	vec3 position;
-	vec3 color;
-};
-
 AppWindow::AppWindow()
 {
+	Quad* quad1 = new Quad({ -0.75f, 0.25f, 0.0f });
+	quad1->setScale(1.2f);
+	Quad* quad2 = new Quad({ 0.25f, 0.25f, 0.0f });
+	quad2->setScale(1.2f);
+	Quad* quad3 = new Quad({ -0.25f, -0.5f, 0.0f });
+	quad3->setScale(1.2f);
 }
 
 
@@ -28,27 +23,14 @@ void AppWindow::onCreate()
 
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
+	
+	std::cout << "Objects: " << ObjectManager::getInstance()->getObjects().size() << std::endl;
+	std::cout << "Vertices: " << ObjectManager::getInstance()->getVertexList().size() << std::endl;
+	int vertex_count = ObjectManager::getInstance()->getObjects().size() * 4;
+	std::vector<vertex> vec_vert = ObjectManager::getInstance()->getVertexList();
 
-	vertex list[] = 
-	{
-		//RAINBOW QUAD
-		{0.1f,0.1f,0.0f,   1,0,0}, // POS1
-		{0.1f,0.9f,0.0f,    0,1,0}, // POS2
-		{0.9f,0.1f,0.0f,   0,0,1},// POS2
-		{0.9f,0.9f,0.0f,    1,1,1},
-
-		//RAINBOW TRIANGLE
-		{-0.9f,0.1f,0.0f,   1,0,0},
-		{-0.5f,0.9f,0.0f,   0,1,0}, // POS1
-		{-0.1f,0.1f,0.0f,    0,0,1}, // POS2
-		
-
-		//GREEN QUAD
-		{-0.5f,-0.9f,0.0f,   0,0,0}, // POS1
-		{-0.5f,-0.1,0.0f,    1,1,0}, // POS2
-		{0.5f,-0.9f,0.0f,   0,0,1},// POS2
-		{0.5f,-0.1f,0.0f,    1,1,1},
-	};
+	vertex list[12];
+	std::copy(vec_vert.begin(), vec_vert.end(), list);
 
 	m_vb=GraphicsEngine::get()->createVertexBuffer();
 	UINT size_list = ARRAYSIZE(list);
@@ -84,15 +66,27 @@ void AppWindow::onUpdate()
 	GraphicsEngine::get()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
 	//SET DEFAULT SHADER IN THE GRAPHICS PIPELINE TO BE ABLE TO DRAW
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexShader(m_vs);
-	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(m_ps);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(g_ps);
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
 
-	// draw the rainbow quad and triangle
-	GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(7, 0);
+	//// draw the rainbow quad and triangle
+	//GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(7, 0);
 
-	//switch shaders and draw the quad
-	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(g_ps);
-	GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(4, 7);
+	////switch shaders and draw the quad
+	//GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(g_ps);
+	//GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(4, 7);
+	 
+	//int v_drawn = 0;
+	//for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++) 
+	//{
+	//	GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(ObjectManager::getInstance()->getObjects().at(i)->GetVertices().size(), v_drawn);
+	//	v_drawn += int(ObjectManager::getInstance()->getObjects().at(i)->GetVertices().size());
+	//}
+
+	for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++) 
+	{
+		ObjectManager::getInstance()->getObjects()[i]->Draw();
+	}
 
 	m_swap_chain->present(true);
 }
