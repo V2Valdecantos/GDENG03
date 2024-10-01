@@ -136,6 +136,16 @@ void Window::setHWND(HWND hwnd)
 	this->m_hwnd = hwnd;
 }
 
+HWND Window::getHWND()
+{
+	return this->m_hwnd;
+}
+
+bool Window::getIsRun()
+{
+	return this->m_is_run;
+}
+
 void Window::onCreate()
 {
 }

@@ -13,6 +13,7 @@ GameObject::GameObject(vec3 pos)
 {
 	this->position = pos;
 	this->scale = 1;
+	this->color = { 255, 255, 255 };
 	//ObjectManager::getInstance()->addObject(this);
 }
 
@@ -26,6 +27,7 @@ void GameObject::OnEnable()
 
 void GameObject::Update()
 {
+
 }
 
 vec3 GameObject::GetPosition() 

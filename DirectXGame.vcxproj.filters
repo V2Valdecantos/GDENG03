@@ -48,6 +48,7 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Importer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -86,6 +87,7 @@
     <ClInclude Include="ObjectManager.h">
       <Filter>Classes</Filter>
     </ClInclude>
+    <ClInclude Include="Importer.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader.fx">

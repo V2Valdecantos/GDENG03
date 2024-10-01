@@ -24,6 +24,7 @@ void Quad::OnEnable()
 
 void Quad::Update()
 {
+	
 }
 
 void Quad::Move(vec3 newPos) 

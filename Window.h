@@ -16,6 +16,9 @@ public:
 
 	RECT getClientWindowRect();
 	void setHWND(HWND hwnd);
+	HWND getHWND();
+	bool getIsRun();
+
 
 
 	//EVENTS

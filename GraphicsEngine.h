@@ -19,6 +19,7 @@ public:
 public:
 	SwapChain * createSwapChain();
 	DeviceContext* getImmediateDeviceContext();
+	ID3D11Device* getDevice();
 	VertexBuffer* createVertexBuffer();
 	VertexShader* createVertexShader(const void* shader_byte_code, size_t byte_code_size);
 	PixelShader* createPixelShader(const void* shader_byte_code, size_t byte_code_size);

@@ -5,6 +5,7 @@
 #include "DeviceContext.h"
 #include "ObjectManager.h"
 #include "Structs.h"
+#include "WindowsX.h"
 
 class GameObject
 {
