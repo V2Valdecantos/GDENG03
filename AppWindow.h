@@ -19,5 +19,6 @@ class AppWindow: public Window
 
 	private:
 		Renderer* renderer;
+		float fTicks;
 }; 
 

@@ -43,11 +43,74 @@ void ObjectManager::removeObject(GameObject* obj)
 
 void ObjectManager::Update()
 {
-	for (int i = 0; i < this->objects.size(); i++) 
+	for (int i = 0; i < this->objects.size(); i++)
 	{
 		this->objects[i]->Update();
 	}
+
+	if (cycleMode == 1)
+	{
+		this->red -= 0.01;
+
+		if (this->red <= 0.5)
+			this->cycleMode = 2;
+
+	}
+	if (cycleMode == 2)
+	{
+		this->red -= 0.01;
+		this->blue += 0.01;
+
+		if (this->blue >= 1)
+			this->cycleMode = 3;
+
+	}
+	if (cycleMode == 3)
+	{
+		this->blue -= 0.01;
+
+		if (this->blue <= 0.5)
+			this->cycleMode = 4;
+
+	}
+	if (cycleMode == 4)
+	{
+		this->blue -= 0.01;
+		this->green += 0.01;
+
+		if (this->green >= 1)
+			this->cycleMode = 5;
+
+	}
+	if (cycleMode == 5)
+	{
+		this->green -= 0.01;
+
+		if (this->green <= 0.5)
+			this->cycleMode = 6;
+
+	}
+	if (cycleMode == 6)
+	{
+		this->green -= 0.01;
+		this->red += 0.01;
+
+		if (this->red >= 1)
+			this->cycleMode = 1;
+
+	}
+
+	for (int i = 0; i < this->objects.size(); i++)
+	{
+		this->objects[i]->setColor({ red, green, blue });
+
+	}
 		
+}
+
+void ObjectManager::MakeRandomQuad()
+{
+
 }
 
 

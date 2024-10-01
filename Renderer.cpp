@@ -68,16 +68,6 @@ void Renderer::BuildShaders()
 	GraphicsEngine::get()->releaseCompiledShader();
 }
 
-//void Renderer::SetSolidColor(vec3 color)
-//{
-//	for (int i = 0; i < ObjectManager::getInstance()->getVertexList().size(); i++) 
-//	{
-//		ObjectManager::getInstance()->getVertexList()[i].color = color;
-//	}
-//	this->BuildShaders();
-//}
-
-
 void Renderer::Draw()
 {
 	//CLEAR THE RENDER TARGET 
