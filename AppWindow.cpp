@@ -38,13 +38,10 @@ void AppWindow::onUpdate()
 		float y = (float(rand()) / float(RAND_MAX)) * (0.6 - (-1)) + (-1);
 
 		Quad* quad = new Quad({ x, y, 0 });
-		
+		quad->setScale(0.4);
 		this->fTicks = 0;
 	}
 	this->fTicks += 0.01;
-
-	std::cout << ObjectManager::getInstance()->getObjects().size() << std::endl;
-	std::cout << ObjectManager::getInstance()->getVertexList().size() << std::endl;
 }
 
 

@@ -55,7 +55,6 @@ void Renderer::BuildShaders()
 	m_vb = GraphicsEngine::get()->createVertexBuffer();
 	UINT size_list = ObjectManager::getInstance()->getVertexList().size();
 
-
 	GraphicsEngine::get()->compileVertexShader(L"VertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
 
 	m_vs = GraphicsEngine::get()->createVertexShader(shader_byte_code, size_shader);
