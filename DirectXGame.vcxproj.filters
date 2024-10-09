@@ -48,7 +48,12 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Importer.cpp" />
+    <ClCompile Include="EngineTime.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -87,7 +92,12 @@
     <ClInclude Include="ObjectManager.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Importer.h" />
+    <ClInclude Include="EngineTime.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader.fx">

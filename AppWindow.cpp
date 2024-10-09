@@ -33,7 +33,6 @@ void AppWindow::onUpdate()
 
 	if (fTicks >= 1) 
 	{
-
 		float x = (float(rand()) / float(RAND_MAX)) * (0.6 - (-1)) + (-1);
 		float y = (float(rand()) / float(RAND_MAX)) * (0.6 - (-1)) + (-1);
 
@@ -41,7 +40,7 @@ void AppWindow::onUpdate()
 		quad->setScale(0.4);
 		this->fTicks = 0;
 	}
-	this->fTicks += 0.01;
+	this->fTicks += EngineTime::getDeltaTime();
 }
 
 
