@@ -44,10 +44,10 @@ void AppWindow::onCreate()
 	vertex list[] = 
 	{
 		//X - Y - Z
-		{-0.5f,-0.5f,0.0f,    -0.32f,-0.11f,0.0f,   0,0,0,  0,1,0 }, // POS1
-		{-0.5f,0.5f,0.0f,     -0.11f,0.78f,0.0f,    1,1,0,  0,1,1 }, // POS2
-		{ 0.5f,-0.5f,0.0f,     0.75f,-0.73f,0.0f,   0,0,1,  1,0,0 },// POS2
-		{ 0.5f,0.5f,0.0f,      0.88f,0.77f,0.0f,    1,1,1,  0,0,1 }
+		{-0.8f,-0.8f,0.0f,    -0.32f,-0.11f,0.0f,   0,0,0,  0,1,0 }, // POS1
+		{-0.8f,0.7f,0.0f,     -0.11f,0.78f,0.0f,    1,1,0,  0,1,1 }, // POS2
+		{ 0.4f,-0.8f,0.0f,     0.75f,-0.73f,0.0f,   0,0,1,  1,0,0 },// POS2
+		{ -0.2f,-0.2f,0.0f,      0.88f,0.77f,0.0f,    1,1,1,  0,0,1 }
 	};
 
 	m_vb=GraphicsEngine::get()->createVertexBuffer();
@@ -85,15 +85,17 @@ void AppWindow::onUpdate()
 	RECT rc = this->getClientWindowRect();
 	GraphicsEngine::get()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
 
-	unsigned long new_time = 0;
-	if (m_old_time)
-		new_time = ::GetTickCount() - m_old_time;
-	m_delta_time = new_time / 1000.0f;
-	m_old_time = ::GetTickCount();
+	//unsigned long new_time = 0;
+	//if (m_old_time)
+	//	new_time = ::GetTickCount() - m_old_time;
+	//m_delta_time = new_time / 1000.0f;
+	//m_old_time = ::GetTickCount();
 
-	m_angle += 1.57f*m_delta_time;
+	m_angle += 2.0f * speed;
 	constant cc;
 	cc.m_angle = m_angle;
+
+	speed += 0.005 * EngineTime::getDeltaTime();
 
 	m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cc);
 
