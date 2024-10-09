@@ -31,7 +31,8 @@ void AppWindow::onUpdate()
 	this->renderer->BuildShaders();
 	this->renderer->Draw();
 
-	if (fTicks >= 1) 
+	//Create a cube every 2 seconds
+	if (fTicks >= 2) 
 	{
 		float x = (float(rand()) / float(RAND_MAX)) * (0.6 - (-1)) + (-1);
 		float y = (float(rand()) / float(RAND_MAX)) * (0.6 - (-1)) + (-1);

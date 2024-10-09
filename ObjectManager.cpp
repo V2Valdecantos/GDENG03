@@ -59,7 +59,7 @@ void ObjectManager::Update()
 	if (cycleMode == 2)
 	{
 		this->red -= 0.01;
-		this->blue += 0.01;
+		this->blue += 0.03;
 
 		if (this->blue >= 1)
 			this->cycleMode = 3;
@@ -76,7 +76,7 @@ void ObjectManager::Update()
 	if (cycleMode == 4)
 	{
 		this->blue -= 0.01;
-		this->green += 0.01;
+		this->green += 0.03;
 
 		if (this->green >= 1)
 			this->cycleMode = 5;
@@ -93,7 +93,7 @@ void ObjectManager::Update()
 	if (cycleMode == 6)
 	{
 		this->green -= 0.01;
-		this->red += 0.01;
+		this->red += 0.03;
 
 		if (this->red >= 1)
 			this->cycleMode = 1;
