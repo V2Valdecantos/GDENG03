@@ -56,12 +56,17 @@ void AppWindow::onDestroy()
 
 void AppWindow::onKeyDown(int key)
 {
-
+	if (key == VK_ESCAPE)
+	{
+		ObjectManager::getInstance()->clearObjects();
+		this->onDestroy();
+		this->m_is_run = false;
+	}
 }
 
 void AppWindow::onKeyUp(int key)
 {
-	if (key == ' ')
+	if (key == VK_SPACE)
 	{
 		float x = (float(rand()) / float(RAND_MAX)) * (0.6 - (-1)) + (-1);
 		float y = (float(rand()) / float(RAND_MAX)) * (0.6 - (-1)) + (-1);
@@ -76,4 +81,5 @@ void AppWindow::onKeyUp(int key)
 	{
 		ObjectManager::getInstance()->clearObjects();
 	}
+
 }

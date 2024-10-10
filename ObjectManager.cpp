@@ -60,8 +60,6 @@ void ObjectManager::Update()
 		this->objects[i]->Update();
 	}
 
-	std::cout << "Vertices: " << this->getVertexList().size() << std::endl;
-
 	if (cycleMode == 1)
 	{
 		this->red -= 0.01;
