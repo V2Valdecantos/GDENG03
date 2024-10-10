@@ -2,8 +2,10 @@
 
 #include <vector>
 #include <cstdlib>
+#include <iostream>
 #include "GameObject.h"
 #include "Structs.h"
+#include "EngineTime.h"
 
 class GameObject;
 
@@ -14,6 +16,8 @@ class ObjectManager
 		
 		void addObject(GameObject* newObj);
 		void removeObject(GameObject* obj);
+		void popObject();
+		void clearObjects();
 		void Update();
 
 		void MakeRandomQuad();

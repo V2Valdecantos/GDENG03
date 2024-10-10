@@ -23,7 +23,7 @@ class GameObject
 		virtual void setScale(float scale);
 		virtual void setColor(vec3 color); 
 		virtual void UpdateVertices();
-		void Draw();
+		virtual void Draw();
 
 	protected:
 		vec3 position;

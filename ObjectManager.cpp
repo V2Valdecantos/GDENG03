@@ -41,12 +41,26 @@ void ObjectManager::removeObject(GameObject* obj)
 	}
 }
 
+void ObjectManager::popObject()
+{
+	if(this->objects.size() > 0)
+		this->objects.pop_back();
+}
+
+void ObjectManager::clearObjects()
+{
+	this->objects.clear();
+}
+
+
 void ObjectManager::Update()
 {
 	for (int i = 0; i < this->objects.size(); i++)
 	{
 		this->objects[i]->Update();
 	}
+
+	std::cout << "Vertices: " << this->getVertexList().size() << std::endl;
 
 	if (cycleMode == 1)
 	{
@@ -59,7 +73,7 @@ void ObjectManager::Update()
 	if (cycleMode == 2)
 	{
 		this->red -= 0.01;
-		this->blue += 0.01;
+		this->blue += 0.03;
 
 		if (this->blue >= 1)
 			this->cycleMode = 3;
@@ -76,7 +90,7 @@ void ObjectManager::Update()
 	if (cycleMode == 4)
 	{
 		this->blue -= 0.01;
-		this->green += 0.01;
+		this->green += 0.03;
 
 		if (this->green >= 1)
 			this->cycleMode = 5;
@@ -93,7 +107,7 @@ void ObjectManager::Update()
 	if (cycleMode == 6)
 	{
 		this->green -= 0.01;
-		this->red += 0.01;
+		this->red += 0.03;
 
 		if (this->red >= 1)
 			this->cycleMode = 1;

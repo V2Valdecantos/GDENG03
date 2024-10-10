@@ -57,12 +57,12 @@ void GameObject::UpdateVertices()
 
 void GameObject::Draw()
 {
-	int v_drawn = 0;
-	for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++)
-	{
-		GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(ObjectManager::getInstance()->getObjects().at(i)->GetVertices().size(), v_drawn);
-		v_drawn += int(ObjectManager::getInstance()->getObjects().at(i)->GetVertices().size());
-	}
+	//int v_drawn = 0;
+	//for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++)
+	//{
+	//	GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(ObjectManager::getInstance()->getObjects().at(i)->GetVertices().size(), v_drawn);
+	//	v_drawn += int(ObjectManager::getInstance()->getObjects().at(i)->GetVertices().size());
+	//}
 }
 
 std::vector<vertex> GameObject::GetVertices()

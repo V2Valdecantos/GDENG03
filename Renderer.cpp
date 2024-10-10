@@ -70,7 +70,7 @@ void Renderer::BuildShaders()
 void Renderer::Draw()
 {
 	// set window
-	GraphicsEngine::get()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain,0, 0.3f, 0.4f, 1);
+	GraphicsEngine::get()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain,0, 0.0f, 0.0f, 0.0f);
 	// set viewport
 	RECT rc = this->window->getClientWindowRect();
 	GraphicsEngine::get()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
@@ -79,9 +79,16 @@ void Renderer::Draw()
 	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(m_ps);
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
 
+	//for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++)
+	//{
+	//	ObjectManager::getInstance()->getObjects()[i]->Draw();
+	//}
+
+	int v_drawn = 0;
 	for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++)
 	{
-		ObjectManager::getInstance()->getObjects()[i]->Draw();
+		GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(ObjectManager::getInstance()->getObjects().at(i)->GetVertices().size(), v_drawn);
+		v_drawn += int(ObjectManager::getInstance()->getObjects().at(i)->GetVertices().size());
 	}
 
 	m_swap_chain->present(true);

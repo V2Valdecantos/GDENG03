@@ -1,5 +1,7 @@
 #include "AppWindow.h"
 
+#include "InputSystem.h"
+
 AppWindow::AppWindow()
 {
 	//Quad* quad1 = new Quad({ -0.75f, 0.25f, 0.0f });
@@ -9,6 +11,7 @@ AppWindow::AppWindow()
 	//quad2->setScale(1.2f);
 	//Quad* quad3 = new Quad({ -0.25f, -0.5f, 0.0f });
 	//quad3->setScale(1.2f);
+	//Circle* circle1 = new Circle({0.0f,0.0f,0.0f }, { 0.5f,-0.3f,0}, 0.0f);
 }
 
 
@@ -20,6 +23,7 @@ AppWindow::~AppWindow()
 void AppWindow::onCreate()
 {
 	Window::onCreate();
+	InputSystem::get()->addListener(this);
 	this->renderer = new Renderer(this);
 	this->renderer->BuildShaders();
 }
@@ -27,25 +31,49 @@ void AppWindow::onCreate()
 void AppWindow::onUpdate()
 {
 	Window::onUpdate();
+	InputSystem::get()->update();
 	ObjectManager::getInstance()->Update();
 	this->renderer->BuildShaders();
 	this->renderer->Draw();
 
-	if (fTicks >= 1) 
-	{
+	//Create a cube every 2 seconds
+	//if (fTicks >= 2) 
+	//{
+	//	float x = (float(rand()) / float(RAND_MAX)) * (0.6 - (-1)) + (-1);
+	//	float y = (float(rand()) / float(RAND_MAX)) * (0.6 - (-1)) + (-1);
 
-		float x = (float(rand()) / float(RAND_MAX)) * (0.6 - (-1)) + (-1);
-		float y = (float(rand()) / float(RAND_MAX)) * (0.6 - (-1)) + (-1);
-
-		Quad* quad = new Quad({ x, y, 0 });
-		quad->setScale(0.4);
-		this->fTicks = 0;
-	}
-	this->fTicks += 0.01;
+	//	Circle* circle = new Circle({ 0, 0, 0 }, {x, y}, 0.05f);
+	//	this->fTicks = 0;
+	//}
+	//this->fTicks += EngineTime::getDeltaTime();
 }
 
 
 void AppWindow::onDestroy()
 {
 	Window::onDestroy();
+}
+
+void AppWindow::onKeyDown(int key)
+{
+
+}
+
+void AppWindow::onKeyUp(int key)
+{
+	if (key == ' ')
+	{
+		float x = (float(rand()) / float(RAND_MAX)) * (0.6 - (-1)) + (-1);
+		float y = (float(rand()) / float(RAND_MAX)) * (0.6 - (-1)) + (-1);
+
+		Circle* circle = new Circle({ 0, 0, 0 }, { x, y }, 0.05f);
+	}
+	if (key == VK_BACK)
+	{
+		ObjectManager::getInstance()->popObject();
+	}
+	if (key == VK_DELETE)
+	{
+		ObjectManager::getInstance()->clearObjects();
+	}
 }

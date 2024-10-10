@@ -4,6 +4,7 @@
 #include "AppWindow.h"
 #include "ObjectManager.h"
 #include "Quad.h"
+#include "Circle.h"
 #include "GraphicsEngine.h"
 #include "SwapChain.h"
 #include "DeviceContext.h"

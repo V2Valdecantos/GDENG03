@@ -46,6 +46,7 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT msg, WPARAM wparam, LPARAM lparam)
 bool Window::init()
 {
 
+	EngineTime::initialize();
 
 	//Setting up WNDCLASSEX object
 	WNDCLASSEX wc;
@@ -94,8 +95,8 @@ bool Window::init()
 
 bool Window::broadcast()
 {
+	EngineTime::LogFrameStart();
 	MSG msg;
-
 	this->onUpdate();
 
 	while (::PeekMessage(&msg, NULL, 0, 0, PM_REMOVE) > 0)
@@ -105,7 +106,7 @@ bool Window::broadcast()
 	}
 
 	Sleep(1);
-
+	EngineTime::LogFrameEnd();
 	return true;
 }
 
