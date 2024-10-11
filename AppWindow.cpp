@@ -58,6 +58,7 @@ void AppWindow::onKeyDown(int key)
 {
 	if (key == VK_ESCAPE)
 	{
+		std::cout << "INPUT: ESCAPE" << std::endl;
 		ObjectManager::getInstance()->clearObjects();
 		this->onDestroy();
 		this->m_is_run = false;
@@ -68,6 +69,7 @@ void AppWindow::onKeyUp(int key)
 {
 	if (key == VK_SPACE)
 	{
+		std::cout << "INPUT: SPACE" << std::endl;
 		float x = (float(rand()) / float(RAND_MAX)) * (0.6 - (-1)) + (-1);
 		float y = (float(rand()) / float(RAND_MAX)) * (0.6 - (-1)) + (-1);
 
@@ -75,10 +77,12 @@ void AppWindow::onKeyUp(int key)
 	}
 	if (key == VK_BACK)
 	{
+		std::cout << "INPUT: BACKSPACE" << std::endl;
 		ObjectManager::getInstance()->popObject();
 	}
 	if (key == VK_DELETE)
 	{
+		std::cout << "INPUT: DELETE" << std::endl;
 		ObjectManager::getInstance()->clearObjects();
 	}
 
