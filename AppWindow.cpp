@@ -144,9 +144,9 @@ void AppWindow::onCreate()
 		{ Vector3D(-0.5f,-0.5f,0.5f),     Vector3D(0,1,0), Vector3D(0,0.2f,0) },
 
 		//PLANE
-		{ Vector3D(10.0f,0.0f,-10.0f),    Vector3D(1,1,1),  Vector3D(1,1,1) },
+		{ Vector3D(10.0f,0.0f,-100w.0f),    Vector3D(1,1,1),  Vector3D(1,1,1) },
 		{ Vector3D(10.0f,0.0f,10.0f),		Vector3D(1,1,1),  Vector3D(1,1,1) },
-		{ Vector3D(10.0f,0.0f,-10.0f),   Vector3D(1,1,1),  Vector3D(1,1,1) },
+		{ Vector3D(10.0f,0.0f,-100.0f),   Vector3D(1,1,1),  Vector3D(1,1,1) },
 		{ Vector3D(-10.0f,0.0f,10.0f),   Vector3D(1,1,1),  Vector3D(1,1,1) }
 
 	};
