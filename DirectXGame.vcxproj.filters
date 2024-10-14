@@ -48,7 +48,19 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Importer.cpp" />
+    <ClCompile Include="Circle.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="InputSystem.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineTime.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstantBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -87,7 +99,22 @@
     <ClInclude Include="ObjectManager.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Importer.h" />
+    <ClInclude Include="Circle.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineTime.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="InputListener.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="InputSystem.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader.fx">

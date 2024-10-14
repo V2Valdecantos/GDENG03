@@ -2,6 +2,8 @@
 #include "SwapChain.h"
 #include "DeviceContext.h"
 #include "VertexBuffer.h"
+#include "IndexBuffer.h"
+#include "ConstantBuffer.h"
 #include "VertexShader.h"
 #include "PixelShader.h"
 
@@ -86,14 +88,19 @@ DeviceContext * GraphicsEngine::getImmediateDeviceContext()
 	return this->m_imm_device_context;
 }
 
-ID3D11Device* GraphicsEngine::getDevice()
-{
-	return this->m_d3d_device;
-}
-
 VertexBuffer * GraphicsEngine::createVertexBuffer()
 {
 	return new VertexBuffer();
+}
+
+IndexBuffer * GraphicsEngine::createIndexBuffer()
+{
+	return new IndexBuffer();
+}
+
+ConstantBuffer * GraphicsEngine::createConstantBuffer()
+{
+	return new ConstantBuffer();
 }
 
 VertexShader * GraphicsEngine::createVertexShader(const void * shader_byte_code, size_t byte_code_size)

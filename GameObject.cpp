@@ -1,71 +1,71 @@
 #include "GameObject.h"
 
-GameObject::GameObject() 
+GameObject::GameObject(string name)
 {
-	this->position = {0, 0, 0};
-	this->scale = 1;
-	this->color = { 255, 255, 255 };
-
-	//ObjectManager::getInstance()->addObject(this);
-}
-
-GameObject::GameObject(vec3 pos)
-{
-	this->position = pos;
-	this->scale = 1;
-	this->color = { 255, 255, 255 };
-	//ObjectManager::getInstance()->addObject(this);
+	this->name = name;
+	this->localPosition = Vector3D(0, 0, 0);
+	this->localScale = Vector3D(1, 1, 1);
+	this->localRotation = Vector3D(0, 0, 0);
 }
 
 GameObject::~GameObject()
 {
 }
 
-void GameObject::OnEnable()
+void GameObject::update(float deltaTime)
 {
 }
 
-void GameObject::Update()
+void GameObject::draw(int width, int height, VertexShader* vertexShader, PixelShader* pixelShader)
 {
-
 }
 
-vec3 GameObject::GetPosition() 
+void GameObject::setPosition(float x, float y, float z)
 {
-	return this->position;
+	this->localPosition = Vector3D(x, y, z);
 }
 
-void GameObject::Move(vec3 newPos) 
+void GameObject::setPosition(Vector3D pos)
 {
-	this->position = newPos;
+	this->localPosition = pos;
 }
 
-void GameObject::setScale(float scale)
+Vector3D GameObject::getLocalPosition()
 {
-	this->scale = scale;
+	return this->localPosition;
 }
 
-void GameObject::setColor(vec3 color)
+void GameObject::setScale(float x, float y, float z)
 {
-	this->color = color;
+	this->localScale = Vector3D(x, y, z);
 }
 
-void GameObject::UpdateVertices()
+void GameObject::setScale(Vector3D scale)
 {
-
+	this->localScale = scale;
 }
 
-void GameObject::Draw()
+Vector3D GameObject::getLocalScale()
 {
-	//int v_drawn = 0;
-	//for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++)
-	//{
-	//	GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(ObjectManager::getInstance()->getObjects().at(i)->GetVertices().size(), v_drawn);
-	//	v_drawn += int(ObjectManager::getInstance()->getObjects().at(i)->GetVertices().size());
-	//}
+	return this->localScale;
 }
 
-std::vector<vertex> GameObject::GetVertices()
+void GameObject::setRotation(float x, float y, float z)
 {
-	return this->vertices;
+	this->localRotation = Vector3D(x, y, z);
+}
+
+void GameObject::setRotation(Vector3D rot)
+{
+	this->localRotation = rot;
+}
+
+Vector3D GameObject::getLocalRotation()
+{
+	return this->localRotation;
+}
+
+string GameObject::getName()
+{
+	return this->name;
 }

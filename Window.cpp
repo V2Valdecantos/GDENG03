@@ -47,7 +47,6 @@ bool Window::init()
 {
 
 	EngineTime::initialize();
-
 	//Setting up WNDCLASSEX object
 	WNDCLASSEX wc;
 	wc.cbClsExtra = NULL;
@@ -70,7 +69,7 @@ bool Window::init()
 		window = this;*/
 
 	//Creation of the window
-	m_hwnd=::CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, "MyWindowClass", "Vito Valdecantos XX22", 
+	m_hwnd=::CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, "MyWindowClass", "Vito Valdecantos - XX22", 
 		WS_CAPTION|WS_SYSMENU, CW_USEDEFAULT, CW_USEDEFAULT, 1024, 768,
 		NULL, NULL, NULL, this);
 
@@ -140,11 +139,6 @@ void Window::setHWND(HWND hwnd)
 HWND Window::getHWND()
 {
 	return this->m_hwnd;
-}
-
-bool Window::getIsRun()
-{
-	return this->m_is_run;
 }
 
 void Window::onCreate()
