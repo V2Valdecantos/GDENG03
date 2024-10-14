@@ -153,6 +153,7 @@ void AppWindow::onCreate()
 		cubeObject->setRotation(0, 0, 0);
 		this->objectList.push_back(cubeObject);
 	}
+
 	GraphicsEngine::get()->releaseCompiledShader();
 
 
@@ -167,10 +168,7 @@ void AppWindow::onUpdate()
 	Window::onUpdate();
 	InputSystem::get()->update();
 
-	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexShader(m_vs);
-	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(m_ps);
-
-	GraphicsEngine::get()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain, 0, 0.3f, 0.4f, 1);
+	GraphicsEngine::get()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain, 0, 0.5f, 0.5f, 1);
 
 	RECT windowRect = this->getClientWindowRect();
 	int width = windowRect.right - windowRect.left;
@@ -183,6 +181,7 @@ void AppWindow::onUpdate()
 		this->objectList[i]->update(EngineTime::getDeltaTime());
 		this->objectList[i]->draw(width, height, this->m_vs, this->m_ps);
 	}
+
 	m_swap_chain->present(true);
 
 	std::cout << this->objectList[0]->getLocalPosition().m_y << std::endl;

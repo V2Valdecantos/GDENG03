@@ -43,9 +43,6 @@ private:
 
 	VertexShader* m_vs;
 	PixelShader* m_ps;
-
-	ConstantBuffer* m_cb;
-	IndexBuffer* m_ib;
 private:
 	std::vector<Cube*> objectList;
 

@@ -11,16 +11,16 @@ Cube::Cube(string name, void* shaderByteCode, size_t sizeShader) : GameObject(na
 	{
 		//X - Y - Z
 		//FRONT FACE
-		{Vector3D(-0.5f,-0.5f,-0.5f),    Vector3D(1,0,0),  Vector3D(0.2f,0,0) },
-		{Vector3D(-0.5f,0.5f,-0.5f),    Vector3D(1,1,0), Vector3D(0.2f,0.2f,0) },
-		{ Vector3D(0.5f,0.5f,-0.5f),   Vector3D(1,1,0),  Vector3D(0.2f,0.2f,0) },
-		{ Vector3D(0.5f,-0.5f,-0.5f),     Vector3D(1,0,0), Vector3D(0.2f,0,0) },
+		{Vector3D(-0.5f,-0.5f,-0.5f),    Vector3D(1,1,1),  Vector3D(1,1,1) },
+		{Vector3D(-0.5f,0.5f,-0.5f),    Vector3D(1,0.5,1), Vector3D(1,1,1) },
+		{ Vector3D(0.5f,0.5f,-0.5f),   Vector3D(1,0.3,1),  Vector3D(1,0.3,1) },
+		{ Vector3D(0.5f,-0.5f,-0.5f),     Vector3D(1,0,1), Vector3D(1,0.3,1) },
 
 		//BACK FACE
-		{ Vector3D(0.5f,-0.5f,0.5f),    Vector3D(0,1,0), Vector3D(0,0.2f,0) },
-		{ Vector3D(0.5f,0.5f,0.5f),    Vector3D(0,1,1), Vector3D(0,0.2f,0.2f) },
-		{ Vector3D(-0.5f,0.5f,0.5f),   Vector3D(0,1,1),  Vector3D(0,0.2f,0.2f) },
-		{ Vector3D(-0.5f,-0.5f,0.5f),     Vector3D(0,1,0), Vector3D(0,0.2f,0) }
+		{ Vector3D(0.5f,-0.5f,0.5f),    Vector3D(1,1,1), Vector3D(1,1,1), },
+		{ Vector3D(0.5f,0.5f,0.5f),    Vector3D(1,0.5,1), Vector3D(1,0,1) },
+		{ Vector3D(-0.5f,0.5f,0.5f),   Vector3D(1,0.3,1),  Vector3D(1,0.3,1) },
+		{ Vector3D(-0.5f,-0.5f,0.5f),     Vector3D(1,0,1),  Vector3D(1,0.5,1) }
 
 	};
 
@@ -53,8 +53,7 @@ Cube::Cube(string name, void* shaderByteCode, size_t sizeShader) : GameObject(na
 	this->indexBuffer = GraphicsEngine::get()->createIndexBuffer();
 	this->indexBuffer->load(index_list, ARRAYSIZE(index_list));
 
-	CBData cbData = {};
-	cbData.m_time = 0;
+	this->cbData = {};
 	this->constantBuffer = GraphicsEngine::get()->createConstantBuffer();
 	this->constantBuffer->load(&cbData, sizeof(CBData));
 }
@@ -65,14 +64,31 @@ Cube::~Cube()
 
 void Cube::update(float deltaTime)
 {
-	this->ticks += deltaTime;
+	this->cbData.m_time = ::GetTickCount();
+
+	this->deltaPos += deltaTime / 10.0f;
+	if (this->deltaPos > 1.0f)
+		this->deltaPos = 0;
+
+
+	Matrix4x4 temp;
+
+	this->deltaScale += deltaTime * this->speed;
+
+	//cc.m_world.setScale(Vector3D::lerp(Vector3D(0.5, 0.5, 0), Vector3D(1.0f, 1.0f, 0), (sin(m_delta_scale) + 1.0f) / 2.0f));
+	
+	//temp.setTranslation(Vector3D::lerp(Vector3D(-1.5f, -1.5f, 0), Vector3D(1.5f,1.5f, 0), m_delta_pos));
+
+	//cc.m_world *= temp;
+
+	this->setRotation(this->deltaScale, this->deltaScale, this->deltaScale);
+
+	this->constantBuffer->update(GraphicsEngine::get()->getImmediateDeviceContext(), &this->cbData);
+
 }
 
 void Cube::draw(int width, int height, VertexShader* vertexShader, PixelShader* pixelShader)
 {
-
-	CBData cbData = {};
-	cbData.m_time = this->ticks * speed;
 
 	if (this->deltaPos > 1.0f) {
 		this->deltaPos = 0.0f;
@@ -82,36 +98,39 @@ void Cube::draw(int width, int height, VertexShader* vertexShader, PixelShader* 
 	}
 
 	Matrix4x4 allMatrix; 
+	Matrix4x4 temp;
+
 	allMatrix.setIdentity();
-	Matrix4x4 transformMatrix;
-	transformMatrix.setTranslation(this->localPosition);
-	Matrix4x4 scaleMatrix;
-	scaleMatrix.setScale(this->localScale);
-	Vector3D rotation = this->localRotation;
-	Matrix4x4 zMatrix;
-	zMatrix.setRotationZ(rotation.m_z);
-	Matrix4x4 yMatrix;
-	yMatrix.setRotationY(rotation.m_y);
-	Matrix4x4 xMatrix;
-	xMatrix.setRotationX(rotation.m_x);
+	allMatrix.setScale(this->localScale);
 
-	Matrix4x4 rotMatrix;
-	rotMatrix.setIdentity();
-	rotMatrix.multiplyTo(xMatrix.multiplyTo(yMatrix.multiplyTo(zMatrix)));
+	temp.setIdentity();
+	temp.setRotationZ(this->localRotation.m_z);
+	allMatrix *= temp;
 
-	allMatrix.multiplyTo(scaleMatrix.multiplyTo(rotMatrix));
-	allMatrix.multiplyTo(transformMatrix);
+	temp.setIdentity();
+	temp.setRotationY(this->localRotation.m_y);
+	allMatrix *= temp;
 
-	cbData.m_world = allMatrix;
-	cbData.m_view.setIdentity();
-	cbData.m_proj.setOrthoLH(width / 400.0f, height / 400.0f, -4.0f, 4.0f);
-	
-	this->constantBuffer->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cbData);
+	temp.setIdentity();
+	temp.setRotationX(this->localRotation.m_x);
+	allMatrix *= temp;
+
+	temp.setIdentity();
+	temp.setTranslation(this->localPosition);
+	allMatrix *= temp;
+
+	this->cbData.m_world = allMatrix;
+	this->cbData.m_view.setIdentity();
+	this->cbData.m_proj.setOrthoLH(width / 400, height / 400, -4.0f, 4.0f);
+
 	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(vertexShader, this->constantBuffer);
 	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(pixelShader, this->constantBuffer);
 
 	GraphicsEngine::get()->getImmediateDeviceContext()->setIndexBuffer(this->indexBuffer);
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(this->vertexBuffer);
+
+	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexShader(vertexShader);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(pixelShader);
 
 	GraphicsEngine::get()->getImmediateDeviceContext()->drawIndexedTriangleList(this->indexBuffer->getSizeIndexList(), 0, 0);
 
