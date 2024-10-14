@@ -3,6 +3,10 @@
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include "ConstantBuffer.h"
+#include "GraphicsEngine.h"
+#include "InputSystem.h"
+#include "SwapChain.h"
+#include "DeviceContext.h"
 
 class Cube : public GameObject
 {

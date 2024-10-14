@@ -1,23 +1,23 @@
-#include "Cube.h"
+#include "Plane.h"
 
-
-
-Cube::Cube(string name, void* shaderByteCode, size_t sizeShader) : GameObject(name)
+Plane::Plane(string name, void* shaderByteCode, size_t sizeShader) : GameObject(name)
 {
+	this->setRotation(90.0f, 0, 0);
+
 	vertex vertex_list[] =
 	{
 		//X - Y - Z
 		//FRONT FACE
-		{Vector3D(-0.5f,-0.5f,-0.5f),    Vector3D(1,0,0),  Vector3D(0.2f,0,0) },
-		{Vector3D(-0.5f,0.5f,-0.5f),    Vector3D(1,1,0), Vector3D(0.2f,0.2f,0) },
-		{ Vector3D(0.5f,0.5f,-0.5f),   Vector3D(1,1,0),  Vector3D(0.2f,0.2f,0) },
-		{ Vector3D(0.5f,-0.5f,-0.5f),     Vector3D(1,0,0), Vector3D(0.2f,0,0) },
+		{Vector3D(-0.5f,-0.5f,0.0f),    Vector3D(1,1,1),  Vector3D(1,1,1) },
+		{Vector3D(-0.5f,0.5f,0.0f),    Vector3D(1,1,1),  Vector3D(1,1,1) },
+		{ Vector3D(0.5f,0.5f,0.0f),   Vector3D(1,1,1),  Vector3D(1,1,1) },
+		{ Vector3D(0.5f,-0.5f,0.0f),     Vector3D(1,1,1),  Vector3D(1,1,1) },
 
 		//BACK FACE
-		{ Vector3D(0.5f,-0.5f,0.5f),    Vector3D(0,1,0), Vector3D(0,0.2f,0) },
-		{ Vector3D(0.5f,0.5f,0.5f),    Vector3D(0,1,1), Vector3D(0,0.2f,0.2f) },
-		{ Vector3D(-0.5f,0.5f,0.5f),   Vector3D(0,1,1),  Vector3D(0,0.2f,0.2f) },
-		{ Vector3D(-0.5f,-0.5f,0.5f),     Vector3D(0,1,0), Vector3D(0,0.2f,0) }
+		{ Vector3D(0.5f,-0.5f,0.0f),    Vector3D(0,1,0), Vector3D(0,0.2f,0) },
+		{ Vector3D(0.5f,0.5f,0.0f),    Vector3D(0,1,1), Vector3D(0,0.2f,0.2f) },
+		{ Vector3D(-0.5f,0.5f,0.0f),   Vector3D(0,1,1),  Vector3D(0,0.2f,0.2f) },
+		{ Vector3D(-0.5f,-0.5f,0.0f),     Vector3D(0,1,0), Vector3D(0,0.2f,0) }
 
 	};
 
@@ -33,18 +33,6 @@ Cube::Cube(string name, void* shaderByteCode, size_t sizeShader) : GameObject(na
 		//BACK SIDE
 		4,5,6,
 		6,7,4,
-		//TOP SIDE
-		1,6,5,
-		5,2,1,
-		//BOTTOM SIDE
-		7,0,3,
-		3,4,7,
-		//RIGHT SIDE
-		3,2,5,
-		5,4,3,
-		//LEFT SIDE
-		7,6,1,
-		1,0,7
 	};
 
 
@@ -58,38 +46,17 @@ Cube::Cube(string name, void* shaderByteCode, size_t sizeShader) : GameObject(na
 	this->constantBuffer->load(&cbData, sizeof(CBData));
 }
 
-Cube::~Cube()
+Plane::~Plane()
 {
 }
 
-void Cube::update(float deltaTime)
+void Plane::update(float deltaTime)
 {
-	this->cbData.m_time = ::GetTickCount();
-
-	this->deltaPos += deltaTime / 10.0f;
-	if (this->deltaPos > 1.0f)
-		this->deltaPos = 0;
-
-
-	Matrix4x4 temp;
-
-	this->deltaScale += deltaTime * this->speed;
-
-	//cc.m_world.setScale(Vector3D::lerp(Vector3D(0.5, 0.5, 0), Vector3D(1.0f, 1.0f, 0), (sin(m_delta_scale) + 1.0f) / 2.0f));
-	
-	//temp.setTranslation(Vector3D::lerp(Vector3D(-1.5f, -1.5f, 0), Vector3D(1.5f,1.5f, 0), m_delta_pos));
-
-	//cc.m_world *= temp;
-
-	this->setRotation(this->deltaScale, this->deltaScale, this->deltaScale);
-
 	this->constantBuffer->update(GraphicsEngine::get()->getImmediateDeviceContext(), &this->cbData);
-
 }
 
-void Cube::draw(int width, int height, VertexShader* vertexShader, PixelShader* pixelShader)
+void Plane::draw(int width, int height, VertexShader* vertexShader, PixelShader* pixelShader)
 {
-
 	if (this->deltaPos > 1.0f) {
 		this->deltaPos = 0.0f;
 	}
@@ -97,7 +64,7 @@ void Cube::draw(int width, int height, VertexShader* vertexShader, PixelShader* 
 		this->deltaPos += this->deltaTime * 0.1f;
 	}
 
-	Matrix4x4 allMatrix; 
+	Matrix4x4 allMatrix;
 	Matrix4x4 temp;
 
 	allMatrix.setIdentity();
@@ -133,10 +100,4 @@ void Cube::draw(int width, int height, VertexShader* vertexShader, PixelShader* 
 	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(pixelShader);
 
 	GraphicsEngine::get()->getImmediateDeviceContext()->drawIndexedTriangleList(this->indexBuffer->getSizeIndexList(), 0, 0);
-
-}
-
-void Cube::setAnimSpeed(float speed)
-{
-	this->speed = speed;
 }
