@@ -4,6 +4,10 @@
 
 Cube::Cube(string name, void* shaderByteCode, size_t sizeShader) : GameObject(name)
 {
+	void* shader_byte_code = nullptr;
+	size_t size_shader = 0;
+	GraphicsEngine::get()->compileVertexShader(L"VertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
+
 	vertex vertex_list[] =
 	{
 		//X - Y - Z
@@ -21,9 +25,8 @@ Cube::Cube(string name, void* shaderByteCode, size_t sizeShader) : GameObject(na
 
 	};
 
-	this->vertexBuffer = GraphicsEngine::get()->createVertexBuffer();
+	this->m_vb = GraphicsEngine::get()->createVertexBuffer();
 	UINT size_list = ARRAYSIZE(vertex_list);
-	this->vertexBuffer->load(vertex_list, sizeof(vertex), size_list, shaderByteCode, sizeShader);
 
 	unsigned int index_list[] =
 	{
@@ -48,14 +51,27 @@ Cube::Cube(string name, void* shaderByteCode, size_t sizeShader) : GameObject(na
 	};
 
 
-	this->indexBuffer = GraphicsEngine::get()->createIndexBuffer();
+	this->m_ib = GraphicsEngine::get()->createIndexBuffer();
 	UINT size_index_list = ARRAYSIZE(index_list);
 
-	this->indexBuffer->load(index_list, size_index_list);
+	this->m_ib->load(index_list, size_index_list);
+
+	GraphicsEngine::get()->releaseCompiledShader();
+
+	GraphicsEngine::get()->compilePixelShader(L"PixelShader.hlsl", "psmain", &shader_byte_code, &size_shader);
+	m_ps = GraphicsEngine::get()->createPixelShader(shader_byte_code, size_shader);
+	this->m_vb->load(vertex_list, sizeof(vertex), size_list, shaderByteCode, sizeShader);
+	GraphicsEngine::get()->releaseCompiledShader();
+
+	CBData cc;
+	cc.m_time = 0;
+
+	m_cb = GraphicsEngine::get()->createConstantBuffer();
+	m_cb->load(&cc, sizeof(CBData));
 
 	this->cbData = {};
-	this->constantBuffer = GraphicsEngine::get()->createConstantBuffer();
-	this->constantBuffer->load(&cbData, sizeof(CBData));
+	this->m_cb = GraphicsEngine::get()->createConstantBuffer();
+	this->m_cb->load(&cbData, sizeof(CBData));
 }
 
 Cube::~Cube()
@@ -83,12 +99,15 @@ void Cube::update(float deltaTime)
 
 	this->setRotation(this->deltaScale, this->deltaScale, this->deltaScale);
 
-	this->constantBuffer->update(GraphicsEngine::get()->getImmediateDeviceContext(), &this->cbData);
+	this->m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &this->cbData);
 
 }
 
-void Cube::draw(int width, int height, VertexShader* vertexShader, PixelShader* pixelShader)
+void Cube::draw(Window* window)
 {
+	RECT rc = window->getClientWindowRect();
+	int width = rc.right - rc.left;
+	int height = rc.bottom - rc.top;
 
 	if (this->deltaPos > 1.0f) {
 		this->deltaPos = 0.0f;
@@ -97,7 +116,7 @@ void Cube::draw(int width, int height, VertexShader* vertexShader, PixelShader* 
 		this->deltaPos += this->deltaTime * 0.1f;
 	}
 
-	Matrix4x4 allMatrix; 
+	Matrix4x4 allMatrix;
 	Matrix4x4 temp;
 
 	allMatrix.setIdentity();
@@ -121,18 +140,18 @@ void Cube::draw(int width, int height, VertexShader* vertexShader, PixelShader* 
 
 	this->cbData.m_world = allMatrix;
 	this->cbData.m_view.setIdentity();
-	this->cbData.m_proj.setPerspectiveFovLH(90, width / height, 0.1f, 1000.0f);
+	this->cbData.m_proj.setOrthoLH(width / 400, height / 400, -4.0f, 4.0f);
 
-	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(vertexShader, this->constantBuffer);
-	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(pixelShader, this->constantBuffer);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(this->m_vs, this->m_cb);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(this->m_ps, this->m_cb);
 
-	GraphicsEngine::get()->getImmediateDeviceContext()->setIndexBuffer(this->indexBuffer);
-	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(this->vertexBuffer);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setIndexBuffer(this->m_ib);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(this->m_vb);
 
-	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexShader(vertexShader);
-	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(pixelShader);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexShader(this->m_vs);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(this->m_ps);
 
-	GraphicsEngine::get()->getImmediateDeviceContext()->drawIndexedTriangleList(this->indexBuffer->getSizeIndexList(), 0, 0);
+	GraphicsEngine::get()->getImmediateDeviceContext()->drawIndexedTriangleList(this->m_ib->getSizeIndexList(), 0, 0);
 
 }
 

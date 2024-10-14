@@ -11,11 +11,7 @@
 #include "InputListener.h"
 #include "Matrix4x4.h"
 
-#include "GameObject.h"
-#include "Cube.h"
-#include <vector>
-
-class AppWindow: public Window,public InputListener
+class AppWindow : public Window, public InputListener
 {
 public:
 	AppWindow();
@@ -27,7 +23,7 @@ public:
 	// Inherited via Window
 	virtual void onCreate() override;
 	virtual void onUpdate() override;
-	virtual void onDestroy() override;	
+	virtual void onDestroy() override;
 	virtual void onFocus() override;
 	virtual void onKillFocus() override;
 
@@ -42,14 +38,13 @@ public:
 	virtual void onRightMouseUp(const Point& mouse_pos) override;
 
 private:
-	SwapChain * m_swap_chain;
+	SwapChain* m_swap_chain;
 	VertexBuffer* m_vb;
 	VertexShader* m_vs;
 	PixelShader* m_ps;
 	ConstantBuffer* m_cb;
 	IndexBuffer* m_ib;
 private:
-	std::vector<GameObject*> objectList;
 	long m_old_delta;
 	long m_new_delta;
 	float m_delta_time;
@@ -58,7 +53,7 @@ private:
 	float m_delta_scale;
 	float m_delta_rot;
 
-	float m_rot_x=0.0f;
+	float m_rot_x = 0.0f;
 	float m_rot_y = 0.0f;
 
 	float m_scale_cube = 1;
@@ -66,4 +61,3 @@ private:
 	float m_rightward = 0.0f;
 	Matrix4x4 m_world_cam;
 };
-

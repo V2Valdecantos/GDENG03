@@ -55,7 +55,7 @@ void Plane::update(float deltaTime)
 	this->constantBuffer->update(GraphicsEngine::get()->getImmediateDeviceContext(), &this->cbData);
 }
 
-void Plane::draw(int width, int height, VertexShader* vertexShader, PixelShader* pixelShader)
+void Plane::draw(Window* window)
 {
 	if (this->deltaPos > 1.0f) {
 		this->deltaPos = 0.0f;

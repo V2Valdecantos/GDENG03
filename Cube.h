@@ -15,13 +15,16 @@ class Cube : public GameObject
 		~Cube();
 
 		void update(float deltaTime) override;
-		void draw(int width, int height, VertexShader* vertexShader, PixelShader* pixelShader) override;
+		void draw(Window* window) override;
 		void setAnimSpeed(float speed);
 
 	private:
-		VertexBuffer* vertexBuffer;
-		IndexBuffer* indexBuffer;
-		ConstantBuffer* constantBuffer;
+		SwapChain* m_swap_chain;
+		VertexBuffer* m_vb;
+		VertexShader* m_vs;
+		PixelShader* m_ps;
+		ConstantBuffer* m_cb;
+		IndexBuffer* m_ib;
 		CBData cbData;
 		float ticks = 0.0f;
 		float deltaPos = 0.0f;

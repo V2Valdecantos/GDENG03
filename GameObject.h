@@ -2,11 +2,15 @@
 #include <iostream>
 #include "Matrix4x4.h"
 #include "Vector3D.h"
+#include "Window.h"
 
 using namespace std;
 
 class VertexShader;
 class PixelShader;
+class VertexBuffer;
+class ConstantBuffer;
+class IndexBuffer;
 
 class GameObject
 {
@@ -15,7 +19,7 @@ class GameObject
 		~GameObject();
 
 		virtual void update(float deltaTime) = 0;
-		virtual void draw(int width, int height, VertexShader* vertexShader, PixelShader* pixelShader) = 0;
+		virtual void draw(Window* window) = 0;
 
 		void setPosition(float x, float y, float z);
 		void setPosition(Vector3D pos);
