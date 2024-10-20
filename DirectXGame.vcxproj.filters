@@ -33,34 +33,29 @@
     <ClCompile Include="VertexBuffer.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Quad.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
     <ClCompile Include="PixelShader.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="VertexShader.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectManager.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Circle.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
     <ClCompile Include="InputSystem.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
     <ClCompile Include="EngineTime.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="ConstantBuffer.cpp" />
+    <ClCompile Include="IndexBuffer.cpp" />
+    <ClCompile Include="Cube.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -81,12 +76,6 @@
     <ClInclude Include="VertexBuffer.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Quad.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
     <ClInclude Include="PixelShader.h">
       <Filter>Engine</Filter>
     </ClInclude>
@@ -94,12 +83,6 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Structs.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectManager.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Circle.h">
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="EngineTime.h">
@@ -111,10 +94,21 @@
     <ClInclude Include="InputSystem.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
+    <ClInclude Include="ConstantBuffer.h" />
+    <ClInclude Include="IndexBuffer.h" />
+    <ClInclude Include="Matrix4x4.h" />
+    <ClInclude Include="Point.h" />
+    <ClInclude Include="Vector3D.h" />
+    <ClInclude Include="Vector4D.h" />
+    <ClInclude Include="Cube.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="ConstantBuffer.h" />
+    <ClInclude Include="GameObject.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader.fx">

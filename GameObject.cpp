@@ -12,11 +12,11 @@ GameObject::~GameObject()
 {
 }
 
-void GameObject::update(float deltaTime)
+void GameObject::Update(float deltaTime)
 {
 }
 
-void GameObject::draw(Window* window)
+void GameObject::draw(Window* window, ConstantBuffer* m_cb)
 {
 }
 

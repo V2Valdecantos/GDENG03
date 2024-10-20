@@ -3,6 +3,7 @@
 #include "Matrix4x4.h"
 #include "Vector3D.h"
 #include "Window.h"
+#include "Structs.h"
 
 using namespace std;
 
@@ -18,8 +19,8 @@ class GameObject
 		GameObject(string name);
 		~GameObject();
 
-		virtual void update(float deltaTime) = 0;
-		virtual void draw(Window* window) = 0;
+		virtual void Update(float deltaTime) = 0;
+		virtual void draw(Window* window, ConstantBuffer* m_cb) = 0;
 
 		void setPosition(float x, float y, float z);
 		void setPosition(Vector3D pos);
@@ -34,22 +35,6 @@ class GameObject
 		Vector3D getLocalRotation();
 
 		string getName();
-
-		struct vertex
-		{
-			Vector3D position;
-			Vector3D color;
-			Vector3D color1;
-		};
-
-		__declspec(align(16))
-			struct CBData
-		{
-			Matrix4x4 m_world;
-			Matrix4x4 m_view;
-			Matrix4x4 m_proj;
-			float m_time;
-		};
 	
 	protected:
 		string name;

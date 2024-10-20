@@ -15,7 +15,7 @@ struct vertex
 };
 
 __declspec(align(16))
-struct constant
+struct CBData
 {
 	Matrix4x4 m_world;
 	Matrix4x4 m_view;

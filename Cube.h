@@ -11,15 +11,14 @@
 class Cube : public GameObject
 {
 	public:
-		Cube(string name, void* shaderByteCode, size_t sizeShader);
+		Cube(string name);
 		~Cube();
 
-		void update(float deltaTime) override;
-		void draw(Window* window) override;
+		void Update(float deltaTime) override;
+		void draw(Window* window, ConstantBuffer* m_cb) override;
 		void setAnimSpeed(float speed);
 
 	private:
-		SwapChain* m_swap_chain;
 		VertexBuffer* m_vb;
 		VertexShader* m_vs;
 		PixelShader* m_ps;

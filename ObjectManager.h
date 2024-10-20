@@ -18,11 +18,9 @@ class ObjectManager
 		void removeObject(GameObject* obj);
 		void popObject();
 		void clearObjects();
-		void Update();
-
+		void Update(float deltaTime);
 		void MakeRandomQuad();
 
-		std::vector<vertex> getVertexList();
 		std::vector<GameObject*> getObjects();
 
 	private:
