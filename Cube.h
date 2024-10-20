@@ -11,18 +11,18 @@
 class Cube : public GameObject
 {
 	public:
-		Cube(string name);
+		Cube(string name, ConstantBuffer* m_cb);
 		~Cube();
 
-		void Update(float deltaTime) override;
-		void draw(Window* window, ConstantBuffer* m_cb) override;
+		void Update(float deltaTime, Matrix4x4 m_view) override;
+		void draw(Window* window) override;
 		void setAnimSpeed(float speed);
 
 	private:
 		VertexBuffer* m_vb;
 		VertexShader* m_vs;
-		PixelShader* m_ps;
 		ConstantBuffer* m_cb;
+		PixelShader* m_ps;
 		IndexBuffer* m_ib;
 		CBData cbData;
 		float ticks = 0.0f;

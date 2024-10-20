@@ -37,11 +37,11 @@ void ObjectManager::clearObjects()
 }
 
 
-void ObjectManager::Update(float deltaTime)
+void ObjectManager::Update(float deltaTime, Matrix4x4 m_view)
 {
 	for (int i = 0; i < this->objects.size(); i++)
 	{
-		this->objects[i]->Update(deltaTime);
+		this->objects[i]->Update(deltaTime, m_view);
 	}
 		
 }

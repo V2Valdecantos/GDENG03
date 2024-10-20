@@ -19,8 +19,8 @@ class GameObject
 		GameObject(string name);
 		~GameObject();
 
-		virtual void Update(float deltaTime) = 0;
-		virtual void draw(Window* window, ConstantBuffer* m_cb) = 0;
+		virtual void Update(float deltaTime, Matrix4x4 m_view) = 0;
+		virtual void draw(Window* window) = 0;
 
 		void setPosition(float x, float y, float z);
 		void setPosition(Vector3D pos);
@@ -32,6 +32,7 @@ class GameObject
 
 		void setRotation(float x, float y, float z);
 		void setRotation(Vector3D rot);
+		void addRotation(float x, float y, float z);
 		Vector3D getLocalRotation();
 
 		string getName();

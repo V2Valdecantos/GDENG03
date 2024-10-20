@@ -18,7 +18,7 @@ class ObjectManager
 		void removeObject(GameObject* obj);
 		void popObject();
 		void clearObjects();
-		void Update(float deltaTime);
+		void Update(float deltaTime, Matrix4x4 m_view);
 		void MakeRandomQuad();
 
 		std::vector<GameObject*> getObjects();

@@ -39,11 +39,11 @@ public:
 
 private:
 	SwapChain* m_swap_chain;
-	VertexBuffer* m_vb;
-	VertexShader* m_vs;
-	PixelShader* m_ps;
+	//VertexBuffer* m_vb;
+	//VertexShader* m_vs;
+	//PixelShader* m_ps;
 	ConstantBuffer* m_cb;
-	IndexBuffer* m_ib;
+	//IndexBuffer* m_ib;
 private:
 	long m_old_delta;
 	long m_new_delta;

@@ -12,11 +12,11 @@ GameObject::~GameObject()
 {
 }
 
-void GameObject::Update(float deltaTime)
+void GameObject::Update(float deltaTime, Matrix4x4 m_view)
 {
 }
 
-void GameObject::draw(Window* window, ConstantBuffer* m_cb)
+void GameObject::draw(Window* window)
 {
 }
 
@@ -58,6 +58,13 @@ void GameObject::setRotation(float x, float y, float z)
 void GameObject::setRotation(Vector3D rot)
 {
 	this->localRotation = rot;
+}
+
+void GameObject::addRotation(float x, float y, float z)
+{
+	this->localRotation.m_x += x;
+	this->localRotation.m_y += y;
+	this->localRotation.m_z += z;
 }
 
 Vector3D GameObject::getLocalRotation()

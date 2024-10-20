@@ -83,6 +83,9 @@ void AppWindow::update()
 		4.0f
 	);*/
 
+
+
+
 	int width = (this->getClientWindowRect().right - this->getClientWindowRect().left);
 	int height = (this->getClientWindowRect().bottom - this->getClientWindowRect().top);
 
@@ -91,6 +94,7 @@ void AppWindow::update()
 
 
 	m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cc);
+	ObjectManager::getInstance()->Update(EngineTime::getDeltaTime(), cc.m_view);
 }
 
 
@@ -112,18 +116,20 @@ void AppWindow::onCreate()
 
 	m_world_cam.setTranslation(Vector3D(0, 0, -2));
 
-	Cube* cube1 = new Cube("cube1");
+	CBData cc;
+	cc.m_time = 0;
+
+	this->m_cb = GraphicsEngine::get()->createConstantBuffer();
+	this->m_cb->load(&cc, sizeof(CBData));
+
+	Cube* cube1 = new Cube("cube1", this->m_cb);
 	cube1->setPosition(0, 0, 0);
 	cube1->setAnimSpeed(0);
 	cube1->setScale(0.2, 0.2, 0.2);
 	cube1->setRotation(0, 0, 0);
 	ObjectManager::getInstance()->addObject(cube1);
 
-	CBData cc;
-	cc.m_time = 0;
 
-	m_cb = GraphicsEngine::get()->createConstantBuffer();
-	m_cb->load(&cc, sizeof(CBData));
 
 }
 
@@ -144,11 +150,10 @@ void AppWindow::onUpdate()
 
 
 	update();
-	ObjectManager::getInstance()->Update(EngineTime::getDeltaTime());
 
 	for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++) 
 	{
-		ObjectManager::getInstance()->getObjects()[i]->draw(this, this->m_cb);
+		ObjectManager::getInstance()->getObjects()[i]->draw(this);
 	}
 	
 	m_swap_chain->present(true);
@@ -163,12 +168,12 @@ void AppWindow::onUpdate()
 void AppWindow::onDestroy()
 {
 	Window::onDestroy();
-	m_vb->release();
-	m_ib->release();
+	//m_vb->release();
+	//m_ib->release();
 	m_cb->release();
 	m_swap_chain->release();
-	m_vs->release();
-	m_ps->release();
+	//m_vs->release();
+	//m_ps->release();
 	GraphicsEngine::get()->release();
 }
 
@@ -203,6 +208,34 @@ void AppWindow::onKeyDown(int key)
 	{
 		//m_rot_y -= 3.14f*m_delta_time;
 		m_rightward = 1.0f;
+	}
+	else if (key == VK_LEFT) 
+	{
+		for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++) 
+		{
+			ObjectManager::getInstance()->getObjects()[i]->addRotation(0, -1 * EngineTime::getDeltaTime(), 0);
+		}
+	}
+	else if (key == VK_RIGHT) 
+	{
+		for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++)
+		{
+			ObjectManager::getInstance()->getObjects()[i]->addRotation(0, 1 * EngineTime::getDeltaTime(), 0);
+		}
+	}
+	else if (key == VK_UP)
+	{
+		for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++)
+		{
+			ObjectManager::getInstance()->getObjects()[i]->addRotation(-1 * EngineTime::getDeltaTime(), 0, 0);
+		}
+	}
+	else if (key == VK_DOWN)
+	{
+		for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++)
+		{
+			ObjectManager::getInstance()->getObjects()[i]->addRotation(1 * EngineTime::getDeltaTime(), 0, 0);
+		}
 	}
 }
 

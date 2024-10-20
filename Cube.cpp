@@ -2,7 +2,7 @@
 
 
 
-Cube::Cube(string name) : GameObject(name)
+Cube::Cube(string name, ConstantBuffer* m_cb) : GameObject(name)
 {
 	vertex vertex_list[] =
 	{
@@ -80,20 +80,16 @@ Cube::Cube(string name) : GameObject(name)
 	m_ps = GraphicsEngine::get()->createPixelShader(shader_byte_code, size_shader);
 	GraphicsEngine::get()->releaseCompiledShader();
 
-	//CBData cc;
-	//cc.m_time = 0;
-
-	//m_cb = GraphicsEngine::get()->createConstantBuffer();
-	//m_cb->load(&cc, sizeof(CBData));
+	this->m_cb = m_cb;
 }
 
 Cube::~Cube()
 {
 }
 
-void Cube::Update(float deltaTime)
+void Cube::Update(float deltaTime, Matrix4x4 m_view)
 {
-	//this->cbData.m_time = ::GetTickCount();
+	this->cbData.m_time = deltaTime;
 
 	//this->deltaPos += deltaTime / 10.0f;
 	//if (this->deltaPos > 1.0f)
@@ -104,19 +100,47 @@ void Cube::Update(float deltaTime)
 
 	//this->deltaScale += deltaTime * this->speed;
 
-	////cc.m_world.setScale(Vector3D::lerp(Vector3D(0.5, 0.5, 0), Vector3D(1.0f, 1.0f, 0), (sin(m_delta_scale) + 1.0f) / 2.0f));
+	//this->cbData.m_world.setScale(this->localScale);
 	//
-	////temp.setTranslation(Vector3D::lerp(Vector3D(-1.5f, -1.5f, 0), Vector3D(1.5f,1.5f, 0), m_delta_pos));
+	//temp.setTranslation(this->localPosition);
 
-	////cc.m_world *= temp;
+	//this->cbData.m_world *= temp;
 
 	//this->setRotation(this->deltaScale, this->deltaScale, this->deltaScale);
 
 	//this->m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &this->cbData);
+		
+	
+	Matrix4x4 allMatrix;
+	Matrix4x4 temp;
+
+	allMatrix.setIdentity();
+	allMatrix.setScale(this->localScale);
+
+	temp.setIdentity();
+	temp.setRotationZ(this->localRotation.m_z);
+	allMatrix *= temp;
+
+	temp.setIdentity();
+	temp.setRotationY(this->localRotation.m_y);
+	allMatrix *= temp;
+
+	temp.setIdentity();
+	temp.setRotationX(this->localRotation.m_x);
+	allMatrix *= temp;
+
+	temp.setIdentity();
+	temp.setTranslation(this->localPosition);
+	allMatrix *= temp;
+	this->cbData.m_world = allMatrix;
+	this->cbData.m_view = m_view;
+	this->cbData.m_proj.setPerspectiveFovLH(1.57f, ((float)1024 / (float)768), 0.1f, 100.0f);
+
+	this->m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &this->cbData);
 
 }
 
-void Cube::draw(Window* window, ConstantBuffer* m_cb)
+void Cube::draw(Window* window)
 {
 	RECT rc = window->getClientWindowRect();
 	int width = rc.right - rc.left;
