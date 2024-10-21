@@ -122,12 +122,93 @@ void AppWindow::onCreate()
 	this->m_cb = GraphicsEngine::get()->createConstantBuffer();
 	this->m_cb->load(&cc, sizeof(CBData));
 
-	Cube* cube1 = new Cube("cube1", this->m_cb);
-	cube1->setPosition(0, 0, 0);
-	cube1->setAnimSpeed(2);
-	cube1->setScale(0.2, 0.2, 0.2);
-	cube1->setRotation(0, 0, 0);
-	ObjectManager::getInstance()->addObject(cube1);
+
+	//Cube* cubeObject = new Cube("Cube1");
+	//cubeObject->setAnimSpeed(rand() / float(RAND_MAX) * (0.35f - (-0.35f)) + -0.35f);
+	//cubeObject->setPosition(Vector3D(0, 0.9, 0));
+	//cubeObject->setScale(1, 1, 1);
+	//cubeObject->setRotation(0, 0, 0);
+	//ObjectManager::getInstance()->addObject(cubeObject);
+
+	//Cube* cubeObject2 = new Cube("Cube");
+	//cubeObject2->setAnimSpeed(rand() / float(RAND_MAX) * (0.35f - (-0.35f)) + -0.35f);
+	//cubeObject2->setPosition(Vector3D(- 1.5, 2.0, 1));
+	//cubeObject2->setScale(1, 1, 1);
+	//cubeObject2->setRotation(0, 0, 0);
+	//ObjectManager::getInstance()->addObject(cubeObject2);
+
+	//Cube* cubeObject3 = new Cube("Cube3");
+	//cubeObject3->setAnimSpeed(rand() / float(RAND_MAX) * (0.35f - (-0.35f)) + -0.35f);
+	//cubeObject3->setPosition(Vector3D(-1.5, 3, -2));
+	//cubeObject3->setScale(1, 1, 1);
+	//cubeObject3->setRotation(0, 0, 0);
+	//ObjectManager::getInstance()->addObject(cubeObject3);
+
+	/* 15 CARDS */
+	for (int i = 0; i < 15; i++) {
+		/*float x = rand() / float(RAND_MAX) * (0.75f - (-0.75f)) + -0.75f;
+		float y = rand() / float(RAND_MAX) * (0.75f - (-0.75f)) + -0.75f;*/
+
+
+		Cube* cubeObject = new Cube("Cube");
+		cubeObject->setAnimSpeed(rand() / float(RAND_MAX) * (0.35f - (-0.35f)) + -0.35f);
+		cubeObject->setPosition(Vector3D(10, 10, 0));
+		cubeObject->setScale(0.01, 1.5, 1);
+		cubeObject->setRotation(0, 0, 0);
+		ObjectManager::getInstance()->addObject(cubeObject);
+	}
+
+	/* CARD TRANSFORMS */
+
+	//card1
+	ObjectManager::getInstance()->getObjects()[0]->setRotation(0, 0, -0.349066);
+	ObjectManager::getInstance()->getObjects()[0]->setPosition(0, 0, 0);
+	//card2
+	ObjectManager::getInstance()->getObjects()[1]->setRotation(0, 0, 0.349066);
+	ObjectManager::getInstance()->getObjects()[1]->setPosition(0.25, 0, 0);
+	//card3
+	ObjectManager::getInstance()->getObjects()[2]->setRotation(0, 0, -0.349066);
+	ObjectManager::getInstance()->getObjects()[2]->setPosition(0.5, 0, 0);
+	//card4
+	ObjectManager::getInstance()->getObjects()[3]->setRotation(0, 0, 0.349066);
+	ObjectManager::getInstance()->getObjects()[3]->setPosition(0.75, 0, 0);
+	//card5
+	ObjectManager::getInstance()->getObjects()[4]->setRotation(0, 0, -0.349066);
+	ObjectManager::getInstance()->getObjects()[4]->setPosition(1, 0, 0);
+	//card6
+	ObjectManager::getInstance()->getObjects()[5]->setRotation(0, 0, 0.349066);
+	ObjectManager::getInstance()->getObjects()[5]->setPosition(1.25, 0, 0);
+
+	//card7
+	ObjectManager::getInstance()->getObjects()[6]->setRotation(0, 0, 1.5708);
+	ObjectManager::getInstance()->getObjects()[6]->setPosition(0.25, 0.35, 0);
+	//card8
+	ObjectManager::getInstance()->getObjects()[7]->setRotation(0, 0, 1.5708);
+	ObjectManager::getInstance()->getObjects()[7]->setPosition(1, 0.35, 0);
+
+	//card9
+	ObjectManager::getInstance()->getObjects()[8]->setRotation(0, 0, -0.349066);
+	ObjectManager::getInstance()->getObjects()[8]->setPosition(0.25, 0.7, 0);
+	//card10
+	ObjectManager::getInstance()->getObjects()[9]->setRotation(0, 0, 0.349066);
+	ObjectManager::getInstance()->getObjects()[9]->setPosition(0.5, 0.7, 0);
+	//card11
+	ObjectManager::getInstance()->getObjects()[10]->setRotation(0, 0, -0.349066);
+	ObjectManager::getInstance()->getObjects()[10]->setPosition(0.75, 0.7, 0);
+	//card12
+	ObjectManager::getInstance()->getObjects()[11]->setRotation(0, 0, 0.349066);
+	ObjectManager::getInstance()->getObjects()[11]->setPosition(1, 0.7, 0);
+
+	//card13
+	ObjectManager::getInstance()->getObjects()[12]->setRotation(0, 0, 1.5708);
+	ObjectManager::getInstance()->getObjects()[12]->setPosition(0.625, 1.05, 0);
+
+	//card14
+	ObjectManager::getInstance()->getObjects()[13]->setRotation(0, 0, -0.349066);
+	ObjectManager::getInstance()->getObjects()[13]->setPosition(0.5, 1.4, 0);
+	//card15
+	ObjectManager::getInstance()->getObjects()[14]->setRotation(0, 0, 0.349066);
+	ObjectManager::getInstance()->getObjects()[14]->setPosition(0.75, 1.4, 0);
 
 
 

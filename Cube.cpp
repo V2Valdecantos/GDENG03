@@ -2,35 +2,35 @@
 
 
 
-Cube::Cube(string name, ConstantBuffer* m_cb) : GameObject(name)
+Cube::Cube(string name) : GameObject(name)
 {
 	vertex vertex_list[] =
 	{
 		//X - Y - Z
-		////FRONT FACE
-		//{Vector3D(-0.5f,-0.5f,-0.5f),    Vector3D(1,0,0),  Vector3D(0.2f,0,0) },
-		//{Vector3D(-0.5f,0.5f,-0.5f),    Vector3D(1,1,0), Vector3D(0.2f,0.2f,0) },
-		//{ Vector3D(0.5f,0.5f,-0.5f),   Vector3D(1,1,0),  Vector3D(0.2f,0.2f,0) },
-		//{ Vector3D(0.5f,-0.5f,-0.5f),     Vector3D(1,0,0), Vector3D(0.2f,0,0) },
-
-		////BACK FACE
-		//{ Vector3D(0.5f,-0.5f,0.5f),    Vector3D(0,1,0), Vector3D(0,0.2f,0) },
-		//{ Vector3D(0.5f,0.5f,0.5f),    Vector3D(0,1,1), Vector3D(0,0.2f,0.2f) },
-		//{ Vector3D(-0.5f,0.5f,0.5f),   Vector3D(0,1,1),  Vector3D(0,0.2f,0.2f) },
-		//{ Vector3D(-0.5f,-0.5f,0.5f),     Vector3D(0,1,0), Vector3D(0,0.2f,0) }
-
-
-		//wCOLOR INPUT
-		{Vector3D(-0.5f,-0.5f,-0.5f),  this->color,  this->color },
-		{Vector3D(-0.5f,0.5f,-0.5f),   this->color,  this->color },
-		{ Vector3D(0.5f,0.5f,-0.5f),   this->color,  this->color },
-		{ Vector3D(0.5f,-0.5f,-0.5f),  this->color,  this->color },
+		//FRONT FACE
+		{Vector3D(-0.5f,-0.5f,-0.5f),    Vector3D(1,0,0),  Vector3D(0.2f,0,0) },
+		{Vector3D(-0.5f,0.5f,-0.5f),    Vector3D(1,1,0), Vector3D(0.2f,0.2f,0) },
+		{ Vector3D(0.5f,0.5f,-0.5f),   Vector3D(1,1,0),  Vector3D(0.2f,0.2f,0) },
+		{ Vector3D(0.5f,-0.5f,-0.5f),     Vector3D(1,0,0), Vector3D(0.2f,0,0) },
 
 		//BACK FACE
-		{ Vector3D(0.5f,-0.5f,0.5f),   this->color,  this->color },
-		{ Vector3D(0.5f,0.5f,0.5f),    this->color,  this->color },
-		{ Vector3D(-0.5f,0.5f,0.5f),   this->color,  this->color },
-		{ Vector3D(-0.5f,-0.5f,0.5f),  this->color,  this->color }
+		{ Vector3D(0.5f,-0.5f,0.5f),    Vector3D(0,1,0), Vector3D(0,0.2f,0) },
+		{ Vector3D(0.5f,0.5f,0.5f),    Vector3D(0,1,1), Vector3D(0,0.2f,0.2f) },
+		{ Vector3D(-0.5f,0.5f,0.5f),   Vector3D(0,1,1),  Vector3D(0,0.2f,0.2f) },
+		{ Vector3D(-0.5f,-0.5f,0.5f),     Vector3D(0,1,0), Vector3D(0,0.2f,0) }
+
+
+		////COLOR INPUT
+		//{Vector3D(-0.5f,-0.5f,-0.5f),  this->color,  this->color },
+		//{Vector3D(-0.5f,0.5f,-0.5f),   this->color,  this->color },
+		//{ Vector3D(0.5f,0.5f,-0.5f),   this->color,  this->color },
+		//{ Vector3D(0.5f,-0.5f,-0.5f),  this->color,  this->color },
+
+		////BACK FACE
+		//{ Vector3D(0.5f,-0.5f,0.5f),   this->color,  this->color },
+		//{ Vector3D(0.5f,0.5f,0.5f),    this->color,  this->color },
+		//{ Vector3D(-0.5f,0.5f,0.5f),   this->color,  this->color },
+		//{ Vector3D(-0.5f,-0.5f,0.5f),  this->color,  this->color }
 
 		////PLANE
 		//{ Vector3D(10.0f,0.0f,-100.0f),    Vector3D(1,1,1),  Vector3D(1,1,1) },
@@ -93,7 +93,10 @@ Cube::Cube(string name, ConstantBuffer* m_cb) : GameObject(name)
 	m_ps = GraphicsEngine::get()->createPixelShader(shader_byte_code, size_shader);
 	GraphicsEngine::get()->releaseCompiledShader();
 
-	this->m_cb = m_cb;
+	this->cbData = {};
+	this->cbData.m_time = 0;
+	this->m_cb = GraphicsEngine::get()->createConstantBuffer();
+	this->m_cb->load(&this->cbData, sizeof(CBData));
 }
 
 Cube::~Cube()
@@ -103,9 +106,10 @@ Cube::~Cube()
 void Cube::Update(float deltaTime, Matrix4x4 m_view)
 {
 	this->cbData.m_time = deltaTime;
+
 	this->deltaPos += deltaTime / 10.0f;
-	if (this->deltaPos > 1.0f)
-		this->deltaPos = 0;
+	//if (this->deltaPos > 1.0f)
+	//	this->deltaPos = 0;
 
 	this->deltaScale += deltaTime / 10.0f;
 	if (this->deltaScale < 0.25f)
@@ -146,11 +150,13 @@ void Cube::Update(float deltaTime, Matrix4x4 m_view)
 	temp.setTranslation(this->localPosition);
 
 	this->cbData.m_world *= temp;
+	//
+	//if (this->localScale.m_z >= 0)
+	//	this->setScale(Vector3D::lerp(Vector3D(1, 1, 1), Vector3D(2.5, 2.5, 0), this->deltaPos));
 
-	//this->setScale(Vector3D::lerp(Vector3D(1, 1, 1), Vector3D(0.25, 0.25, 0.25), this->deltaPos));
 	temp.setScale(this->localScale);
 
-	this->addRotation(this->speed * deltaTime, this->speed * deltaTime, this->speed * deltaTime);
+	//this->addRotation(this->speed * deltaTime, this->speed * deltaTime, this->speed * deltaTime);
 	temp.setRotationX(this->localRotation.m_x);
 	temp.setRotationY(this->localRotation.m_y);
 	temp.setRotationZ(this->localRotation.m_z);

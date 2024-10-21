@@ -11,7 +11,7 @@
 class Cube : public GameObject
 {
 	public:
-		Cube(string name, ConstantBuffer* m_cb);
+		Cube(string name);
 		~Cube();
 
 		void Update(float deltaTime, Matrix4x4 m_view) override;
