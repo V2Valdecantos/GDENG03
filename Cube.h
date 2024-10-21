@@ -12,6 +12,7 @@ class Cube : public GameObject
 {
 	public:
 		Cube(string name);
+		Cube(string name, Vector3D color);
 		~Cube();
 
 		void Update(float deltaTime, Matrix4x4 m_view) override;

@@ -126,23 +126,28 @@ void AppWindow::onCreate()
 	//Cube* cubeObject = new Cube("Cube1");
 	//cubeObject->setAnimSpeed(rand() / float(RAND_MAX) * (0.35f - (-0.35f)) + -0.35f);
 	//cubeObject->setPosition(Vector3D(0, 0.9, 0));
-	//cubeObject->setScale(1, 1, 1);
+	//cubeObject->setScale(2, 2, 2);
 	//cubeObject->setRotation(0, 0, 0);
 	//ObjectManager::getInstance()->addObject(cubeObject);
 
-	//Cube* cubeObject2 = new Cube("Cube");
+	//Cube* cubeObject2 = new Cube("Cube2");
 	//cubeObject2->setAnimSpeed(rand() / float(RAND_MAX) * (0.35f - (-0.35f)) + -0.35f);
-	//cubeObject2->setPosition(Vector3D(- 1.5, 2.0, 1));
-	//cubeObject2->setScale(1, 1, 1);
-	//cubeObject2->setRotation(0, 0, 0);
+	//cubeObject2->setPosition(Vector3D(- 1.5, 2, 1));
+	//cubeObject2->setScale(2, 2, 2);
 	//ObjectManager::getInstance()->addObject(cubeObject2);
 
 	//Cube* cubeObject3 = new Cube("Cube3");
 	//cubeObject3->setAnimSpeed(rand() / float(RAND_MAX) * (0.35f - (-0.35f)) + -0.35f);
 	//cubeObject3->setPosition(Vector3D(-1.5, 3, -2));
-	//cubeObject3->setScale(1, 1, 1);
-	//cubeObject3->setRotation(0, 0, 0);
+	//cubeObject3->setScale(2, 2, 2);
 	//ObjectManager::getInstance()->addObject(cubeObject3);
+
+	//Cube* plane = new Cube("Cube3", Vector3D(0.5, 0.5, 0.5));
+	//plane->setAnimSpeed(rand() / float(RAND_MAX) * (0.35f - (-0.35f)) + -0.35f);
+	//plane->setPosition(Vector3D(0, 0, 0));
+	//plane->setScale(25, 0, 25);
+	//plane->setRotation(0, 0, 0);
+	//ObjectManager::getInstance()->addObject(plane);
 
 	/* 15 CARDS */
 	for (int i = 0; i < 15; i++) {
