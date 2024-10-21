@@ -7,17 +7,30 @@ Cube::Cube(string name, ConstantBuffer* m_cb) : GameObject(name)
 	vertex vertex_list[] =
 	{
 		//X - Y - Z
-		//FRONT FACE
-		{Vector3D(-0.5f,-0.5f,-0.5f),    Vector3D(1,0,0),  Vector3D(0.2f,0,0) },
-		{Vector3D(-0.5f,0.5f,-0.5f),    Vector3D(1,1,0), Vector3D(0.2f,0.2f,0) },
-		{ Vector3D(0.5f,0.5f,-0.5f),   Vector3D(1,1,0),  Vector3D(0.2f,0.2f,0) },
-		{ Vector3D(0.5f,-0.5f,-0.5f),     Vector3D(1,0,0), Vector3D(0.2f,0,0) },
+		////FRONT FACE
+		//{Vector3D(-0.5f,-0.5f,-0.5f),    Vector3D(1,0,0),  Vector3D(0.2f,0,0) },
+		//{Vector3D(-0.5f,0.5f,-0.5f),    Vector3D(1,1,0), Vector3D(0.2f,0.2f,0) },
+		//{ Vector3D(0.5f,0.5f,-0.5f),   Vector3D(1,1,0),  Vector3D(0.2f,0.2f,0) },
+		//{ Vector3D(0.5f,-0.5f,-0.5f),     Vector3D(1,0,0), Vector3D(0.2f,0,0) },
+
+		////BACK FACE
+		//{ Vector3D(0.5f,-0.5f,0.5f),    Vector3D(0,1,0), Vector3D(0,0.2f,0) },
+		//{ Vector3D(0.5f,0.5f,0.5f),    Vector3D(0,1,1), Vector3D(0,0.2f,0.2f) },
+		//{ Vector3D(-0.5f,0.5f,0.5f),   Vector3D(0,1,1),  Vector3D(0,0.2f,0.2f) },
+		//{ Vector3D(-0.5f,-0.5f,0.5f),     Vector3D(0,1,0), Vector3D(0,0.2f,0) }
+
+
+		//wCOLOR INPUT
+		{Vector3D(-0.5f,-0.5f,-0.5f),  this->color,  this->color },
+		{Vector3D(-0.5f,0.5f,-0.5f),   this->color,  this->color },
+		{ Vector3D(0.5f,0.5f,-0.5f),   this->color,  this->color },
+		{ Vector3D(0.5f,-0.5f,-0.5f),  this->color,  this->color },
 
 		//BACK FACE
-		{ Vector3D(0.5f,-0.5f,0.5f),    Vector3D(0,1,0), Vector3D(0,0.2f,0) },
-		{ Vector3D(0.5f,0.5f,0.5f),    Vector3D(0,1,1), Vector3D(0,0.2f,0.2f) },
-		{ Vector3D(-0.5f,0.5f,0.5f),   Vector3D(0,1,1),  Vector3D(0,0.2f,0.2f) },
-		{ Vector3D(-0.5f,-0.5f,0.5f),     Vector3D(0,1,0), Vector3D(0,0.2f,0) }
+		{ Vector3D(0.5f,-0.5f,0.5f),   this->color,  this->color },
+		{ Vector3D(0.5f,0.5f,0.5f),    this->color,  this->color },
+		{ Vector3D(-0.5f,0.5f,0.5f),   this->color,  this->color },
+		{ Vector3D(-0.5f,-0.5f,0.5f),  this->color,  this->color }
 
 		////PLANE
 		//{ Vector3D(10.0f,0.0f,-100.0f),    Vector3D(1,1,1),  Vector3D(1,1,1) },
@@ -90,27 +103,14 @@ Cube::~Cube()
 void Cube::Update(float deltaTime, Matrix4x4 m_view)
 {
 	this->cbData.m_time = deltaTime;
+	this->deltaPos += deltaTime / 10.0f;
+	if (this->deltaPos > 1.0f)
+		this->deltaPos = 0;
 
-	//this->deltaPos += deltaTime / 10.0f;
-	//if (this->deltaPos > 1.0f)
-	//	this->deltaPos = 0;
+	this->deltaScale += deltaTime / 10.0f;
+	if (this->deltaScale < 0.25f)
+		this->deltaScale = 0;
 
-
-	//Matrix4x4 temp;
-
-	//this->deltaScale += deltaTime * this->speed;
-
-	//this->cbData.m_world.setScale(this->localScale);
-	//
-	//temp.setTranslation(this->localPosition);
-
-	//this->cbData.m_world *= temp;
-
-	//this->setRotation(this->deltaScale, this->deltaScale, this->deltaScale);
-
-	//this->m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &this->cbData);
-		
-	
 	Matrix4x4 allMatrix;
 	Matrix4x4 temp;
 
@@ -135,6 +135,25 @@ void Cube::Update(float deltaTime, Matrix4x4 m_view)
 	this->cbData.m_world = allMatrix;
 	this->cbData.m_view = m_view;
 	this->cbData.m_proj.setPerspectiveFovLH(1.57f, ((float)1024 / (float)768), 0.1f, 100.0f);
+
+	this->m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &this->cbData);
+
+	
+
+	//this->cbData.m_world.setScale(this->localScale);
+
+	//this->setPosition(Vector3D::lerp(Vector3D(0, 0, 0), Vector3D(1.0f, 0.5f, 0), this->deltaPos));
+	temp.setTranslation(this->localPosition);
+
+	this->cbData.m_world *= temp;
+
+	//this->setScale(Vector3D::lerp(Vector3D(1, 1, 1), Vector3D(0.25, 0.25, 0.25), this->deltaPos));
+	temp.setScale(this->localScale);
+
+	this->addRotation(this->speed * deltaTime, this->speed * deltaTime, this->speed * deltaTime);
+	temp.setRotationX(this->localRotation.m_x);
+	temp.setRotationY(this->localRotation.m_y);
+	temp.setRotationZ(this->localRotation.m_z);
 
 	this->m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &this->cbData);
 

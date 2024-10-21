@@ -35,10 +35,14 @@ class GameObject
 		void addRotation(float x, float y, float z);
 		Vector3D getLocalRotation();
 
+		void setColor(float x, float y, float z);
+		Vector3D getColor();
+
 		string getName();
 	
 	protected:
 		string name;
+		Vector3D color;
 		Vector3D localPosition;
 		Vector3D localScale;
 		Vector3D localRotation;

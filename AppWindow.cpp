@@ -124,7 +124,7 @@ void AppWindow::onCreate()
 
 	Cube* cube1 = new Cube("cube1", this->m_cb);
 	cube1->setPosition(0, 0, 0);
-	cube1->setAnimSpeed(0);
+	cube1->setAnimSpeed(2);
 	cube1->setScale(0.2, 0.2, 0.2);
 	cube1->setRotation(0, 0, 0);
 	ObjectManager::getInstance()->addObject(cube1);

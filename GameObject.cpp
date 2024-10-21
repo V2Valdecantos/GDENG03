@@ -6,6 +6,7 @@ GameObject::GameObject(string name)
 	this->localPosition = Vector3D(0, 0, 0);
 	this->localScale = Vector3D(1, 1, 1);
 	this->localRotation = Vector3D(0, 0, 0);
+	this->color = Vector3D(0.8, 0.8, 0.8); 
 }
 
 GameObject::~GameObject()
@@ -70,6 +71,16 @@ void GameObject::addRotation(float x, float y, float z)
 Vector3D GameObject::getLocalRotation()
 {
 	return this->localRotation;
+}
+
+void GameObject::setColor(float x, float y, float z)
+{
+	this->color = Vector3D(x, y, z);
+}
+
+Vector3D GameObject::getColor()
+{
+	return this->color;
 }
 
 string GameObject::getName()
