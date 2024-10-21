@@ -202,7 +202,7 @@ Cube::~Cube()
 {
 }
 
-void Cube::Update(float deltaTime, Matrix4x4 m_view)
+void Cube::Update(float deltaTime, Matrix4x4 m_view, Matrix4x4 m_proj)
 {
 	this->cbData.m_time = deltaTime;
 
@@ -237,7 +237,7 @@ void Cube::Update(float deltaTime, Matrix4x4 m_view)
 	allMatrix *= temp;
 	this->cbData.m_world = allMatrix;
 	this->cbData.m_view = m_view;
-	this->cbData.m_proj.setPerspectiveFovLH(1.57f, ((float)1024 / (float)768), 0.1f, 100.0f);
+	this->cbData.m_proj = m_proj;
 
 	this->m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &this->cbData);
 

@@ -89,12 +89,14 @@ void AppWindow::update()
 	int width = (this->getClientWindowRect().right - this->getClientWindowRect().left);
 	int height = (this->getClientWindowRect().bottom - this->getClientWindowRect().top);
 
-
-	cc.m_proj.setPerspectiveFovLH(1.57f, ((float)width / (float)height), 0.1f, 100.0f);
+	if (!isOrtho)
+		cc.m_proj.setPerspectiveFovLH(1.57f, ((float)width / (float)height), 0.1f, 100.0f);
+	else
+		(cc.m_proj.setOrthoLH(width / 100, height / 100, 0.1f, 100.0f));
 
 
 	m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cc);
-	ObjectManager::getInstance()->Update(EngineTime::getDeltaTime(), cc.m_view);
+	ObjectManager::getInstance()->Update(EngineTime::getDeltaTime(), cc.m_view, cc.m_proj);
 }
 
 
@@ -329,6 +331,10 @@ void AppWindow::onKeyUp(int key)
 {
 	m_forward = 0.0f;
 	m_rightward = 0.0f;
+
+	if (key == 'Q') {
+		isOrtho = !isOrtho;
+	}
 }
 
 void AppWindow::onMouseMove(const Point& mouse_pos)
@@ -337,9 +343,11 @@ void AppWindow::onMouseMove(const Point& mouse_pos)
 	int height = (this->getClientWindowRect().bottom - this->getClientWindowRect().top);
 
 
-
-	m_rot_x += (mouse_pos.m_y - (height / 2.0f)) * m_delta_time * 0.1f;
-	m_rot_y += (mouse_pos.m_x - (width / 2.0f)) * m_delta_time * 0.1f;
+	if (!isOrtho)
+	{
+		m_rot_x += (mouse_pos.m_y - (height / 2.0f)) * m_delta_time * 0.1f;
+		m_rot_y += (mouse_pos.m_x - (width / 2.0f)) * m_delta_time * 0.1f;
+	}
 
 
 

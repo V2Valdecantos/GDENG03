@@ -15,7 +15,7 @@ class Cube : public GameObject
 		Cube(string name, Vector3D color);
 		~Cube();
 
-		void Update(float deltaTime, Matrix4x4 m_view) override;
+		void Update(float deltaTime, Matrix4x4 m_view, Matrix4x4 m_proj) override;
 		void draw(Window* window) override;
 		void setAnimSpeed(float speed);
 

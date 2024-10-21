@@ -19,7 +19,7 @@ class GameObject
 		GameObject(string name);
 		~GameObject();
 
-		virtual void Update(float deltaTime, Matrix4x4 m_view) = 0;
+		virtual void Update(float deltaTime, Matrix4x4 m_view, Matrix4x4 m_proj) = 0;
 		virtual void draw(Window* window) = 0;
 
 		void setPosition(float x, float y, float z);
