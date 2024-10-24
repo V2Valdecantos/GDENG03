@@ -1,10 +1,10 @@
 #pragma once
+#pragma message ("GO is defined")
 #include <iostream>
 #include "Matrix4x4.h"
 #include "Vector3D.h"
 #include "Window.h"
 #include "Structs.h"
-
 using namespace std;
 
 class VertexShader;
@@ -19,7 +19,7 @@ class GameObject
 		GameObject(string name);
 		~GameObject();
 
-		virtual void Update(float deltaTime, Matrix4x4 m_view, Matrix4x4 m_proj) = 0;
+		virtual void Update(float deltaTime, Matrix4x4 view, Matrix4x4 proj) = 0;
 		virtual void draw(Window* window) = 0;
 
 		void setPosition(float x, float y, float z);

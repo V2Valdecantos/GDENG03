@@ -1,11 +1,5 @@
 #include "AppWindow.h"
-#include <Windows.h>
-#include "Vector3D.h"
-#include "Matrix4x4.h"
-#include "InputSystem.h"
-#include "GameObject.h"
-#include "Cube.h"
-#include "ObjectManager.h"
+
 
 
 AppWindow::AppWindow()
@@ -14,7 +8,7 @@ AppWindow::AppWindow()
 
 void AppWindow::update()
 {
-	CBData cc;
+	/*CBData cc;
 	cc.m_time = ::GetTickCount();
 
 	m_delta_pos += m_delta_time / 10.0f;
@@ -54,22 +48,23 @@ void AppWindow::update()
 
 
 
-	cc.m_view = world_cam;
+	cc.m_view = world_cam;*/
 
 
 
 
-	int width = (this->getClientWindowRect().right - this->getClientWindowRect().left);
-	int height = (this->getClientWindowRect().bottom - this->getClientWindowRect().top);
+	//int width = (this->getClientWindowRect().right - this->getClientWindowRect().left);
+	//int height = (this->getClientWindowRect().bottom - this->getClientWindowRect().top);
 
-	if (!isOrtho)
-		cc.m_proj.setPerspectiveFovLH(1.57f, ((float)width / (float)height), 0.1f, 100.0f);
-	else
-		(cc.m_proj.setOrthoLH(width / 90, height / 90, 0.1f, 100.0f));
+	//if (!isOrtho)
+	//	cc.m_proj.setPerspectiveFovLH(1.57f, ((float)width / (float)height), 0.1f, 100.0f);
+	//else
+	//	(cc.m_proj.setOrthoLH(width / 90, height / 90, 0.1f, 100.0f));
 
 
-	m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cc);
-	ObjectManager::getInstance()->Update(EngineTime::getDeltaTime(), cc.m_view, cc.m_proj);
+	//m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cc);
+	CameraManager::getInstance()->Update();
+	ObjectManager::getInstance()->Update(EngineTime::getDeltaTime());
 }
 
 
@@ -97,6 +92,10 @@ void AppWindow::onCreate()
 	this->m_cb = GraphicsEngine::get()->createConstantBuffer();
 	this->m_cb->load(&cc, sizeof(CBData));
 
+	Camera* camera = new Camera();
+	CameraManager::getInstance()->AddCamera(camera);
+
+
 	for (int i = 0; i < 10; i++) {
 		float x = rand() / float(RAND_MAX) * (3 - (-3)) + -3;
 		float y = rand() / float(RAND_MAX) * (3 - (-3)) + -3;
@@ -120,7 +119,7 @@ void AppWindow::onUpdate()
 
 	//CLEAR THE RENDER TARGET 
 	GraphicsEngine::get()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain,
-		0, 0.3f, 0.4f, 1);
+		0.7, 0.6f, 0.9f, 1);
 	//SET VIEWPORT OF RENDER TARGET IN WHICH WE HAVE TO DRAW
 	RECT rc = this->getClientWindowRect();
 	GraphicsEngine::get()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
@@ -159,11 +158,13 @@ void AppWindow::onDestroy()
 void AppWindow::onFocus()
 {
 	InputSystem::get()->addListener(this);
+	InputSystem::get()->addListener(CameraManager::getInstance()->GetActiveCamera());
 }
 
 void AppWindow::onKillFocus()
 {
 	InputSystem::get()->removeListener(this);
+	InputSystem::get()->removeListener(CameraManager::getInstance()->GetActiveCamera());
 }
 
 void AppWindow::onKeyDown(int key)
@@ -172,17 +173,15 @@ void AppWindow::onKeyDown(int key)
 	{
 		for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++)
 		{
-			ObjectManager::getInstance()->getObjects()[i]->addRotation(0.5 * EngineTime::getDeltaTime(), -1 * EngineTime::getDeltaTime(), 0.7 * EngineTime::getDeltaTime());
+			ObjectManager::getInstance()->getObjects()[i]->addRotation(2 * EngineTime::getDeltaTime(), -2 * EngineTime::getDeltaTime(), 2 * EngineTime::getDeltaTime());
 		}
-		m_forward = 1.0f;
 	}
 	else if (key == 'S')
 	{
 		for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++)
 		{
-			ObjectManager::getInstance()->getObjects()[i]->addRotation(-0.5 * EngineTime::getDeltaTime(), 1 * EngineTime::getDeltaTime(), -0.7 * EngineTime::getDeltaTime());
+			ObjectManager::getInstance()->getObjects()[i]->addRotation(-2 * EngineTime::getDeltaTime(), 2 * EngineTime::getDeltaTime(), -2* EngineTime::getDeltaTime());
 		}
-		m_forward = -1.0f;
 	}
 	else if (key == 'A')
 	{
@@ -194,7 +193,7 @@ void AppWindow::onKeyDown(int key)
 		
 		m_rightward = 1.0f;
 	}
-	else if (key == VK_LEFT) 
+	if (key == VK_LEFT) 
 	{
 		for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++) 
 		{
@@ -226,49 +225,48 @@ void AppWindow::onKeyDown(int key)
 
 void AppWindow::onKeyUp(int key)
 {
-	m_forward = 0.0f;
-	m_rightward = 0.0f;
+	//m_forward = 0.0f;
+	//m_rightward = 0.0f;
 
-	if (key == 'Q') {
-		isOrtho = !isOrtho;
-	}
+	//if (key == 'Q') {
+	//	isOrtho = !isOrtho;
+	//}
 }
 
 void AppWindow::onMouseMove(const Point& mouse_pos)
 {
-	int width = (this->getClientWindowRect().right - this->getClientWindowRect().left);
-	int height = (this->getClientWindowRect().bottom - this->getClientWindowRect().top);
+	//int width = (this->getClientWindowRect().right - this->getClientWindowRect().left);
+	//int height = (this->getClientWindowRect().bottom - this->getClientWindowRect().top);
 
 
-	if (!isOrtho)
-	{
-		m_rot_x += (mouse_pos.m_y - (height / 2.0f)) * m_delta_time * 0.1f;
-		m_rot_y += (mouse_pos.m_x - (width / 2.0f)) * m_delta_time * 0.1f;
-	}
+	//if (!isOrtho)
+	//{
+	//	m_rot_x += (mouse_pos.m_y - (height / 2.0f)) * m_delta_time * 0.1f;
+	//	m_rot_y += (mouse_pos.m_x - (width / 2.0f)) * m_delta_time * 0.1f;
+	//}
 
 
 
-	InputSystem::get()->setCursorPosition(Point((int)(width / 2.0f), (int)(height / 2.0f)));
+	//InputSystem::get()->setCursorPosition(Point((int)(width / 2.0f), (int)(height / 2.0f)));
 
 
 }
 
 void AppWindow::onLeftMouseDown(const Point& mouse_pos)
 {
-	m_scale_cube = 0.5f;
-}
 
+}
 void AppWindow::onLeftMouseUp(const Point& mouse_pos)
 {
-	m_scale_cube = 1.0f;
+
 }
 
 void AppWindow::onRightMouseDown(const Point& mouse_pos)
 {
-	m_scale_cube = 2.0f;
+
 }
 
 void AppWindow::onRightMouseUp(const Point& mouse_pos)
 {
-	m_scale_cube = 1.0f;
+
 }

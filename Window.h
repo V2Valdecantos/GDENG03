@@ -2,7 +2,6 @@
 #include <Windows.h>
 #include "EngineTime.h"
 
-
 class Window
 {
 public:

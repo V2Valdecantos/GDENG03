@@ -13,7 +13,7 @@ GameObject::~GameObject()
 {
 }
 
-void GameObject::Update(float deltaTime, Matrix4x4 m_view, Matrix4x4 m_proj)
+void GameObject::Update(float deltaTime, Matrix4x4 view, Matrix4x4 proj)
 {
 }
 

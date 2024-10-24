@@ -1,5 +1,8 @@
 #pragma once
 #include "Window.h"
+
+#include "GameObject.h"
+
 #include "GraphicsEngine.h"
 #include "SwapChain.h"
 #include "DeviceContext.h"
@@ -11,6 +14,19 @@
 #include "InputListener.h"
 #include "Matrix4x4.h"
 
+#include <Windows.h>
+#include "Vector3D.h"
+#include "Matrix4x4.h"
+#include "InputSystem.h"
+
+
+#include "ObjectManager.h"
+#include "CameraManager.h"
+#include "Camera.h"
+#include "Cube.h"
+
+
+class GameObject;
 class AppWindow : public Window, public InputListener
 {
 public:

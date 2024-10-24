@@ -45,8 +45,6 @@
     <ClCompile Include="EngineTime.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="ConstantBuffer.cpp" />
-    <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="Cube.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
@@ -56,6 +54,14 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="ConstantBuffer.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexBuffer.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -94,8 +100,6 @@
     <ClInclude Include="InputSystem.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="ConstantBuffer.h" />
-    <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="Matrix4x4.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Vector3D.h" />
@@ -109,6 +113,14 @@
     <ClInclude Include="ObjectManager.h">
       <Filter>Classes</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="ConstantBuffer.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexBuffer.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader.fx">

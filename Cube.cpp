@@ -202,7 +202,7 @@ Cube::~Cube()
 {
 }
 
-void Cube::Update(float deltaTime, Matrix4x4 m_view, Matrix4x4 m_proj)
+void Cube::Update(float deltaTime, Matrix4x4 view, Matrix4x4 proj)
 {
 	this->cbData.m_time = deltaTime;
 
@@ -236,8 +236,8 @@ void Cube::Update(float deltaTime, Matrix4x4 m_view, Matrix4x4 m_proj)
 	temp.setTranslation(this->localPosition);
 	allMatrix *= temp;
 	this->cbData.m_world = allMatrix;
-	this->cbData.m_view = m_view;
-	this->cbData.m_proj = m_proj;
+	this->cbData.m_view = view;
+	this->cbData.m_proj = proj;
 
 	this->m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &this->cbData);
 

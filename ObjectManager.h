@@ -6,6 +6,7 @@
 #include "GameObject.h"
 #include "Structs.h"
 #include "EngineTime.h"
+#include "CameraManager.h"
 
 class GameObject;
 
@@ -18,7 +19,7 @@ class ObjectManager
 		void removeObject(GameObject* obj);
 		void popObject();
 		void clearObjects();
-		void Update(float deltaTime, Matrix4x4 m_view, Matrix4x4 m_proj);
+		void Update(float deltaTime);
 		void MakeRandomQuad();
 
 		std::vector<GameObject*> getObjects();
