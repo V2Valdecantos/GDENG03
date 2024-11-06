@@ -23,10 +23,13 @@
 #include "imgui_impl_win32.h"
 #include "imgui_impl_dx11.h"
 
+
 #include "ObjectManager.h"
 #include "CameraManager.h"
 #include "Camera.h"
 #include "Cube.h"
+
+
 
 
 class GameObject;
@@ -57,6 +60,9 @@ public:
 	virtual void onRightMouseUp(const Point& mouse_pos) override;
 	LRESULT CALLBACK WndProc(HWND windowHandle, UINT msg, WPARAM param, LPARAM lparam);
 
+	bool LoadTextureFromMemory(const void* data, size_t data_size, ID3D11ShaderResourceView** out_srv, int* out_width, int* out_height);
+	bool LoadTextureFromFile(const char* file_name, ID3D11ShaderResourceView** out_srv, int* out_width, int* out_height);
+
 private:
 	SwapChain* m_swap_chain;
 	//VertexBuffer* m_vb;
@@ -83,8 +89,14 @@ private:
 
 	float g_ResizeWidth = 0;
 	float g_ResizeHeight = 0;
+	ID3D11ShaderResourceView* logoTex;
+	int logoWidth;
+	int logoHeight;
+	float my_color[4];
 
 	bool isOrtho = false;
-	bool credits_active = true;
-	bool rMouse = false;
+	bool credits_active = false;
+	bool color_picker_active = false;
+	bool show_demo_window = false;
+	bool camera = true;
 };
