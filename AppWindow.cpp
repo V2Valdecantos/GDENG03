@@ -8,61 +8,6 @@ AppWindow::AppWindow()
 
 void AppWindow::update()
 {
-	/*CBData cc;
-	cc.m_time = ::GetTickCount();
-
-	m_delta_pos += m_delta_time / 10.0f;
-	if (m_delta_pos > 1.0f)
-		m_delta_pos = 0;
-
-
-	Matrix4x4 temp;
-
-	m_delta_scale += m_delta_time / 0.55f;
-
-	cc.m_world.setIdentity();
-
-	Matrix4x4 world_cam;
-	world_cam.setIdentity();
-
-	temp.setIdentity();
-	temp.setRotationX(m_rot_x);
-	world_cam *= temp;
-
-	temp.setIdentity();
-	temp.setRotationY(m_rot_y);
-	world_cam *= temp;
-
-
-	Vector3D new_pos = m_world_cam.getTranslation() + world_cam.getZDirection() * (m_forward * 0.1f);
-
-	new_pos = new_pos + world_cam.getXDirection() * (m_rightward * 0.1f);
-
-	world_cam.setTranslation(new_pos);
-
-	m_world_cam = world_cam;
-
-
-	world_cam.inverse();
-
-
-
-
-	cc.m_view = world_cam;*/
-
-
-
-
-	//int width = (this->getClientWindowRect().right - this->getClientWindowRect().left);
-	//int height = (this->getClientWindowRect().bottom - this->getClientWindowRect().top);
-
-	//if (!isOrtho)
-	//	cc.m_proj.setPerspectiveFovLH(1.57f, ((float)width / (float)height), 0.1f, 100.0f);
-	//else
-	//	(cc.m_proj.setOrthoLH(width / 90, height / 90, 0.1f, 100.0f));
-
-
-	//m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cc);
 	CameraManager::getInstance()->Update();
 	ObjectManager::getInstance()->Update(EngineTime::getDeltaTime());
 }
@@ -96,19 +41,20 @@ void AppWindow::onCreate()
 	CameraManager::getInstance()->AddCamera(camera);
 
 
-	for (int i = 0; i < 10; i++) {
-		float x = rand() / float(RAND_MAX) * (3 - (-3)) + -3;
-		float y = rand() / float(RAND_MAX) * (3 - (-3)) + -3;
-
 
 		Cube* cubeObject = new Cube("Cube");
 		cubeObject->setAnimSpeed(rand() / float(RAND_MAX) * (0.35f - (-0.35f)) + -0.35f);
-		cubeObject->setPosition(Vector3D(x, y, 10));
+		cubeObject->setPosition(Vector3D(0, 0.5, 5));
 		cubeObject->setScale(1, 1, 1);
 		cubeObject->setRotation(0, 0, 0);
 		ObjectManager::getInstance()->addObject(cubeObject);
-	}
 
+		Cube* plane = new Cube("Cube", Vector3D(1, 1, 1));
+		plane->setAnimSpeed(rand() / float(RAND_MAX) * (0.35f - (-0.35f)) + -0.35f);
+		plane->setPosition(Vector3D(0, -0.2, 5));
+		plane->setScale(10, 0, 10);
+		plane->setRotation(0, 0, 0);
+		ObjectManager::getInstance()->addObject(plane);
 }
 
 void AppWindow::onUpdate()
@@ -169,30 +115,30 @@ void AppWindow::onKillFocus()
 
 void AppWindow::onKeyDown(int key)
 {
-	if (key == 'W')
-	{
-		for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++)
-		{
-			ObjectManager::getInstance()->getObjects()[i]->addRotation(2 * EngineTime::getDeltaTime(), -2 * EngineTime::getDeltaTime(), 2 * EngineTime::getDeltaTime());
-		}
-	}
-	else if (key == 'S')
-	{
-		for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++)
-		{
-			ObjectManager::getInstance()->getObjects()[i]->addRotation(-2 * EngineTime::getDeltaTime(), 2 * EngineTime::getDeltaTime(), -2* EngineTime::getDeltaTime());
-		}
-	}
-	else if (key == 'A')
-	{
-		
-		m_rightward = -1.0f;
-	}
-	else if (key == 'D')
-	{
-		
-		m_rightward = 1.0f;
-	}
+	//if (key == 'W')
+	//{
+	//	for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++)
+	//	{
+	//		ObjectManager::getInstance()->getObjects()[i]->addRotation(2 * EngineTime::getDeltaTime(), -2 * EngineTime::getDeltaTime(), 2 * EngineTime::getDeltaTime());
+	//	}
+	//}
+	//else if (key == 'S')
+	//{
+	//	for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++)
+	//	{
+	//		ObjectManager::getInstance()->getObjects()[i]->addRotation(-2 * EngineTime::getDeltaTime(), 2 * EngineTime::getDeltaTime(), -2* EngineTime::getDeltaTime());
+	//	}
+	//}
+	//else if (key == 'A')
+	//{
+	//	
+	//	m_rightward = -1.0f;
+	//}
+	//else if (key == 'D')
+	//{
+	//	
+	//	m_rightward = 1.0f;
+	//}
 	if (key == VK_LEFT) 
 	{
 		for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++) 
