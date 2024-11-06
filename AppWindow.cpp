@@ -254,14 +254,11 @@ void AppWindow::onDestroy()
 void AppWindow::onFocus()
 {
 	InputSystem::get()->addListener(this);
-	InputSystem::get()->addListener(CameraManager::getInstance()->GetActiveCamera());
-	InputSystem::get()->showCursor(false);
 }
 
 void AppWindow::onKillFocus()
 {
 	InputSystem::get()->removeListener(this);
-	InputSystem::get()->removeListener(CameraManager::getInstance()->GetActiveCamera());
 	InputSystem::get()->showCursor(true);
 }
 
