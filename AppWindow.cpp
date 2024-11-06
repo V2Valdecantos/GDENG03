@@ -1,15 +1,13 @@
 #include "AppWindow.h"
 
 
-
 AppWindow::AppWindow()
 {
 }
 
 void AppWindow::update()
 {
-	CameraManager::getInstance()->Update();
-	ObjectManager::getInstance()->Update(EngineTime::getDeltaTime());
+
 }
 
 
@@ -21,10 +19,11 @@ void AppWindow::onCreate()
 {
 	Window::onCreate();
 	InputSystem::get()->addListener(this);
-	InputSystem::get()->showCursor(false);
+	//InputSystem::get()->showCursor(false);
 
 	GraphicsEngine::get()->init();
 	m_swap_chain = GraphicsEngine::get()->createSwapChain();
+
 
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
@@ -39,7 +38,7 @@ void AppWindow::onCreate()
 
 	Camera* camera = new Camera();
 	CameraManager::getInstance()->AddCamera(camera);
-
+	InputSystem::get()->addListener(CameraManager::getInstance()->GetActiveCamera());
 
 
 		Cube* cubeObject = new Cube("Cube");
@@ -55,14 +54,56 @@ void AppWindow::onCreate()
 		plane->setScale(10, 0, 10);
 		plane->setRotation(0, 0, 0);
 		ObjectManager::getInstance()->addObject(plane);
+
+		// Setup Dear ImGui context
+		IMGUI_CHECKVERSION();
+		ImGui::CreateContext();
+		ImGuiIO& io = ImGui::GetIO();
+		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+		io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // IF using Docking Branch
+
+		// Setup Platform/Renderer backends
+		ImGui_ImplWin32_Init(this->m_hwnd);
+		ImGui_ImplDX11_Init(GraphicsEngine::get()->getID3D11Device(), GraphicsEngine::get()->getID3D11DeviceContext());
 }
 
 void AppWindow::onUpdate()
 {
+	// Poll and handle messages (inputs, window resize, etc.)
+// See the WndProc() function below for our to dispatch events to the Win32 backend.
+
+	MSG msg;
+	while (::PeekMessage(&msg, nullptr, 0U, 0U, PM_REMOVE))
+	{
+		::TranslateMessage(&msg);
+		::DispatchMessage(&msg);
+	}
+
 	Window::onUpdate();
 
-	InputSystem::get()->update();
 
+	InputSystem::get()->update();
+	ImGui_ImplDX11_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
+	ImGui::ShowDemoWindow();
+	
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowMinSize, { 100.0f,120.0f });
+	ImGui::Begin("About", &credits_active);
+	ImGui::PopStyleVar();
+
+	ImGui::TextColored(ImVec4(1, 0, 1, 1), "V2Engine - 0.1.0");
+	ImGui::Text("Developed by: Andre Vito Valdecantos");
+	ImGui::Text("GDENG03 - XX22");
+	ImGui::NewLine();
+	ImGui::NewLine();
+	if (ImGui::Button("Close"))
+		credits_active = false;
+
+	ImGui::End();
+
+	ImGui::Render();
 	//CLEAR THE RENDER TARGET 
 	GraphicsEngine::get()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain,
 		0.7, 0.6f, 0.9f, 1);
@@ -70,16 +111,15 @@ void AppWindow::onUpdate()
 	RECT rc = this->getClientWindowRect();
 	GraphicsEngine::get()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
 
-
-
-
-	update();
+	CameraManager::getInstance()->Update();
+	ObjectManager::getInstance()->Update(EngineTime::getDeltaTime());
 
 	for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++) 
 	{
 		ObjectManager::getInstance()->getObjects()[i]->draw(this);
 	}
-	
+
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 	m_swap_chain->present(true);
 
 
@@ -99,46 +139,27 @@ void AppWindow::onDestroy()
 	//m_vs->release();
 	//m_ps->release();
 	GraphicsEngine::get()->release();
+	ImGui_ImplDX11_Shutdown();
+	ImGui_ImplWin32_Shutdown();
+	ImGui::DestroyContext();
 }
 
 void AppWindow::onFocus()
 {
 	InputSystem::get()->addListener(this);
 	InputSystem::get()->addListener(CameraManager::getInstance()->GetActiveCamera());
+	InputSystem::get()->showCursor(false);
 }
 
 void AppWindow::onKillFocus()
 {
 	InputSystem::get()->removeListener(this);
 	InputSystem::get()->removeListener(CameraManager::getInstance()->GetActiveCamera());
+	InputSystem::get()->showCursor(true);
 }
 
 void AppWindow::onKeyDown(int key)
 {
-	//if (key == 'W')
-	//{
-	//	for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++)
-	//	{
-	//		ObjectManager::getInstance()->getObjects()[i]->addRotation(2 * EngineTime::getDeltaTime(), -2 * EngineTime::getDeltaTime(), 2 * EngineTime::getDeltaTime());
-	//	}
-	//}
-	//else if (key == 'S')
-	//{
-	//	for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++)
-	//	{
-	//		ObjectManager::getInstance()->getObjects()[i]->addRotation(-2 * EngineTime::getDeltaTime(), 2 * EngineTime::getDeltaTime(), -2* EngineTime::getDeltaTime());
-	//	}
-	//}
-	//else if (key == 'A')
-	//{
-	//	
-	//	m_rightward = -1.0f;
-	//}
-	//else if (key == 'D')
-	//{
-	//	
-	//	m_rightward = 1.0f;
-	//}
 	if (key == VK_LEFT) 
 	{
 		for (int i = 0; i < ObjectManager::getInstance()->getObjects().size(); i++) 
@@ -171,30 +192,11 @@ void AppWindow::onKeyDown(int key)
 
 void AppWindow::onKeyUp(int key)
 {
-	//m_forward = 0.0f;
-	//m_rightward = 0.0f;
 
-	//if (key == 'Q') {
-	//	isOrtho = !isOrtho;
-	//}
 }
 
 void AppWindow::onMouseMove(const Point& mouse_pos)
 {
-	//int width = (this->getClientWindowRect().right - this->getClientWindowRect().left);
-	//int height = (this->getClientWindowRect().bottom - this->getClientWindowRect().top);
-
-
-	//if (!isOrtho)
-	//{
-	//	m_rot_x += (mouse_pos.m_y - (height / 2.0f)) * m_delta_time * 0.1f;
-	//	m_rot_y += (mouse_pos.m_x - (width / 2.0f)) * m_delta_time * 0.1f;
-	//}
-
-
-
-	//InputSystem::get()->setCursorPosition(Point((int)(width / 2.0f), (int)(height / 2.0f)));
-
 
 }
 
@@ -210,9 +212,25 @@ void AppWindow::onLeftMouseUp(const Point& mouse_pos)
 void AppWindow::onRightMouseDown(const Point& mouse_pos)
 {
 
+
 }
 
 void AppWindow::onRightMouseUp(const Point& mouse_pos)
 {
 
+	if (!rMouse) 
+	{
+		rMouse = true;
+		InputSystem::get()->showCursor(true);
+		InputSystem::get()->removeListener(CameraManager::getInstance()->GetActiveCamera());
+	}
+	else 
+	{
+		rMouse = false;
+		InputSystem::get()->showCursor(false);
+		InputSystem::get()->addListener(CameraManager::getInstance()->GetActiveCamera());
+	}
+
+
 }
+

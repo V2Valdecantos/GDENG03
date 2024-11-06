@@ -19,6 +19,9 @@
 #include "Matrix4x4.h"
 #include "InputSystem.h"
 
+#include "imgui.h"
+#include "imgui_impl_win32.h"
+#include "imgui_impl_dx11.h"
 
 #include "ObjectManager.h"
 #include "CameraManager.h"
@@ -52,6 +55,7 @@ public:
 	virtual void onLeftMouseUp(const Point& mouse_pos) override;
 	virtual void onRightMouseDown(const Point& mouse_pos) override;
 	virtual void onRightMouseUp(const Point& mouse_pos) override;
+	LRESULT CALLBACK WndProc(HWND windowHandle, UINT msg, WPARAM param, LPARAM lparam);
 
 private:
 	SwapChain* m_swap_chain;
@@ -77,5 +81,10 @@ private:
 	float m_rightward = 0.0f;
 	Matrix4x4 m_world_cam;
 
+	float g_ResizeWidth = 0;
+	float g_ResizeHeight = 0;
+
 	bool isOrtho = false;
+	bool credits_active = true;
+	bool rMouse = false;
 };
