@@ -35,10 +35,19 @@ public:
 	~Mesh();
 	const VertexBufferPtr& getVertexBuffer();
 	const IndexBufferPtr& getIndexBuffer();
+	
+	void setScale(float scale);
+	void Move(float x, float y, float z);
+	void updateMesh();
 private:
 	VertexBufferPtr m_vertex_buffer;
 	IndexBufferPtr m_index_buffer;
 private:
+	std::string path;
 	friend class DeviceContext;
+	float pos_x = 0;
+	float pos_y = 0;
+	float pos_z = 0;
+	float scale = 1;
 };
 

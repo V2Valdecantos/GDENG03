@@ -145,7 +145,19 @@ void AppWindow::onCreate()
 	InputSystem::get()->showCursor(false);
 	
 	m_wood_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\brick.png");
-	m_teapot= GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\bunny.obj");
+	m_teapot = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\teapot.obj");
+
+	m_bunny = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\bunny.obj");
+	m_bunny->Move(-0.25, 0, 0);
+	m_bunny->setScale(5.0f);
+
+	m_armadillo = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\armadillo.obj");
+	m_armadillo->Move(200, 0, 0);
+	m_armadillo->setScale(0.01f);
+
+	meshes.push_back(m_bunny);
+	meshes.push_back(m_teapot);
+	meshes.push_back(m_armadillo);
 
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain=GraphicsEngine::get()->getRenderSystem()->createSwapChain(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
@@ -198,14 +210,23 @@ void AppWindow::onUpdate()
 
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setTexture(m_ps, m_wood_tex);
 
-	//SET THE VERTICES OF THE TRIANGLE TO DRAW
-	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setVertexBuffer(m_teapot->getVertexBuffer());
-	//SET THE INDICES OF THE TRIANGLE TO DRAW
-	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setIndexBuffer(m_teapot->getIndexBuffer());
+	////SET THE VERTICES OF THE TRIANGLE TO DRAW
+	//GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setVertexBuffer(m_teapot->getVertexBuffer());
+	////SET THE INDICES OF THE TRIANGLE TO DRAW
+	//GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setIndexBuffer(m_teapot->getIndexBuffer());
 
 
 	// FINALLY DRAW THE TRIANGLE
-	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->drawIndexedTriangleList(m_teapot->getIndexBuffer()->getSizeIndexList(),0, 0);
+	//GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->drawIndexedTriangleList(m_teapot->getIndexBuffer()->getSizeIndexList(),0, 0);
+	//GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->drawIndexedTriangleList(m_bunny->getIndexBuffer()->getSizeIndexList(), 0, 0);
+	//GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->drawIndexedTriangleList(m_armadillo->getIndexBuffer()->getSizeIndexList(), 0, 0);
+
+	for (MeshPtr mesh : meshes) 
+	{
+		GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setVertexBuffer(mesh->getVertexBuffer());
+		GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setIndexBuffer(mesh->getIndexBuffer());
+		GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->drawIndexedTriangleList(mesh->getIndexBuffer()->getSizeIndexList(), 0, 0);
+	}
 	m_swap_chain->present(true);
 
 
@@ -251,6 +272,16 @@ void AppWindow::onKeyDown(int key)
 	{
 		//m_rot_y -= 3.14f*m_delta_time;
 		m_rightward = 1.0f;
+	}
+	else if (key == VK_UP) 
+	{
+		bunny_scale += m_delta_time;
+		m_bunny->setScale(bunny_scale);
+	}
+	else if (key == VK_DOWN)
+	{
+		bunny_scale -= m_delta_time;
+		m_bunny->setScale(bunny_scale);
 	}
 }
 

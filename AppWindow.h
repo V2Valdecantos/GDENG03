@@ -72,6 +72,9 @@ private:
 	MeshPtr m_teapot;
 	MeshPtr m_bunny;
 	MeshPtr m_armadillo;
+
+	std::vector<MeshPtr> meshes;
+
 private:
 	long m_old_delta;
 	long m_new_delta;
@@ -88,5 +91,7 @@ private:
 	float m_forward = 0.0f;
 	float m_rightward = 0.0f;
 	Matrix4x4 m_world_cam;
+
+	float bunny_scale = 1;
 };
 
