@@ -1,15 +1,33 @@
+/*MIT License
+
+C++ 3D Game Tutorial Series (https://github.com/PardCode/CPP-3D-Game-Tutorial-Series)
+
+Copyright (c) 2019-2022, PardCode
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.*/
+
 #include "IndexBuffer.h"
-#include "GraphicsEngine.h"
+#include "RenderSystem.h"
+#include <exception>
 
-
-IndexBuffer::IndexBuffer() : m_buffer(0)
+IndexBuffer::IndexBuffer(void* list_indices, UINT size_list,RenderSystem * system) : m_system(system) , m_buffer(0)
 {
-}
-
-bool IndexBuffer::load(void* list_indices, UINT size_list)
-{
-	if (m_buffer)m_buffer->Release();
-
 	D3D11_BUFFER_DESC buff_desc = {};
 	buff_desc.Usage = D3D11_USAGE_DEFAULT;
 	buff_desc.ByteWidth = 4 * size_list;
@@ -22,28 +40,21 @@ bool IndexBuffer::load(void* list_indices, UINT size_list)
 
 	m_size_list = size_list;
 
-	if (FAILED(GraphicsEngine::get()->m_d3d_device->CreateBuffer(&buff_desc, &init_data, &m_buffer)))
+	if (FAILED(m_system->m_d3d_device->CreateBuffer(&buff_desc, &init_data, &m_buffer)))
 	{
-		return false;
+		throw std::exception("IndexBuffer not created successfully");
 	}
-
-	return true;
 }
+
 
 UINT IndexBuffer::getSizeIndexList()
 {
 	return this->m_size_list;
 }
 
-bool IndexBuffer::release()
-{
-	m_buffer->Release();
-	delete this;
-	return true;
-}
-
 
 IndexBuffer::~IndexBuffer()
 {
+	m_buffer->Release();
 }
 
