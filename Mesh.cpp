@@ -1,27 +1,3 @@
-/*MIT License
-
-C++ 3D Game Tutorial Series (https://github.com/PardCode/CPP-3D-Game-Tutorial-Series)
-
-Copyright (c) 2019-2022, PardCode
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.*/
-
 #include "Mesh.h"
 
 #define TINYOBJLOADER_IMPLEMENTATION
@@ -45,7 +21,7 @@ Mesh::Mesh(const wchar_t* full_path): Resource(full_path)
 	std::wstring ws(full_path);
 	std::string inputfile(ws.begin(), ws.end());
 
-
+	float scale = 0.5;
 
 	bool res = tinyobj::LoadObj(&attribs, &shapes, &materials, &warn, &err, inputfile.c_str());
 
@@ -64,7 +40,8 @@ Mesh::Mesh(const wchar_t* full_path): Resource(full_path)
 		vector_size += shapes[s].mesh.indices.size();
 	}
 
-
+	tinyobj::real_t tx, ty;
+	
 	for (size_t s = 0; s < shapes.size(); s++)
 	{
 		size_t index_offset = 0;
@@ -79,12 +56,22 @@ Mesh::Mesh(const wchar_t* full_path): Resource(full_path)
 			{
 				tinyobj::index_t index = shapes[s].mesh.indices[index_offset + v];
 
-				tinyobj::real_t vx = attribs.vertices[index.vertex_index * 3 + 0];
-				tinyobj::real_t vy = attribs.vertices[index.vertex_index * 3 + 1];
-				tinyobj::real_t vz = attribs.vertices[index.vertex_index * 3 + 2];
+				tinyobj::real_t vx = attribs.vertices[index.vertex_index * 3] * scale;
+				tinyobj::real_t vy = attribs.vertices[index.vertex_index * 3 + 1] * scale;
+				tinyobj::real_t vz = attribs.vertices[index.vertex_index * 3 + 2] * scale;
 
-				tinyobj::real_t tx = attribs.texcoords[index.texcoord_index * 2 + 0];
-				tinyobj::real_t ty = attribs.texcoords[index.texcoord_index * 2 + 1];
+				if (attribs.texcoords.size() != 0) 
+				{
+					tx = attribs.texcoords[index.texcoord_index * 2];
+					ty = attribs.texcoords[index.texcoord_index * 2 + 1];
+				}
+				else 
+				{
+					tx = 0;
+					ty = 0;
+				}
+
+				
 
 				VertexMesh vertex(Vector3D(vx, vy, vz), Vector2D(tx, ty));
 				list_vertices.push_back(vertex);

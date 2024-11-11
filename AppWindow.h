@@ -69,7 +69,9 @@ private:
 	PixelShaderPtr m_ps;
 	ConstantBufferPtr m_cb;
 	TexturePtr m_wood_tex;
-	MeshPtr m_mesh;
+	MeshPtr m_teapot;
+	MeshPtr m_bunny;
+	MeshPtr m_armadillo;
 private:
 	long m_old_delta;
 	long m_new_delta;
