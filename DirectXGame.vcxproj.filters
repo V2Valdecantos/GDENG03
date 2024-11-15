@@ -10,6 +10,15 @@
     <Filter Include="Classes">
       <UniqueIdentifier>{e896d784-ea12-4fdf-a04d-ba3c44c5f233}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Camera">
+      <UniqueIdentifier>{c76f37d7-e540-435e-8006-cdc447a112ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\imgui">
+      <UniqueIdentifier>{f8f8b916-e64c-4720-b152-2b90c93cf534}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Math">
+      <UniqueIdentifier>{911b4d21-0ec8-436f-8f49-b9e4494e63c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -54,21 +63,39 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ConstantBuffer.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="IndexBuffer.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="CameraManager.cpp" />
-    <ClCompile Include="lib\imgui\backends\imgui_impl_dx11.cpp" />
-    <ClCompile Include="lib\imgui\backends\imgui_impl_win32.cpp" />
-    <ClCompile Include="lib\imgui\imgui.cpp" />
-    <ClCompile Include="lib\imgui\imgui_demo.cpp" />
-    <ClCompile Include="lib\imgui\imgui_draw.cpp" />
-    <ClCompile Include="lib\imgui\imgui_tables.cpp" />
-    <ClCompile Include="lib\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Camera.cpp">
+      <Filter>Classes\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>Classes\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\imgui\imgui.cpp">
+      <Filter>Engine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\imgui\imgui_demo.cpp">
+      <Filter>Engine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\imgui\imgui_draw.cpp">
+      <Filter>Engine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\imgui\backends\imgui_impl_dx11.cpp">
+      <Filter>Engine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\imgui\backends\imgui_impl_win32.cpp">
+      <Filter>Engine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\imgui\imgui_tables.cpp">
+      <Filter>Engine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\imgui\imgui_widgets.cpp">
+      <Filter>Engine\imgui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -107,10 +134,6 @@
     <ClInclude Include="InputSystem.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Matrix4x4.h" />
-    <ClInclude Include="Point.h" />
-    <ClInclude Include="Vector3D.h" />
-    <ClInclude Include="Vector4D.h" />
     <ClInclude Include="Cube.h">
       <Filter>Classes</Filter>
     </ClInclude>
@@ -120,23 +143,55 @@
     <ClInclude Include="ObjectManager.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h" />
     <ClInclude Include="ConstantBuffer.h">
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="IndexBuffer.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="CameraManager.h" />
-    <ClInclude Include="lib\imgui\backends\imgui_impl_dx11.h" />
-    <ClInclude Include="lib\imgui\backends\imgui_impl_win32.h" />
-    <ClInclude Include="lib\imgui\imconfig.h" />
-    <ClInclude Include="lib\imgui\imgui.h" />
-    <ClInclude Include="lib\imgui\imgui_internal.h" />
-    <ClInclude Include="lib\imgui\imstb_rectpack.h" />
-    <ClInclude Include="lib\imgui\imstb_textedit.h" />
-    <ClInclude Include="lib\imgui\imstb_truetype.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="Camera.h">
+      <Filter>Classes\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
+      <Filter>Classes\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\imgui\imconfig.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\imgui\imgui.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\imgui\backends\imgui_impl_dx11.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\imgui\backends\imgui_impl_win32.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\imgui\imgui_internal.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\imgui\imstb_rectpack.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\imgui\imstb_textedit.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\imgui\imstb_truetype.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix4x4.h">
+      <Filter>Classes\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Classes\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3D.h">
+      <Filter>Classes\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4D.h">
+      <Filter>Classes\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader.fx">
