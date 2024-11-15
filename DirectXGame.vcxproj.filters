@@ -96,6 +96,10 @@
     <ClCompile Include="lib\imgui\imgui_widgets.cpp">
       <Filter>Engine\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="PhysicsSystem.cpp" />
+    <ClCompile Include="ComponentSystem.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="PhysicsComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -192,6 +196,11 @@
     <ClInclude Include="Vector4D.h">
       <Filter>Classes\Math</Filter>
     </ClInclude>
+    <ClInclude Include="PhysicsSystem.h" />
+    <ClInclude Include="ComponentSystem.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="PhysicsComponent.h" />
+    <ClInclude Include="ComponentTypes.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader.fx">
