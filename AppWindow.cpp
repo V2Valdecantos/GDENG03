@@ -85,7 +85,7 @@ void AppWindow::onCreate()
 {
 	Window::onCreate();
 	InputSystem::get()->addListener(this);
-	//InputSystem::get()->showCursor(false);
+	InputSystem::get()->showCursor(false);
 
 	GraphicsEngine::get()->init();
 	m_swap_chain = GraphicsEngine::get()->createSwapChain();
@@ -144,11 +144,6 @@ void AppWindow::onUpdate()
 	Window::onUpdate();
 
 	InputSystem::get()->update();
-
-	if (camera)
-		InputSystem::get()->showCursor(false);
-	else
-		InputSystem::get()->showCursor(true);
 
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
@@ -310,6 +305,7 @@ void AppWindow::onKeyUp(int key)
 			InputSystem::get()->removeListener(CameraManager::getInstance()->GetActiveCamera());
 			InputSystem::get()->showCursor(true);
 		}
+		
 	}
 }
 
