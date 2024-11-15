@@ -108,7 +108,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NOMINMAX;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)\lib\imgui;$(ProjectDir)\lib\imgui\backends;$(ProjectDir)\lib\imgui\misc\cpp;$(ProjectDir)\Libs\ReactPhysics3D\include\reactphysics3d;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
