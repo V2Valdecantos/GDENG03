@@ -183,18 +183,20 @@ public:
 
 	float* getMatrix()
 	{
-		//re-arrange to be compatible with react physics
-		float matrix4x4[16];
-		matrix4x4[0] = m_mat[0][0]; matrix4x4[1] = m_mat[1][0];
-		matrix4x4[2] = m_mat[2][0]; matrix4x4[3] = 0.0;
-		matrix4x4[4] = m_mat[0][1]; matrix4x4[5] = m_mat[1][1];
-		matrix4x4[6] = m_mat[2][1]; matrix4x4[7] = 0.0;
-		matrix4x4[8] = m_mat[0][2]; matrix4x4[9] = m_mat[1][2];
-		matrix4x4[10] = m_mat[2][2]; matrix4x4[11] = 0.0;
-		matrix4x4[12] = m_mat[3][0]; matrix4x4[13] = m_mat[3][1];
-		matrix4x4[14] = m_mat[3][2]; matrix4x4[15] = 1.0;
 
-		return matrix4x4;
+		return *this->m_mat;
+	}
+
+	void transpose() 
+	{
+		Matrix4x4 transpose;
+		for (int i = 0; i < 4; ++i)
+			for (int j = 0; j < 4; ++j) 
+			{
+				transpose.m_mat[i][j] = m_mat[j][i];
+			}
+
+		::memcpy(m_mat, transpose.m_mat, sizeof(float) * 16);
 	}
 
 	~Matrix4x4()

@@ -7,6 +7,14 @@
 #include "Window.h"
 #include "Structs.h"
 #include "Component.h"
+#include "GameObject.h"
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
+#include "ConstantBuffer.h"
+#include "GraphicsEngine.h"
+#include "InputSystem.h"
+#include "SwapChain.h"
+#include "DeviceContext.h"
 using namespace std;
 
 class VertexShader;
@@ -45,6 +53,9 @@ class GameObject
 		float* getPhysicsLocalMatrix();
 		void setLocalMatrix(Matrix4x4 matrix);
 		void setLocalMatrix(float matrix[16]);
+
+		void updateLocalMatrix();
+
 		void recomputeMatrix(float matrix[16]);
 		string getName();
 
@@ -59,6 +70,17 @@ class GameObject
 		Vector3D localRotation;
 		Matrix4x4 localMatrix;
 
+		VertexBuffer* m_vb;
+		VertexShader* m_vs;
+		ConstantBuffer* m_cb;
+		PixelShader* m_ps;
+		IndexBuffer* m_ib;
+		CBData cbData;
+		float ticks = 0.0f;
+		float deltaPos = 0.0f;
+		float deltaScale = 0.0f;
+		float deltaTime = 0.0f;
+		float speed = 10.0f;
 		Matrix4x4 viewMat;
 		Matrix4x4 projMat;
 

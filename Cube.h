@@ -20,16 +20,6 @@ class Cube : public GameObject
 		void setAnimSpeed(float speed);
 
 	private:
-		VertexBuffer* m_vb;
-		VertexShader* m_vs;
-		ConstantBuffer* m_cb;
-		PixelShader* m_ps;
-		IndexBuffer* m_ib;
-		CBData cbData;
-		float ticks = 0.0f;
-		float deltaPos = 0.0f;
-		float deltaScale = 0.0f;
-		float deltaTime = 0.0f;
-		float speed = 10.0f;
+
 };
 

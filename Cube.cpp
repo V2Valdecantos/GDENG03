@@ -209,6 +209,11 @@ void Cube::Update(float deltaTime, Matrix4x4 view, Matrix4x4 proj)
 	this->viewMat = view;
 	this->projMat = proj;
 
+	for (Component* component : this->components)
+	{
+		component->perform(deltaTime);
+	}
+
 	this->deltaPos += deltaTime / 10.0f;
 	//if (this->deltaPos > 1.0f)
 	//	this->deltaPos = 0;
@@ -221,29 +226,14 @@ void Cube::Update(float deltaTime, Matrix4x4 view, Matrix4x4 proj)
 	Matrix4x4 temp;
 
 	if (!this->overrideMatrix) {
-		
 
-		allMatrix.setIdentity();
-		allMatrix.setScale(this->localScale);
-
-		temp.setIdentity();
-		temp.setRotationZ(this->localRotation.m_z);
-		allMatrix *= temp;
-
-		temp.setIdentity();
-		temp.setRotationY(this->localRotation.m_y);
-		allMatrix *= temp;
-
-		temp.setIdentity();
-		temp.setRotationX(this->localRotation.m_x);
-		allMatrix *= temp;
-
-		temp.setIdentity();
-		temp.setTranslation(this->localPosition);
-		allMatrix *= temp;
-
-		this->localMatrix = allMatrix;
+		this->updateLocalMatrix();
 	}
+	else 
+	{
+		
+	}
+
 
 	this->cbData.m_world = this->localMatrix;
 	this->cbData.m_view = view;
@@ -251,26 +241,25 @@ void Cube::Update(float deltaTime, Matrix4x4 view, Matrix4x4 proj)
 
 	this->m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &this->cbData);
 
-	
-
+	std::cout << "(" << this->localPosition.m_x << this->localPosition.m_y << this->localPosition.m_z << std::endl;
 	//this->cbData.m_world.setScale(this->localScale);
 
 	//this->setPosition(Vector3D::lerp(Vector3D(0, 0, 0), Vector3D(1.0f, 0.5f, 0), this->deltaPos));
-	temp.setTranslation(this->localPosition);
+	//temp.setTranslation(this->localPosition);
 
-	this->cbData.m_world *= temp;
+	//this->cbData.m_world *= temp;
 	//
 	//if (this->localScale.m_z >= 0)
 	//	this->setScale(Vector3D::lerp(Vector3D(1, 1, 1), Vector3D(2.5, 2.5, 0), this->deltaPos));
 
-	temp.setScale(this->localScale);
+	//temp.setScale(this->localScale);
 
 	//this->addRotation(this->speed * deltaTime, this->speed * deltaTime, this->speed * deltaTime);
-	temp.setRotationX(this->localRotation.m_x);
-	temp.setRotationY(this->localRotation.m_y);
-	temp.setRotationZ(this->localRotation.m_z);
+	//temp.setRotationX(this->localRotation.m_x);
+	//temp.setRotationY(this->localRotation.m_y);
+	//.setRotationZ(this->localRotation.m_z);
 
-	this->m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &this->cbData);
+	//this->m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &this->cbData);
 
 }
 

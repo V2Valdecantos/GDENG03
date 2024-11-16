@@ -7,7 +7,7 @@ class GameObject;
 class Component
 {
 	public:
-		Component(std::string name);
+		Component(std::string name, GameObject* owner);
 		~Component();
 
 		void attachOwner(GameObject* owner);

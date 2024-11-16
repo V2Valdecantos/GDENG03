@@ -8,7 +8,7 @@ using namespace reactphysics3d;
 class PhysicsComponent : public Component
 {
 public:
-	PhysicsComponent(std::string name);
+	PhysicsComponent(std::string name, GameObject* owner);
 	~PhysicsComponent();
 	void perform(float deltaTime) override;
 

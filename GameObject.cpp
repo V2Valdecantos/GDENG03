@@ -15,13 +15,7 @@ GameObject::~GameObject()
 
 void GameObject::Update(float deltaTime, Matrix4x4 view, Matrix4x4 proj)
 {
-	this->viewMat = view;
-	this->projMat = proj;
 
-	for (Component* component : this->components) 
-	{
-		component->perform(deltaTime);
-	}
 }
 
 void GameObject::draw(Window* window)
@@ -97,25 +91,30 @@ Matrix4x4 GameObject::getLocalMatrix()
 
 float* GameObject::getPhysicsLocalMatrix()
 {
-	Matrix4x4 allMatrix; allMatrix.setIdentity();
-	Matrix4x4 translationMatrix; translationMatrix.setIdentity();
-	translationMatrix.setTranslation(this->getLocalPosition());
+	Matrix4x4 allMatrix;
+	Matrix4x4 temp;
 
-	Vector3D ones = { 1, 1, 1 };
-	Matrix4x4 scaleMatrix; scaleMatrix.setScale(ones); //physics 3D only accepts uniform scale for rigidbody
-	Vector3D rotation = this->getLocalRotation();
-	Matrix4x4 xMatrix; xMatrix.setRotationX(rotation.m_x);
-	Matrix4x4 yMatrix; yMatrix.setRotationY(rotation.m_y);
-	Matrix4x4 zMatrix; zMatrix.setRotationZ(rotation.m_z);
+	allMatrix.setIdentity();
+	allMatrix.setScale(Vector3D(1,1,1));
 
-	//Scale --> Rotate --> Transform as recommended order.
-	Matrix4x4 rotMatrix; rotMatrix.setIdentity();
-	rotMatrix = rotMatrix.multiplyTo(xMatrix.multiplyTo(yMatrix.multiplyTo(zMatrix)));
+	temp.setIdentity();
+	temp.setRotationZ(this->localRotation.m_z);
+	allMatrix *= temp;
 
-	allMatrix = allMatrix.multiplyTo(scaleMatrix.multiplyTo(rotMatrix));
-	allMatrix = allMatrix.multiplyTo(translationMatrix);
+	temp.setIdentity();
+	temp.setRotationY(this->localRotation.m_y);
+	allMatrix *= temp;
 
-	return allMatrix.getMatrix();
+	temp.setIdentity();
+	temp.setRotationX(this->localRotation.m_x);
+	allMatrix *= temp;
+
+	temp.setIdentity();
+	temp.setTranslation(this->localPosition);
+	allMatrix *= temp;
+
+	this->localMatrix = allMatrix;
+	return this->localMatrix.getMatrix();
 }
 
 void GameObject::setLocalMatrix(Matrix4x4 matrix)
@@ -135,6 +134,34 @@ void GameObject::setLocalMatrix(float matrix[16])
 		}
 	}
 }
+
+void GameObject::updateLocalMatrix()
+{
+	Matrix4x4 allMatrix;
+	Matrix4x4 temp;
+
+	allMatrix.setIdentity();
+	allMatrix.setScale(this->localScale);
+
+	temp.setIdentity();
+	temp.setRotationZ(this->localRotation.m_z);
+	allMatrix *= temp;
+
+	temp.setIdentity();
+	temp.setRotationY(this->localRotation.m_y);
+	allMatrix *= temp;
+
+	temp.setIdentity();
+	temp.setRotationX(this->localRotation.m_x);
+	allMatrix *= temp;
+
+	temp.setIdentity();
+	temp.setTranslation(this->localPosition);
+	allMatrix *= temp;
+
+	this->localMatrix = allMatrix;
+}
+
 
 void GameObject::recomputeMatrix(float matrix[16])
 {
@@ -159,10 +186,29 @@ void GameObject::recomputeMatrix(float matrix[16])
 	matrix4x4[3][2] = matrix[14];
 	matrix4x4[3][3] = matrix[15];
 
-	Matrix4x4 newMatrix; newMatrix.setMatrix(matrix4x4);
-	Matrix4x4 scaleMatrix; scaleMatrix.setScale(this->localScale);
-	Matrix4x4 transMatrix; transMatrix.setTranslation(this->localPosition);
-	this->localMatrix = scaleMatrix.multiplyTo(transMatrix.multiplyTo(newMatrix));
+	Matrix4x4 newMatrix; 
+	newMatrix.setMatrix(matrix4x4);
+
+	Matrix4x4 temp;
+	newMatrix.setScale(this->localScale);
+
+	temp.setIdentity();
+	temp.setRotationZ(this->localRotation.m_z);
+	newMatrix *= temp;
+
+	temp.setIdentity();
+	temp.setRotationY(this->localRotation.m_y);
+	newMatrix *= temp;
+
+	temp.setIdentity();
+	temp.setRotationX(this->localRotation.m_x);
+	newMatrix *= temp;
+
+	temp.setIdentity();
+	temp.setTranslation(this->localPosition);
+	newMatrix *= temp;
+
+	this->localMatrix = newMatrix;
 	this->overrideMatrix = true;
 }
 

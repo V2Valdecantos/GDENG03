@@ -1,8 +1,9 @@
 #include "Component.h"
 
-Component::Component(std::string name)
+Component::Component(std::string name, GameObject* owner)
 {
 	this->name = name;
+	this->owner = owner;
 	this->type = ComponentType::PHYSICS;
 }
 

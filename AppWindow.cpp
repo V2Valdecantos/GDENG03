@@ -107,28 +107,27 @@ void AppWindow::onCreate()
 	InputSystem::get()->addListener(CameraManager::getInstance()->GetActiveCamera());
 
 
-	Cube* cubeObject = new Cube("Cube");
-	cubeObject->setAnimSpeed(rand() / float(RAND_MAX) * (0.35f - (-0.35f)) + -0.35f);
-	cubeObject->setPosition(Vector3D(0, 0.5, 5));
-	cubeObject->setScale(1, 1, 1);
-	cubeObject->setRotation(0, 0, 0);
-	ObjectManager::getInstance()->addObject(cubeObject);
-	
-	PhysicsComponent* rb1 = new PhysicsComponent("rb1");
-	rb1->attachOwner(cubeObject);
-	cubeObject->addComponent(rb1);
+	for (int i = 0; i < 10; i++) {
+		Cube* cubeObject = new Cube("Cube");
+		cubeObject->setAnimSpeed(rand() / float(RAND_MAX) * (0.35f - (-0.35f)) + -0.35f);
+		cubeObject->setPosition(Vector3D(0, 2, 5));
+		cubeObject->setScale(1, 1, 1);
+		cubeObject->setRotation(0, 0, 0);
+		ObjectManager::getInstance()->addObject(cubeObject);
 
+		PhysicsComponent* rb1 = new PhysicsComponent("rb1", cubeObject);
+		cubeObject->addComponent(rb1);
+	}
 	Cube* plane = new Cube("Cube", Vector3D(1, 1, 1));
 	plane->setAnimSpeed(rand() / float(RAND_MAX) * (0.35f - (-0.35f)) + -0.35f);
-	plane->setPosition(Vector3D(0, -0.2, 5));
-	plane->setScale(10, 0, 10);
+	plane->setPosition(Vector3D(0, -2, 5));
+	plane->setScale(10, 0.1, 10);
 	plane->setRotation(0, 0, 0);
 	ObjectManager::getInstance()->addObject(plane);
 
-	PhysicsComponent* rb2 = new PhysicsComponent("rb2");
-	rb2->attachOwner(plane);
+	PhysicsComponent* rb2 = new PhysicsComponent("rb2", plane);
 	rb2->getRigidBody()->setType(BodyType::STATIC);
-	cubeObject->addComponent(rb2);
+	plane->addComponent(rb2);
 
 
 
@@ -220,6 +219,9 @@ void AppWindow::onUpdate()
 	//SET VIEWPORT OF RENDER TARGET IN WHICH WE HAVE TO DRAW
 	RECT rc = this->getClientWindowRect();
 	GraphicsEngine::get()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
+
+	if (EngineTime::getDeltaTime() > 0)
+		PhysicsSystem::getInstance()->getPhysicsWorld()->update(EngineTime::getDeltaTime());
 
 	CameraManager::getInstance()->Update();
 	ObjectManager::getInstance()->Update(EngineTime::getDeltaTime());
