@@ -1,12 +1,13 @@
 #pragma once
 #include "ComponentTypes.h"
+#include "GameObject.h"
 #include <string>
 
 class GameObject;
 class Component
 {
 	public:
-		Component();
+		Component(std::string name);
 		~Component();
 
 		void attachOwner(GameObject* owner);

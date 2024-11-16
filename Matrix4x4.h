@@ -57,6 +57,11 @@ public:
 		m_mat[1][1] = cos(z);
 	}
 
+	void setMatrix(float matrix[4][4])
+	{
+		::memcpy(this->m_mat, matrix, sizeof(float) * 16);
+	}
+
 	float getDeterminant()
 	{
 		Vector4D minor, v1, v2, v3;
@@ -160,6 +165,36 @@ public:
 		m_mat[1][1] = 2.0f / height;
 		m_mat[2][2] = 1.0f / (far_plane - near_plane);
 		m_mat[3][2] = -(near_plane / (far_plane - near_plane));
+	}
+
+	Matrix4x4 multiplyTo(Matrix4x4 matrix)
+	{
+		Matrix4x4 out;
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				out.m_mat[i][j] =
+					this->m_mat[i][0] * matrix.m_mat[0][j] + this->m_mat[i][1] * matrix.m_mat[1][j] +
+					this->m_mat[i][2] * matrix.m_mat[2][j] + this->m_mat[i][3] * matrix.m_mat[3][j];
+			}
+		}
+
+		return out;
+	}
+
+	float* getMatrix()
+	{
+		//re-arrange to be compatible with react physics
+		float matrix4x4[16];
+		matrix4x4[0] = m_mat[0][0]; matrix4x4[1] = m_mat[1][0];
+		matrix4x4[2] = m_mat[2][0]; matrix4x4[3] = 0.0;
+		matrix4x4[4] = m_mat[0][1]; matrix4x4[5] = m_mat[1][1];
+		matrix4x4[6] = m_mat[2][1]; matrix4x4[7] = 0.0;
+		matrix4x4[8] = m_mat[0][2]; matrix4x4[9] = m_mat[1][2];
+		matrix4x4[10] = m_mat[2][2]; matrix4x4[11] = 0.0;
+		matrix4x4[12] = m_mat[3][0]; matrix4x4[13] = m_mat[3][1];
+		matrix4x4[14] = m_mat[3][2]; matrix4x4[15] = 1.0;
+
+		return matrix4x4;
 	}
 
 	~Matrix4x4()

@@ -113,6 +113,10 @@ void AppWindow::onCreate()
 	cubeObject->setScale(1, 1, 1);
 	cubeObject->setRotation(0, 0, 0);
 	ObjectManager::getInstance()->addObject(cubeObject);
+	
+	PhysicsComponent* rb1 = new PhysicsComponent("rb1");
+	rb1->attachOwner(cubeObject);
+	cubeObject->addComponent(rb1);
 
 	Cube* plane = new Cube("Cube", Vector3D(1, 1, 1));
 	plane->setAnimSpeed(rand() / float(RAND_MAX) * (0.35f - (-0.35f)) + -0.35f);
@@ -120,6 +124,13 @@ void AppWindow::onCreate()
 	plane->setScale(10, 0, 10);
 	plane->setRotation(0, 0, 0);
 	ObjectManager::getInstance()->addObject(plane);
+
+	PhysicsComponent* rb2 = new PhysicsComponent("rb2");
+	rb2->attachOwner(plane);
+	rb2->getRigidBody()->setType(BodyType::STATIC);
+	cubeObject->addComponent(rb2);
+
+
 
 	// Setup Dear ImGui context
 	IMGUI_CHECKVERSION();

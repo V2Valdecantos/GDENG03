@@ -29,6 +29,10 @@
 #include "Camera.h"
 #include "Cube.h"
 
+#include "Component.h"
+#include "PhysicsComponent.h"
+#include "PhysicsSystem.h"
+
 
 
 

@@ -206,6 +206,9 @@ void Cube::Update(float deltaTime, Matrix4x4 view, Matrix4x4 proj)
 {
 	this->cbData.m_time = deltaTime;
 
+	this->viewMat = view;
+	this->projMat = proj;
+
 	this->deltaPos += deltaTime / 10.0f;
 	//if (this->deltaPos > 1.0f)
 	//	this->deltaPos = 0;
@@ -217,25 +220,32 @@ void Cube::Update(float deltaTime, Matrix4x4 view, Matrix4x4 proj)
 	Matrix4x4 allMatrix;
 	Matrix4x4 temp;
 
-	allMatrix.setIdentity();
-	allMatrix.setScale(this->localScale);
+	if (!this->overrideMatrix) {
+		
 
-	temp.setIdentity();
-	temp.setRotationZ(this->localRotation.m_z);
-	allMatrix *= temp;
+		allMatrix.setIdentity();
+		allMatrix.setScale(this->localScale);
 
-	temp.setIdentity();
-	temp.setRotationY(this->localRotation.m_y);
-	allMatrix *= temp;
+		temp.setIdentity();
+		temp.setRotationZ(this->localRotation.m_z);
+		allMatrix *= temp;
 
-	temp.setIdentity();
-	temp.setRotationX(this->localRotation.m_x);
-	allMatrix *= temp;
+		temp.setIdentity();
+		temp.setRotationY(this->localRotation.m_y);
+		allMatrix *= temp;
 
-	temp.setIdentity();
-	temp.setTranslation(this->localPosition);
-	allMatrix *= temp;
-	this->cbData.m_world = allMatrix;
+		temp.setIdentity();
+		temp.setRotationX(this->localRotation.m_x);
+		allMatrix *= temp;
+
+		temp.setIdentity();
+		temp.setTranslation(this->localPosition);
+		allMatrix *= temp;
+
+		this->localMatrix = allMatrix;
+	}
+
+	this->cbData.m_world = this->localMatrix;
 	this->cbData.m_view = view;
 	this->cbData.m_proj = proj;
 
