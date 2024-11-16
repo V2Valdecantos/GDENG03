@@ -15,10 +15,11 @@ PhysicsComponent::PhysicsComponent(std::string name, GameObject* owner) : Compon
 	position.y = this->getOwner()->getLocalPosition().m_y;
 	position.z = this->getOwner()->getLocalPosition().m_z;
 
-	Quaternion q = Quaternion(this->getOwner()->getLocalRotation().m_x, this->getOwner()->getLocalRotation().m_y, this->getOwner()->getLocalRotation().m_z, 1);
+	//Quaternion q = Quaternion(this->getOwner()->getLocalRotation().m_x, this->getOwner()->getLocalRotation().m_y, this->getOwner()->getLocalRotation().m_z, 1);
 	Transform transform; 
-	transform.setPosition(position);
-	transform.setOrientation(q);
+	//transform.setPosition(position);
+	//transform.setOrientation(q);
+	transform.setFromOpenGL(this->getOwner()->getPhysicsLocalMatrix());
 
 	BoxShape* boxShape = physicsCommon->createBoxShape(Vector3(scale.m_x / 2, scale.m_y / 2, scale.m_z / 2)); //half extent
 	this->rigidBody = physicsWorld->createRigidBody(transform);

@@ -228,38 +228,17 @@ void Cube::Update(float deltaTime, Matrix4x4 view, Matrix4x4 proj)
 	if (!this->overrideMatrix) {
 
 		this->updateLocalMatrix();
-	}
-	else 
-	{
 		
 	}
 
 
-	this->cbData.m_world = this->localMatrix;
+
+	//this->cbData.m_world = this->localMatrix;
 	this->cbData.m_view = view;
 	this->cbData.m_proj = proj;
 
 	this->m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &this->cbData);
 
-	std::cout << "(" << this->localPosition.m_x << this->localPosition.m_y << this->localPosition.m_z << std::endl;
-	//this->cbData.m_world.setScale(this->localScale);
-
-	//this->setPosition(Vector3D::lerp(Vector3D(0, 0, 0), Vector3D(1.0f, 0.5f, 0), this->deltaPos));
-	//temp.setTranslation(this->localPosition);
-
-	//this->cbData.m_world *= temp;
-	//
-	//if (this->localScale.m_z >= 0)
-	//	this->setScale(Vector3D::lerp(Vector3D(1, 1, 1), Vector3D(2.5, 2.5, 0), this->deltaPos));
-
-	//temp.setScale(this->localScale);
-
-	//this->addRotation(this->speed * deltaTime, this->speed * deltaTime, this->speed * deltaTime);
-	//temp.setRotationX(this->localRotation.m_x);
-	//temp.setRotationY(this->localRotation.m_y);
-	//.setRotationZ(this->localRotation.m_z);
-
-	//this->m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &this->cbData);
 
 }
 
@@ -276,31 +255,6 @@ void Cube::draw(Window* window)
 		this->deltaPos += this->deltaTime * 0.1f;
 	}
 
-	//Matrix4x4 allMatrix;
-	//Matrix4x4 temp;
-
-	//allMatrix.setIdentity();
-	//allMatrix.setScale(this->localScale);
-
-	//temp.setIdentity();
-	//temp.setRotationZ(this->localRotation.m_z);
-	//allMatrix *= temp;
-
-	//temp.setIdentity();
-	//temp.setRotationY(this->localRotation.m_y);
-	//allMatrix *= temp;
-
-	//temp.setIdentity();
-	//temp.setRotationX(this->localRotation.m_x);
-	//allMatrix *= temp;
-
-	//temp.setIdentity();
-	//temp.setTranslation(this->localPosition);
-	//allMatrix *= temp;
-
-	//this->cbData.m_world = allMatrix;
-	//this->cbData.m_view.setIdentity();
-	//this->cbData.m_proj.setOrthoLH(width / 400, height / 400, -4.0f, 4.0f);
 
 	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_vs, m_cb);
 	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_ps, m_cb);

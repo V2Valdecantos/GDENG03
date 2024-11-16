@@ -103,14 +103,15 @@ void AppWindow::onCreate()
 	this->m_cb->load(&cc, sizeof(CBData));
 
 	Camera* camera = new Camera();
+	camera->setPosition(0, 0, -10);
 	CameraManager::getInstance()->AddCamera(camera);
 	InputSystem::get()->addListener(CameraManager::getInstance()->GetActiveCamera());
 
 
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 50; i++) {
 		Cube* cubeObject = new Cube("Cube");
 		cubeObject->setAnimSpeed(rand() / float(RAND_MAX) * (0.35f - (-0.35f)) + -0.35f);
-		cubeObject->setPosition(Vector3D(0, 2, 5));
+		cubeObject->setPosition(Vector3D((rand() / float(RAND_MAX) * (0.5 - (-0.5f)) + -0.5f), 4, (rand() / float(RAND_MAX) * (0.5f - (-0.5f)) + -0.5f)));
 		cubeObject->setScale(1, 1, 1);
 		cubeObject->setRotation(0, 0, 0);
 		ObjectManager::getInstance()->addObject(cubeObject);
@@ -118,10 +119,11 @@ void AppWindow::onCreate()
 		PhysicsComponent* rb1 = new PhysicsComponent("rb1", cubeObject);
 		cubeObject->addComponent(rb1);
 	}
+
 	Cube* plane = new Cube("Cube", Vector3D(1, 1, 1));
 	plane->setAnimSpeed(rand() / float(RAND_MAX) * (0.35f - (-0.35f)) + -0.35f);
 	plane->setPosition(Vector3D(0, -2, 5));
-	plane->setScale(10, 0.1, 10);
+	plane->setScale(100, 0.1, 100);
 	plane->setRotation(0, 0, 0);
 	ObjectManager::getInstance()->addObject(plane);
 

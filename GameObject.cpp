@@ -165,51 +165,88 @@ void GameObject::updateLocalMatrix()
 
 void GameObject::recomputeMatrix(float matrix[16])
 {
-	float matrix4x4[4][4];
-	matrix4x4[0][0] = matrix[0];
-	matrix4x4[0][1] = matrix[1];
-	matrix4x4[0][2] = matrix[2];
-	matrix4x4[0][3] = matrix[3];
+	//float matrix4x4[4][4];
+	//matrix4x4[0][0] = matrix[0];
+	//matrix4x4[0][1] = matrix[1];
+	//matrix4x4[0][2] = matrix[2];
+	//matrix4x4[0][3] = matrix[3];
 
-	matrix4x4[1][0] = matrix[4];
-	matrix4x4[1][1] = matrix[5];
-	matrix4x4[1][2] = matrix[6];
-	matrix4x4[1][3] = matrix[7];
+	//matrix4x4[1][0] = matrix[4];
+	//matrix4x4[1][1] = matrix[5];
+	//matrix4x4[1][2] = matrix[6];
+	//matrix4x4[1][3] = matrix[7];
 
-	matrix4x4[2][0] = matrix[8];
-	matrix4x4[2][1] = matrix[9];
-	matrix4x4[2][2] = matrix[10];
-	matrix4x4[2][3] = matrix[11];
+	//matrix4x4[2][0] = matrix[8];
+	//matrix4x4[2][1] = matrix[9];
+	//matrix4x4[2][2] = matrix[10];
+	//matrix4x4[2][3] = matrix[11];
 
-	matrix4x4[3][0] = matrix[12];
-	matrix4x4[3][1] = matrix[13];
-	matrix4x4[3][2] = matrix[14];
-	matrix4x4[3][3] = matrix[15];
+	//matrix4x4[3][0] = matrix[12];
+	//matrix4x4[3][1] = matrix[13];
+	//matrix4x4[3][2] = matrix[14];
+	//matrix4x4[3][3] = matrix[15];
 
-	Matrix4x4 newMatrix; 
-	newMatrix.setMatrix(matrix4x4);
+	//Matrix4x4 newMatrix; 
+	//Matrix4x4 temp;
+	//newMatrix.setMatrix(matrix4x4);
 
-	Matrix4x4 temp;
-	newMatrix.setScale(this->localScale);
+	//temp.setIdentity();
+	//temp.setTranslation(this->localPosition);
+	//newMatrix *= temp;
 
-	temp.setIdentity();
-	temp.setRotationZ(this->localRotation.m_z);
-	newMatrix *= temp;
+	//newMatrix.setScale(this->localScale);
+	////temp.setIdentity();
+	////temp.setRotationZ(this->localRotation.m_z);
+	////newMatrix *= temp;
 
-	temp.setIdentity();
-	temp.setRotationY(this->localRotation.m_y);
-	newMatrix *= temp;
+	////temp.setIdentity();
+	////temp.setRotationY(this->localRotation.m_y);
+	////newMatrix *= temp;
 
-	temp.setIdentity();
-	temp.setRotationX(this->localRotation.m_x);
-	newMatrix *= temp;
+	////temp.setIdentity();
+	////temp.setRotationX(this->localRotation.m_x);
+	////newMatrix *= temp;
 
-	temp.setIdentity();
-	temp.setTranslation(this->localPosition);
-	newMatrix *= temp;
 
-	this->localMatrix = newMatrix;
+
+	//this->localMatrix = newMatrix;
+	//this->overrideMatrix = true;
+
+	Matrix4x4 physMat;
+	physMat.setIdentity();
+
+	int index = 0;
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			physMat.m_mat[i][j] = matrix[index];
+			index++;
+		}
+	}
+
+	this->cbData.m_world = physMat;
+
+
+	Matrix4x4 newMatrix;
+	newMatrix.setMatrix(physMat);
+
+	Matrix4x4 scaleMatrix;
+	scaleMatrix.setIdentity();
+	scaleMatrix.setScale(this->localScale);
+
+	Matrix4x4 transMatrix;
+	transMatrix.setIdentity();
+	transMatrix.setTranslation(this->localPosition);
+
+	transMatrix *= newMatrix;
+	scaleMatrix *= transMatrix;
+	this->cbData.m_world.setMatrix(scaleMatrix);
+
 	this->overrideMatrix = true;
+}
+
+void GameObject::setWorldMat(float matrix[16])
+{
+
 }
 
 string GameObject::getName()

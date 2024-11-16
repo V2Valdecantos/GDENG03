@@ -57,6 +57,7 @@ class GameObject
 		void updateLocalMatrix();
 
 		void recomputeMatrix(float matrix[16]);
+		void setWorldMat(float matrix[16]);
 		string getName();
 
 		void addComponent(Component* component);
