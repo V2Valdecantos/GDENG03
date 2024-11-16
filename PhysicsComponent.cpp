@@ -20,7 +20,8 @@ PhysicsComponent::PhysicsComponent(std::string name) : Component(name)
 
 	// Create a rigid body in the world
 	Vector3D scale = this->getOwner()->getLocalScale();
-	Transform transform; transform.setFromOpenGL(this->getOwner()->getPhysicsLocalMatrix());
+	Transform transform; 
+	transform.setFromOpenGL(this->getOwner()->getPhysicsLocalMatrix());
 	BoxShape* boxShape = physicsCommon->createBoxShape(Vector3(scale.m_x / 2, scale.m_y / 2, scale.m_z / 2)); //half extent
 	this->rigidBody = physicsWorld->createRigidBody(transform);
 	this->rigidBody->addCollider(boxShape, transform);

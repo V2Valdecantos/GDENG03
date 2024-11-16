@@ -201,6 +201,7 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="ComponentTypes.h" />
+    <ClInclude Include="Libs\ReactPhysics3D\include\reactphysics3d\reactphysics3d.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader.fx">
