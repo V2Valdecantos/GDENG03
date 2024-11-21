@@ -12,52 +12,55 @@ class PixelShader;
 class GraphicsEngine
 {
 public:
+	static GraphicsEngine* getInstance();
+	static void initialize();
+	static void destroy();
+	
+private:
 	GraphicsEngine();
-	//Initialize the GraphicsEngine and DirectX 11 Device
 	bool init();
 	//Release all the resources loaded
 	bool release();
 	~GraphicsEngine();
+	GraphicsEngine(GraphicsEngine const&) {};
+	GraphicsEngine& operator =(GraphicsEngine const&) {};
+	static GraphicsEngine* sharedInstance;
+
+private:
+	SwapChain* m_swap_chain;
 public:
-	SwapChain * createSwapChain();
+	SwapChain* getSwapChain();
 	DeviceContext* getImmediateDeviceContext();
 	VertexBuffer* createVertexBuffer();
 	IndexBuffer* createIndexBuffer();
 	ConstantBuffer* createConstantBuffer();
 	VertexShader* createVertexShader(const void* shader_byte_code, size_t byte_code_size);
 	PixelShader* createPixelShader(const void* shader_byte_code, size_t byte_code_size);
-
-	ID3D11Device* getID3D11Device();
-	ID3D11DeviceContext* getID3D11DeviceContext();
 public:
 	bool compileVertexShader(const wchar_t* file_name, const char* entry_point_name, void** shader_byte_code, size_t* byte_code_size);
 	bool compilePixelShader(const wchar_t* file_name, const char* entry_point_name, void** shader_byte_code, size_t* byte_code_size);
-
 	void releaseCompiledShader();
-
-public:
-	static GraphicsEngine* get();
+	ID3D11Device* getD3DDevice();
+	IDXGIFactory* getDirectXFactory();
 
 private:
-	DeviceContext * m_imm_device_context;
+	DeviceContext* m_imm_device_context;
 private:
-	ID3D11Device * m_d3d_device;
+	ID3D11Device* m_d3d_device;
 	D3D_FEATURE_LEVEL m_feature_level;
 private:
-	IDXGIDevice * m_dxgi_device;
+	IDXGIDevice* m_dxgi_device;
 	IDXGIAdapter* m_dxgi_adapter;
 	IDXGIFactory* m_dxgi_factory;
 	ID3D11DeviceContext* m_imm_context;
 
 private:
-	ID3DBlob * m_blob = nullptr;
-
-
-
+	ID3DBlob* m_blob = nullptr;
 	ID3DBlob* m_vsblob = nullptr;
 	ID3DBlob* m_psblob = nullptr;
 	ID3D11VertexShader* m_vs = nullptr;
 	ID3D11PixelShader* m_ps = nullptr;
+	
 private:
 	friend class SwapChain;
 	friend class VertexBuffer;
@@ -67,4 +70,3 @@ private:
 	friend class PixelShader;
 
 };
-

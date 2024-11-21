@@ -1,4 +1,5 @@
 #include "SwapChain.h"
+#include "DeviceContext.h"
 #include "GraphicsEngine.h"
 
 SwapChain::SwapChain()
@@ -7,11 +8,11 @@ SwapChain::SwapChain()
 
 bool SwapChain::init(HWND hwnd, UINT width, UINT height)
 {
-	ID3D11Device*device= GraphicsEngine::get()->m_d3d_device;
+	ID3D11Device* device = GraphicsEngine::getInstance()->m_d3d_device;
 
 	DXGI_SWAP_CHAIN_DESC desc;
 	ZeroMemory(&desc, sizeof(desc));
-	desc.BufferCount = 1;
+	desc.BufferCount = 2;
 	desc.BufferDesc.Width = width;
 	desc.BufferDesc.Height = height;
 	desc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
@@ -23,47 +24,68 @@ bool SwapChain::init(HWND hwnd, UINT width, UINT height)
 	desc.SampleDesc.Quality = 0;
 	desc.Windowed = TRUE;
 
-	//Create the swap chain for the window indicated by HWND parameter
-	HRESULT hr=GraphicsEngine::get()->m_dxgi_factory->CreateSwapChain(device, &desc, &m_swap_chain);
-	
-	if (FAILED(hr))
-	{
+	if (!device) {
+		MessageBox(hwnd, L"Direct3D device is not initialized.", L"Error", MB_OK);
 		return false;
 	}
+
+	if (!GraphicsEngine::getInstance()->m_dxgi_factory) {
+		MessageBox(hwnd, L"DXGI factory is not initialized.", L"Error", MB_OK);
+		return false;
+	}
+
+	IDXGIFactory* dxFactory = GraphicsEngine::getInstance()->getDirectXFactory();
+	//Create the swap chain for the window indicated by HWND parameter
+	HRESULT hr = GraphicsEngine::getInstance()->getDirectXFactory()->CreateSwapChain(device, &desc, &m_swap_chain);
+
+	if (FAILED(hr))
+	{
+		// Log the error message
+		MessageBox(hwnd, L"Failed to create swap chain.", L"Error", MB_OK);
+		return false;
+	}
+
 
 	//Get the back buffer color and create its render target view
 	//--------------------------------
-	ID3D11Texture2D* buffer=NULL;
-	hr=m_swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&buffer);
-	
+	ID3D11Texture2D* buffer = NULL;
+	hr = m_swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&buffer);
+
 	if (FAILED(hr))
 	{
 		return false;
 	}
 
-	hr=device->CreateRenderTargetView(buffer, NULL, &m_rtv);
+	hr = device->CreateRenderTargetView(buffer, NULL, &m_rtv);
 	buffer->Release();
+	
 
-	if (FAILED(hr))
-	{
-		return false;
-	}
 	D3D11_TEXTURE2D_DESC texDesc = {};
 	texDesc.Width = width;
 	texDesc.Height = height;
-	texDesc.MipLevels = 1;
-	texDesc.ArraySize = 1;
 	texDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-	texDesc.SampleDesc.Count = 1;
-	texDesc.SampleDesc.Quality = 0;
 	texDesc.Usage = D3D11_USAGE_DEFAULT;
 	texDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
-	texDesc.CPUAccessFlags = 0;
+	texDesc.MipLevels = 1;
+	texDesc.SampleDesc.Count = 1;
+	texDesc.SampleDesc.Quality = 0;
 	texDesc.MiscFlags = 0;
+	texDesc.ArraySize = 1;
+	texDesc.CPUAccessFlags = 0;
 
-	HRESULT depthResult = device->CreateTexture2D(&texDesc, NULL, &buffer);
-	HRESULT depthStencilResult = device->CreateDepthStencilView(buffer, NULL, &this->m_dsv);
+	HRESULT depthResult = GraphicsEngine::getInstance()->getD3DDevice()->CreateTexture2D(&texDesc, NULL, &buffer);
 
+	if SUCCEEDED(depthResult) {
+		HRESULT depthStencilResult = GraphicsEngine::getInstance()->getD3DDevice()->CreateDepthStencilView(buffer, nullptr, &this->m_dsv);
+	}
+
+	if (FAILED(depthResult))
+	{
+		return false;
+	}
+
+	buffer->Release();
+	
 	return true;
 }
 
@@ -76,8 +98,7 @@ bool SwapChain::present(bool vsync)
 
 bool SwapChain::release()
 {
-	m_swap_chain->Release();
-	delete this;
+	if (m_swap_chain)m_swap_chain->Release();
 	return true;
 }
 

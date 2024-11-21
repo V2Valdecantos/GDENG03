@@ -32,7 +32,7 @@
 #include <reactphysics3d/memory/MemoryAllocator.h>
 #include <reactphysics3d/collision/broadphase/DynamicAABBTree.h>
 #include <reactphysics3d/containers/Map.h>
-
+#include <vector>
 namespace reactphysics3d {
 
 // Declarations

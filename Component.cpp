@@ -1,24 +1,34 @@
 #include "Component.h"
+#include "GameObject.h"
 
-Component::Component(std::string name, GameObject* owner)
+Component::Component(String name, ComponentType type, GameObject* owner)
 {
 	this->name = name;
+	this->type = type;
 	this->owner = owner;
-	this->type = ComponentType::PHYSICS;
 }
 
 Component::~Component()
 {
+	if(!this->owner)
+		this->detachOwner();
+
+	delete this;
 }
 
 void Component::attachOwner(GameObject* owner)
 {
+	//this->owner = owner;
 	this->owner = owner;
+}
+
+void Component::perform(float deltaTime) {
+
 }
 
 void Component::detachOwner()
 {
-	this->owner = NULL;
+	this->owner = nullptr;
 }
 
 GameObject* Component::getOwner()
@@ -26,12 +36,12 @@ GameObject* Component::getOwner()
 	return this->owner;
 }
 
-ComponentType Component::getType()
+Component::ComponentType Component::getType()
 {
 	return this->type;
 }
 
-std::string Component::getName()
+Component::String Component::getName()
 {
 	return this->name;
 }

@@ -1,26 +1,26 @@
 #pragma once
-#include "ComponentTypes.h"
-#include "GameObject.h"
 #include <string>
+#include "BaseComponentSystem.h"
 
 class GameObject;
-class Component
-{
-	public:
-		Component(std::string name, GameObject* owner);
-		~Component();
 
-		void attachOwner(GameObject* owner);
-		void detachOwner();
-		GameObject* getOwner();
-		ComponentType getType();
-		std::string getName();
+class Component {
+public:
+	typedef std::string String;
+	enum ComponentType {NotSet = 1, Script = 0, Renderer = 1, Input = 2, Physics = 3};
+	Component(String name, ComponentType type, GameObject* owner);
+	~Component();
 
-		virtual void perform(float deltaTime) = 0;
+	void attachOwner(GameObject* owner);
+	void detachOwner();
+	GameObject* getOwner();
+	ComponentType getType();
+	String getName();
 
-	protected:
-		GameObject* owner;
-		ComponentType type;
-		std::string name;
+	virtual void perform(float deltaTime);
+
+protected:
+	GameObject* owner;
+	ComponentType type;
+	String name;
 };
-

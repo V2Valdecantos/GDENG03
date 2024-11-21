@@ -1,0 +1,844 @@
+﻿  AppWindow.cpp
+E:\GDENG03\PersonalGDENG03\DirectXGame\GameObject.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(101,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(102,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(103,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(56,50): warning C4245: 'initializing': conversion from 'int' to 'const reactphysics3d::uint64', signed/unsigned mismatch
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\components\Components.h(76,29): message : see reference to class template instantiation 'reactphysics3d::Map<reactphysics3d::Entity,reactphysics3d::uint32,std::hash<reactphysics3d::Entity>,std::equal_to<K>>' being compiled
+          with
+          [
+              K=reactphysics3d::Entity
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(248,124): warning C4244: 'initializing': conversion from 'float' to 'size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(248,54): warning C4244: 'initializing': conversion from 'float' to 'const size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(279,128): warning C4244: 'initializing': conversion from 'float' to 'size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(279,58): warning C4244: 'initializing': conversion from 'float' to 'const size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Set.h(55,50): warning C4245: 'initializing': conversion from 'int' to 'const reactphysics3d::uint64', signed/unsigned mismatch
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\BroadPhaseSystem.h(132,18): message : see reference to class template instantiation 'reactphysics3d::Set<int,std::hash<int>,std::equal_to<V>>' being compiled
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\ConvexMesh.h(139,26): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\TriangleMesh.h(146,26): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\TriangleMesh.h(151,30): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\GameObject.h(30,1): warning C4324: 'CBData': structure was padded due to alignment specifier
+E:\GDENG03\PersonalGDENG03\DirectXGame\AppWindow.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\GDENG03\PersonalGDENG03\DirectXGame\AppWindow.cpp(48,21): warning C4189: 'graphEngine': local variable is initialized but not referenced
+E:\GDENG03\PersonalGDENG03\DirectXGame\AppWindow.cpp(102,50): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\AppWindow.cpp(106,45): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\AppWindow.cpp(108,71): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Array.h(255,70): warning C4244: '=': conversion from 'float' to 'reactphysics3d::uint64', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Array.h(250,14): message : while compiling class template member function 'void reactphysics3d::Array<reactphysics3d::uint>::reserve(reactphysics3d::uint64)'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\Islands.h(134,44): message : see the first reference to 'reactphysics3d::Array<reactphysics3d::uint>::reserve' in 'reactphysics3d::Islands::reserveMemory'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\components\RigidBodyComponents.h(862,58): message : see reference to class template instantiation 'reactphysics3d::Array<reactphysics3d::uint>' being compiled
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(283,90): warning C4244: '=': conversion from 'float' to 'reactphysics3d::uint64', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(260,14): message : while compiling class template member function 'void reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::reserve(reactphysics3d::uint64)'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(401,24): message : see the first reference to 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::reserve' in 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::add'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\CollisionDetectionSystem.h(425,41): message : see the first reference to 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::add' in 'reactphysics3d::CollisionDetectionSystem::addCollider'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\CollisionDetectionSystem.h(109,26): message : see reference to class template instantiation 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>' being compiled
+          with
+          [
+              V=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\algorithm(3456,24): warning C4244: '=': conversion from 'int' to 'char', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\utils\DefaultLogger.h(291,22): message : see reference to function template instantiation '_OutIt std::transform<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,int(__cdecl *)(int)>(const _InIt,const _InIt,_OutIt,_Fn)' being compiled
+          with
+          [
+              _OutIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Elem=char,
+              _InIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Fn=int (__cdecl *)(int)
+          ]
+  BaseComponentSystem.cpp
+  Camera.cpp
+E:\GDENG03\PersonalGDENG03\DirectXGame\GameObject.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(38,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(39,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(40,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(41,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(46,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(47,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(48,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(49,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(54,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(55,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(56,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(57,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(101,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(102,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(103,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(147,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(56,50): warning C4245: 'initializing': conversion from 'int' to 'const reactphysics3d::uint64', signed/unsigned mismatch
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\components\Components.h(76,29): message : see reference to class template instantiation 'reactphysics3d::Map<reactphysics3d::Entity,reactphysics3d::uint32,std::hash<reactphysics3d::Entity>,std::equal_to<K>>' being compiled
+          with
+          [
+              K=reactphysics3d::Entity
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(248,124): warning C4244: 'initializing': conversion from 'float' to 'size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(248,54): warning C4244: 'initializing': conversion from 'float' to 'const size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(279,128): warning C4244: 'initializing': conversion from 'float' to 'size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(279,58): warning C4244: 'initializing': conversion from 'float' to 'const size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Set.h(55,50): warning C4245: 'initializing': conversion from 'int' to 'const reactphysics3d::uint64', signed/unsigned mismatch
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\BroadPhaseSystem.h(132,18): message : see reference to class template instantiation 'reactphysics3d::Set<int,std::hash<int>,std::equal_to<V>>' being compiled
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\ConvexMesh.h(139,26): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\TriangleMesh.h(146,26): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\TriangleMesh.h(151,30): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\GameObject.h(30,1): warning C4324: 'CBData': structure was padded due to alignment specifier
+E:\GDENG03\PersonalGDENG03\DirectXGame\Camera.cpp(47,43): warning C4100: 'windowBounds': unreferenced formal parameter
+E:\GDENG03\PersonalGDENG03\DirectXGame\Camera.cpp(147,100): warning C4100: 'pixelShader': unreferenced formal parameter
+E:\GDENG03\PersonalGDENG03\DirectXGame\Camera.cpp(147,73): warning C4100: 'vertexShader': unreferenced formal parameter
+E:\GDENG03\PersonalGDENG03\DirectXGame\Camera.cpp(147,48): warning C4100: 'deltaTime': unreferenced formal parameter
+E:\GDENG03\PersonalGDENG03\DirectXGame\Camera.cpp(147,34): warning C4100: 'height': unreferenced formal parameter
+E:\GDENG03\PersonalGDENG03\DirectXGame\Camera.cpp(147,23): warning C4100: 'width': unreferenced formal parameter
+E:\GDENG03\PersonalGDENG03\DirectXGame\Camera.cpp(150,28): warning C4100: 'key': unreferenced formal parameter
+E:\GDENG03\PersonalGDENG03\DirectXGame\Camera.cpp(154,26): warning C4100: 'key': unreferenced formal parameter
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Array.h(255,70): warning C4244: '=': conversion from 'float' to 'reactphysics3d::uint64', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Array.h(250,14): message : while compiling class template member function 'void reactphysics3d::Array<reactphysics3d::uint>::reserve(reactphysics3d::uint64)'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\Islands.h(134,44): message : see the first reference to 'reactphysics3d::Array<reactphysics3d::uint>::reserve' in 'reactphysics3d::Islands::reserveMemory'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\components\RigidBodyComponents.h(862,58): message : see reference to class template instantiation 'reactphysics3d::Array<reactphysics3d::uint>' being compiled
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(283,90): warning C4244: '=': conversion from 'float' to 'reactphysics3d::uint64', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(260,14): message : while compiling class template member function 'void reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::reserve(reactphysics3d::uint64)'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(401,24): message : see the first reference to 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::reserve' in 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::add'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\CollisionDetectionSystem.h(425,41): message : see the first reference to 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::add' in 'reactphysics3d::CollisionDetectionSystem::addCollider'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\CollisionDetectionSystem.h(109,26): message : see reference to class template instantiation 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>' being compiled
+          with
+          [
+              V=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\algorithm(3456,24): warning C4244: '=': conversion from 'int' to 'char', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\utils\DefaultLogger.h(291,22): message : see reference to function template instantiation '_OutIt std::transform<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,int(__cdecl *)(int)>(const _InIt,const _InIt,_OutIt,_Fn)' being compiled
+          with
+          [
+              _OutIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Elem=char,
+              _InIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Fn=int (__cdecl *)(int)
+          ]
+  Component.cpp
+E:\GDENG03\PersonalGDENG03\DirectXGame\GameObject.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(38,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(39,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(40,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(41,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(46,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(47,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(48,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(49,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(54,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(55,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(56,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(57,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(101,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(102,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(103,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(147,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(56,50): warning C4245: 'initializing': conversion from 'int' to 'const reactphysics3d::uint64', signed/unsigned mismatch
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\components\Components.h(76,29): message : see reference to class template instantiation 'reactphysics3d::Map<reactphysics3d::Entity,reactphysics3d::uint32,std::hash<reactphysics3d::Entity>,std::equal_to<K>>' being compiled
+          with
+          [
+              K=reactphysics3d::Entity
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(248,124): warning C4244: 'initializing': conversion from 'float' to 'size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(248,54): warning C4244: 'initializing': conversion from 'float' to 'const size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(279,128): warning C4244: 'initializing': conversion from 'float' to 'size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(279,58): warning C4244: 'initializing': conversion from 'float' to 'const size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Set.h(55,50): warning C4245: 'initializing': conversion from 'int' to 'const reactphysics3d::uint64', signed/unsigned mismatch
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\BroadPhaseSystem.h(132,18): message : see reference to class template instantiation 'reactphysics3d::Set<int,std::hash<int>,std::equal_to<V>>' being compiled
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\ConvexMesh.h(139,26): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\TriangleMesh.h(146,26): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\TriangleMesh.h(151,30): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\GameObject.h(30,1): warning C4324: 'CBData': structure was padded due to alignment specifier
+E:\GDENG03\PersonalGDENG03\DirectXGame\Component.cpp(15,2): warning C5205: delete of an abstract class 'Component' that has a non-virtual destructor results in undefined behavior
+E:\GDENG03\PersonalGDENG03\DirectXGame\Component.h(8,7): message : see declaration of 'Component'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Component.cpp(18,41): warning C4458: declaration of 'owner' hides class member
+E:\GDENG03\PersonalGDENG03\DirectXGame\Component.h(24,14): message : see declaration of 'Component::owner'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Component.cpp(18,41): warning C4100: 'owner': unreferenced formal parameter
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Array.h(255,70): warning C4244: '=': conversion from 'float' to 'reactphysics3d::uint64', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Array.h(250,14): message : while compiling class template member function 'void reactphysics3d::Array<reactphysics3d::uint>::reserve(reactphysics3d::uint64)'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\Islands.h(134,44): message : see the first reference to 'reactphysics3d::Array<reactphysics3d::uint>::reserve' in 'reactphysics3d::Islands::reserveMemory'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\components\RigidBodyComponents.h(862,58): message : see reference to class template instantiation 'reactphysics3d::Array<reactphysics3d::uint>' being compiled
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(283,90): warning C4244: '=': conversion from 'float' to 'reactphysics3d::uint64', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(260,14): message : while compiling class template member function 'void reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::reserve(reactphysics3d::uint64)'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(401,24): message : see the first reference to 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::reserve' in 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::add'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\CollisionDetectionSystem.h(425,41): message : see the first reference to 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::add' in 'reactphysics3d::CollisionDetectionSystem::addCollider'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\CollisionDetectionSystem.h(109,26): message : see reference to class template instantiation 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>' being compiled
+          with
+          [
+              V=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\algorithm(3456,24): warning C4244: '=': conversion from 'int' to 'char', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\utils\DefaultLogger.h(291,22): message : see reference to function template instantiation '_OutIt std::transform<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,int(__cdecl *)(int)>(const _InIt,const _InIt,_OutIt,_Fn)' being compiled
+          with
+          [
+              _OutIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Elem=char,
+              _InIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Fn=int (__cdecl *)(int)
+          ]
+  ConstantBuffer.cpp
+  Cube.cpp
+E:\GDENG03\PersonalGDENG03\DirectXGame\GameObject.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(38,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(39,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(40,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(41,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(46,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(47,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(48,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(49,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(54,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(55,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(56,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(57,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(101,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(102,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(103,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(147,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(56,50): warning C4245: 'initializing': conversion from 'int' to 'const reactphysics3d::uint64', signed/unsigned mismatch
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\components\Components.h(76,29): message : see reference to class template instantiation 'reactphysics3d::Map<reactphysics3d::Entity,reactphysics3d::uint32,std::hash<reactphysics3d::Entity>,std::equal_to<K>>' being compiled
+          with
+          [
+              K=reactphysics3d::Entity
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(248,124): warning C4244: 'initializing': conversion from 'float' to 'size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(248,54): warning C4244: 'initializing': conversion from 'float' to 'const size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(279,128): warning C4244: 'initializing': conversion from 'float' to 'size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(279,58): warning C4244: 'initializing': conversion from 'float' to 'const size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Set.h(55,50): warning C4245: 'initializing': conversion from 'int' to 'const reactphysics3d::uint64', signed/unsigned mismatch
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\BroadPhaseSystem.h(132,18): message : see reference to class template instantiation 'reactphysics3d::Set<int,std::hash<int>,std::equal_to<V>>' being compiled
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\ConvexMesh.h(139,26): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\TriangleMesh.h(146,26): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\TriangleMesh.h(151,30): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\GameObject.h(30,1): warning C4324: 'CBData': structure was padded due to alignment specifier
+E:\GDENG03\PersonalGDENG03\DirectXGame\Cube.cpp(3,63): warning C4100: 'windowBounds': unreferenced formal parameter
+E:\GDENG03\PersonalGDENG03\DirectXGame\Cube.cpp(26,31): warning C4100: 'device': unreferenced formal parameter
+E:\GDENG03\PersonalGDENG03\DirectXGame\Cube.cpp(49,10): warning C4189: 'size_list': local variable is initialized but not referenced
+E:\GDENG03\PersonalGDENG03\DirectXGame\Cube.cpp(109,98): warning C4100: 'pixelShader': unreferenced formal parameter
+E:\GDENG03\PersonalGDENG03\DirectXGame\Cube.cpp(109,71): warning C4100: 'vertexShader': unreferenced formal parameter
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Array.h(255,70): warning C4244: '=': conversion from 'float' to 'reactphysics3d::uint64', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Array.h(250,14): message : while compiling class template member function 'void reactphysics3d::Array<reactphysics3d::uint>::reserve(reactphysics3d::uint64)'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\Islands.h(134,44): message : see the first reference to 'reactphysics3d::Array<reactphysics3d::uint>::reserve' in 'reactphysics3d::Islands::reserveMemory'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\components\RigidBodyComponents.h(862,58): message : see reference to class template instantiation 'reactphysics3d::Array<reactphysics3d::uint>' being compiled
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(283,90): warning C4244: '=': conversion from 'float' to 'reactphysics3d::uint64', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(260,14): message : while compiling class template member function 'void reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::reserve(reactphysics3d::uint64)'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(401,24): message : see the first reference to 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::reserve' in 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::add'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\CollisionDetectionSystem.h(425,41): message : see the first reference to 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::add' in 'reactphysics3d::CollisionDetectionSystem::addCollider'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\CollisionDetectionSystem.h(109,26): message : see reference to class template instantiation 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>' being compiled
+          with
+          [
+              V=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\algorithm(3456,24): warning C4244: '=': conversion from 'int' to 'char', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\utils\DefaultLogger.h(291,22): message : see reference to function template instantiation '_OutIt std::transform<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,int(__cdecl *)(int)>(const _InIt,const _InIt,_OutIt,_Fn)' being compiled
+          with
+          [
+              _OutIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Elem=char,
+              _InIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Fn=int (__cdecl *)(int)
+          ]
+  DeviceContext.cpp
+E:\GDENG03\PersonalGDENG03\DirectXGame\DeviceContext.cpp(87,53): warning C4100: 'vertex_shader': unreferenced formal parameter
+E:\GDENG03\PersonalGDENG03\DirectXGame\DeviceContext.cpp(92,52): warning C4100: 'pixel_shader': unreferenced formal parameter
+  EngineTime.cpp
+  GameObject.cpp
+E:\GDENG03\PersonalGDENG03\DirectXGame\GameObject.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(38,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(39,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(40,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(41,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(46,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(47,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(48,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(49,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(54,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(55,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(56,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(57,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(101,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(102,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(103,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(147,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(56,50): warning C4245: 'initializing': conversion from 'int' to 'const reactphysics3d::uint64', signed/unsigned mismatch
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\components\Components.h(76,29): message : see reference to class template instantiation 'reactphysics3d::Map<reactphysics3d::Entity,reactphysics3d::uint32,std::hash<reactphysics3d::Entity>,std::equal_to<K>>' being compiled
+          with
+          [
+              K=reactphysics3d::Entity
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(248,124): warning C4244: 'initializing': conversion from 'float' to 'size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(248,54): warning C4244: 'initializing': conversion from 'float' to 'const size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(279,128): warning C4244: 'initializing': conversion from 'float' to 'size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(279,58): warning C4244: 'initializing': conversion from 'float' to 'const size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Set.h(55,50): warning C4245: 'initializing': conversion from 'int' to 'const reactphysics3d::uint64', signed/unsigned mismatch
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\BroadPhaseSystem.h(132,18): message : see reference to class template instantiation 'reactphysics3d::Set<int,std::hash<int>,std::equal_to<V>>' being compiled
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\ConvexMesh.h(139,26): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\TriangleMesh.h(146,26): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\TriangleMesh.h(151,30): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\GameObject.h(30,1): warning C4324: 'CBData': structure was padded due to alignment specifier
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Array.h(255,70): warning C4244: '=': conversion from 'float' to 'reactphysics3d::uint64', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Array.h(250,14): message : while compiling class template member function 'void reactphysics3d::Array<reactphysics3d::uint>::reserve(reactphysics3d::uint64)'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\Islands.h(134,44): message : see the first reference to 'reactphysics3d::Array<reactphysics3d::uint>::reserve' in 'reactphysics3d::Islands::reserveMemory'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\components\RigidBodyComponents.h(862,58): message : see reference to class template instantiation 'reactphysics3d::Array<reactphysics3d::uint>' being compiled
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(283,90): warning C4244: '=': conversion from 'float' to 'reactphysics3d::uint64', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(260,14): message : while compiling class template member function 'void reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::reserve(reactphysics3d::uint64)'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(401,24): message : see the first reference to 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::reserve' in 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::add'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\CollisionDetectionSystem.h(425,41): message : see the first reference to 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::add' in 'reactphysics3d::CollisionDetectionSystem::addCollider'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\CollisionDetectionSystem.h(109,26): message : see reference to class template instantiation 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>' being compiled
+          with
+          [
+              V=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\algorithm(3456,24): warning C4244: '=': conversion from 'int' to 'char', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\utils\DefaultLogger.h(291,22): message : see reference to function template instantiation '_OutIt std::transform<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,int(__cdecl *)(int)>(const _InIt,const _InIt,_OutIt,_Fn)' being compiled
+          with
+          [
+              _OutIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Elem=char,
+              _InIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Fn=int (__cdecl *)(int)
+          ]
+  GraphicsEngine.cpp
+  imgui_impl_dx11.cpp
+  imgui_impl_win32.cpp
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_tables.cpp
+  imgui_widgets.cpp
+  IndexBuffer.cpp
+  InputSystem.cpp
+  main.cpp
+E:\GDENG03\PersonalGDENG03\DirectXGame\GameObject.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(101,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(102,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(103,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(56,50): warning C4245: 'initializing': conversion from 'int' to 'const reactphysics3d::uint64', signed/unsigned mismatch
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\components\Components.h(76,29): message : see reference to class template instantiation 'reactphysics3d::Map<reactphysics3d::Entity,reactphysics3d::uint32,std::hash<reactphysics3d::Entity>,std::equal_to<K>>' being compiled
+          with
+          [
+              K=reactphysics3d::Entity
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(248,124): warning C4244: 'initializing': conversion from 'float' to 'size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(248,54): warning C4244: 'initializing': conversion from 'float' to 'const size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(279,128): warning C4244: 'initializing': conversion from 'float' to 'size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(279,58): warning C4244: 'initializing': conversion from 'float' to 'const size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Set.h(55,50): warning C4245: 'initializing': conversion from 'int' to 'const reactphysics3d::uint64', signed/unsigned mismatch
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\BroadPhaseSystem.h(132,18): message : see reference to class template instantiation 'reactphysics3d::Set<int,std::hash<int>,std::equal_to<V>>' being compiled
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\ConvexMesh.h(139,26): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\TriangleMesh.h(146,26): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\TriangleMesh.h(151,30): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\GameObject.h(30,1): warning C4324: 'CBData': structure was padded due to alignment specifier
+E:\GDENG03\PersonalGDENG03\DirectXGame\AppWindow.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Array.h(255,70): warning C4244: '=': conversion from 'float' to 'reactphysics3d::uint64', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Array.h(250,14): message : while compiling class template member function 'void reactphysics3d::Array<reactphysics3d::uint>::reserve(reactphysics3d::uint64)'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\Islands.h(134,44): message : see the first reference to 'reactphysics3d::Array<reactphysics3d::uint>::reserve' in 'reactphysics3d::Islands::reserveMemory'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\components\RigidBodyComponents.h(862,58): message : see reference to class template instantiation 'reactphysics3d::Array<reactphysics3d::uint>' being compiled
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(283,90): warning C4244: '=': conversion from 'float' to 'reactphysics3d::uint64', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(260,14): message : while compiling class template member function 'void reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::reserve(reactphysics3d::uint64)'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(401,24): message : see the first reference to 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::reserve' in 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::add'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\CollisionDetectionSystem.h(425,41): message : see the first reference to 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::add' in 'reactphysics3d::CollisionDetectionSystem::addCollider'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\CollisionDetectionSystem.h(109,26): message : see reference to class template instantiation 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>' being compiled
+          with
+          [
+              V=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\algorithm(3456,24): warning C4244: '=': conversion from 'int' to 'char', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\utils\DefaultLogger.h(291,22): message : see reference to function template instantiation '_OutIt std::transform<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,int(__cdecl *)(int)>(const _InIt,const _InIt,_OutIt,_Fn)' being compiled
+          with
+          [
+              _OutIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Elem=char,
+              _InIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Fn=int (__cdecl *)(int)
+          ]
+  Generating Code...
+E:\GDENG03\PersonalGDENG03\DirectXGame\InputSystem.cpp(150): warning C4715: 'InputSystem::isKeyDown': not all control paths return a value
+E:\GDENG03\PersonalGDENG03\DirectXGame\InputSystem.cpp(162): warning C4715: 'InputSystem::isKeyUp': not all control paths return a value
+  Compiling...
+  MenuScreen.cpp
+E:\GDENG03\PersonalGDENG03\DirectXGame\MenuScreen.cpp(16,42): warning C4458: declaration of 'isMaterialEditorOpen' hides class member
+E:\GDENG03\PersonalGDENG03\DirectXGame\MenuScreen.h(27,8): message : see declaration of 'MenuScreen::isMaterialEditorOpen'
+  PhysicsComponent.cpp
+E:\GDENG03\PersonalGDENG03\DirectXGame\GameObject.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(38,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(39,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(40,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(41,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(46,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(47,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(48,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(49,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(54,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(55,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(56,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(57,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(101,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(102,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(103,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(147,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(56,50): warning C4245: 'initializing': conversion from 'int' to 'const reactphysics3d::uint64', signed/unsigned mismatch
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\components\Components.h(76,29): message : see reference to class template instantiation 'reactphysics3d::Map<reactphysics3d::Entity,reactphysics3d::uint32,std::hash<reactphysics3d::Entity>,std::equal_to<K>>' being compiled
+          with
+          [
+              K=reactphysics3d::Entity
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(248,124): warning C4244: 'initializing': conversion from 'float' to 'size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(248,54): warning C4244: 'initializing': conversion from 'float' to 'const size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(279,128): warning C4244: 'initializing': conversion from 'float' to 'size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(279,58): warning C4244: 'initializing': conversion from 'float' to 'const size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Set.h(55,50): warning C4245: 'initializing': conversion from 'int' to 'const reactphysics3d::uint64', signed/unsigned mismatch
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\BroadPhaseSystem.h(132,18): message : see reference to class template instantiation 'reactphysics3d::Set<int,std::hash<int>,std::equal_to<V>>' being compiled
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\ConvexMesh.h(139,26): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\TriangleMesh.h(146,26): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\TriangleMesh.h(151,30): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\GameObject.h(30,1): warning C4324: 'CBData': structure was padded due to alignment specifier
+E:\GDENG03\PersonalGDENG03\DirectXGame\PhysicsComponent.cpp(31,38): warning C4100: 'deltaTime': unreferenced formal parameter
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Array.h(255,70): warning C4244: '=': conversion from 'float' to 'reactphysics3d::uint64', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Array.h(250,14): message : while compiling class template member function 'void reactphysics3d::Array<reactphysics3d::uint>::reserve(reactphysics3d::uint64)'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\Islands.h(134,44): message : see the first reference to 'reactphysics3d::Array<reactphysics3d::uint>::reserve' in 'reactphysics3d::Islands::reserveMemory'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\components\RigidBodyComponents.h(862,58): message : see reference to class template instantiation 'reactphysics3d::Array<reactphysics3d::uint>' being compiled
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(283,90): warning C4244: '=': conversion from 'float' to 'reactphysics3d::uint64', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(260,14): message : while compiling class template member function 'void reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::reserve(reactphysics3d::uint64)'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(401,24): message : see the first reference to 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::reserve' in 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::add'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\CollisionDetectionSystem.h(425,41): message : see the first reference to 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::add' in 'reactphysics3d::CollisionDetectionSystem::addCollider'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\CollisionDetectionSystem.h(109,26): message : see reference to class template instantiation 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>' being compiled
+          with
+          [
+              V=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\algorithm(3456,24): warning C4244: '=': conversion from 'int' to 'char', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\utils\DefaultLogger.h(291,22): message : see reference to function template instantiation '_OutIt std::transform<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,int(__cdecl *)(int)>(const _InIt,const _InIt,_OutIt,_Fn)' being compiled
+          with
+          [
+              _OutIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Elem=char,
+              _InIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Fn=int (__cdecl *)(int)
+          ]
+  PhysicsSystem.cpp
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(56,50): warning C4245: 'initializing': conversion from 'int' to 'const reactphysics3d::uint64', signed/unsigned mismatch
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\components\Components.h(76,29): message : see reference to class template instantiation 'reactphysics3d::Map<reactphysics3d::Entity,reactphysics3d::uint32,std::hash<reactphysics3d::Entity>,std::equal_to<K>>' being compiled
+          with
+          [
+              K=reactphysics3d::Entity
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(248,124): warning C4244: 'initializing': conversion from 'float' to 'size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(248,54): warning C4244: 'initializing': conversion from 'float' to 'const size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(279,128): warning C4244: 'initializing': conversion from 'float' to 'size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(279,58): warning C4244: 'initializing': conversion from 'float' to 'const size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Set.h(55,50): warning C4245: 'initializing': conversion from 'int' to 'const reactphysics3d::uint64', signed/unsigned mismatch
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\BroadPhaseSystem.h(132,18): message : see reference to class template instantiation 'reactphysics3d::Set<int,std::hash<int>,std::equal_to<V>>' being compiled
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\ConvexMesh.h(139,26): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\TriangleMesh.h(146,26): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\TriangleMesh.h(151,30): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\GameObject.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(101,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(102,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(103,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\GameObject.h(30,1): warning C4324: 'CBData': structure was padded due to alignment specifier
+E:\GDENG03\PersonalGDENG03\DirectXGame\PhysicsSystem.cpp(11,33): warning C4305: 'argument': truncation from 'double' to 'reactphysics3d::decimal'
+E:\GDENG03\PersonalGDENG03\DirectXGame\PhysicsSystem.cpp(69,46): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Array.h(255,70): warning C4244: '=': conversion from 'float' to 'reactphysics3d::uint64', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Array.h(250,14): message : while compiling class template member function 'void reactphysics3d::Array<reactphysics3d::uint>::reserve(reactphysics3d::uint64)'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\Islands.h(134,44): message : see the first reference to 'reactphysics3d::Array<reactphysics3d::uint>::reserve' in 'reactphysics3d::Islands::reserveMemory'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\components\RigidBodyComponents.h(862,58): message : see reference to class template instantiation 'reactphysics3d::Array<reactphysics3d::uint>' being compiled
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(283,90): warning C4244: '=': conversion from 'float' to 'reactphysics3d::uint64', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(260,14): message : while compiling class template member function 'void reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::reserve(reactphysics3d::uint64)'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(401,24): message : see the first reference to 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::reserve' in 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::add'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\CollisionDetectionSystem.h(425,41): message : see the first reference to 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::add' in 'reactphysics3d::CollisionDetectionSystem::addCollider'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\CollisionDetectionSystem.h(109,26): message : see reference to class template instantiation 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>' being compiled
+          with
+          [
+              V=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\algorithm(3456,24): warning C4244: '=': conversion from 'int' to 'char', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\utils\DefaultLogger.h(291,22): message : see reference to function template instantiation '_OutIt std::transform<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,int(__cdecl *)(int)>(const _InIt,const _InIt,_OutIt,_Fn)' being compiled
+          with
+          [
+              _OutIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Elem=char,
+              _InIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Fn=int (__cdecl *)(int)
+          ]
+  PixelShader.cpp
+  Plane.cpp
+E:\GDENG03\PersonalGDENG03\DirectXGame\GameObject.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(38,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(39,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(40,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(41,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(46,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(47,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(48,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(49,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(54,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(55,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(56,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(57,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(101,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(102,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(103,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(147,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(56,50): warning C4245: 'initializing': conversion from 'int' to 'const reactphysics3d::uint64', signed/unsigned mismatch
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\components\Components.h(76,29): message : see reference to class template instantiation 'reactphysics3d::Map<reactphysics3d::Entity,reactphysics3d::uint32,std::hash<reactphysics3d::Entity>,std::equal_to<K>>' being compiled
+          with
+          [
+              K=reactphysics3d::Entity
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(248,124): warning C4244: 'initializing': conversion from 'float' to 'size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(248,54): warning C4244: 'initializing': conversion from 'float' to 'const size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(279,128): warning C4244: 'initializing': conversion from 'float' to 'size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(279,58): warning C4244: 'initializing': conversion from 'float' to 'const size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Set.h(55,50): warning C4245: 'initializing': conversion from 'int' to 'const reactphysics3d::uint64', signed/unsigned mismatch
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\BroadPhaseSystem.h(132,18): message : see reference to class template instantiation 'reactphysics3d::Set<int,std::hash<int>,std::equal_to<V>>' being compiled
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\ConvexMesh.h(139,26): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\TriangleMesh.h(146,26): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\TriangleMesh.h(151,30): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\GameObject.h(30,1): warning C4324: 'CBData': structure was padded due to alignment specifier
+E:\GDENG03\PersonalGDENG03\DirectXGame\Plane.cpp(4,38): warning C4100: 'windowBounds': unreferenced formal parameter
+E:\GDENG03\PersonalGDENG03\DirectXGame\Plane.cpp(15,32): warning C4100: 'device': unreferenced formal parameter
+E:\GDENG03\PersonalGDENG03\DirectXGame\Plane.cpp(29,10): warning C4189: 'size_list': local variable is initialized but not referenced
+E:\GDENG03\PersonalGDENG03\DirectXGame\Plane.cpp(70,99): warning C4100: 'pixelShader': unreferenced formal parameter
+E:\GDENG03\PersonalGDENG03\DirectXGame\Plane.cpp(70,72): warning C4100: 'vertexShader': unreferenced formal parameter
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Array.h(255,70): warning C4244: '=': conversion from 'float' to 'reactphysics3d::uint64', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Array.h(250,14): message : while compiling class template member function 'void reactphysics3d::Array<reactphysics3d::uint>::reserve(reactphysics3d::uint64)'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\Islands.h(134,44): message : see the first reference to 'reactphysics3d::Array<reactphysics3d::uint>::reserve' in 'reactphysics3d::Islands::reserveMemory'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\components\RigidBodyComponents.h(862,58): message : see reference to class template instantiation 'reactphysics3d::Array<reactphysics3d::uint>' being compiled
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(283,90): warning C4244: '=': conversion from 'float' to 'reactphysics3d::uint64', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(260,14): message : while compiling class template member function 'void reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::reserve(reactphysics3d::uint64)'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(401,24): message : see the first reference to 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::reserve' in 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::add'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\CollisionDetectionSystem.h(425,41): message : see the first reference to 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::add' in 'reactphysics3d::CollisionDetectionSystem::addCollider'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\CollisionDetectionSystem.h(109,26): message : see reference to class template instantiation 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>' being compiled
+          with
+          [
+              V=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\algorithm(3456,24): warning C4244: '=': conversion from 'int' to 'char', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\utils\DefaultLogger.h(291,22): message : see reference to function template instantiation '_OutIt std::transform<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,int(__cdecl *)(int)>(const _InIt,const _InIt,_OutIt,_Fn)' being compiled
+          with
+          [
+              _OutIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Elem=char,
+              _InIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Fn=int (__cdecl *)(int)
+          ]
+  SceneCameraHandler.cpp
+E:\GDENG03\PersonalGDENG03\DirectXGame\GameObject.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(38,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(39,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(40,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(41,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(46,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(47,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(48,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(49,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(54,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(55,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(56,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(57,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(101,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(102,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(103,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Matrix4x4.h(147,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(56,50): warning C4245: 'initializing': conversion from 'int' to 'const reactphysics3d::uint64', signed/unsigned mismatch
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\components\Components.h(76,29): message : see reference to class template instantiation 'reactphysics3d::Map<reactphysics3d::Entity,reactphysics3d::uint32,std::hash<reactphysics3d::Entity>,std::equal_to<K>>' being compiled
+          with
+          [
+              K=reactphysics3d::Entity
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(248,124): warning C4244: 'initializing': conversion from 'float' to 'size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(248,54): warning C4244: 'initializing': conversion from 'float' to 'const size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(279,128): warning C4244: 'initializing': conversion from 'float' to 'size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\OverlappingPairs.h(279,58): warning C4244: 'initializing': conversion from 'float' to 'const size_t', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Set.h(55,50): warning C4245: 'initializing': conversion from 'int' to 'const reactphysics3d::uint64', signed/unsigned mismatch
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\BroadPhaseSystem.h(132,18): message : see reference to class template instantiation 'reactphysics3d::Set<int,std::hash<int>,std::equal_to<V>>' being compiled
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\ConvexMesh.h(139,26): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\TriangleMesh.h(146,26): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\collision\TriangleMesh.h(151,30): warning C4244: 'return': conversion from 'reactphysics3d::uint64' to 'reactphysics3d::uint32', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\GameObject.h(30,1): warning C4324: 'CBData': structure was padded due to alignment specifier
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Array.h(255,70): warning C4244: '=': conversion from 'float' to 'reactphysics3d::uint64', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Array.h(250,14): message : while compiling class template member function 'void reactphysics3d::Array<reactphysics3d::uint>::reserve(reactphysics3d::uint64)'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\engine\Islands.h(134,44): message : see the first reference to 'reactphysics3d::Array<reactphysics3d::uint>::reserve' in 'reactphysics3d::Islands::reserveMemory'
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\components\RigidBodyComponents.h(862,58): message : see reference to class template instantiation 'reactphysics3d::Array<reactphysics3d::uint>' being compiled
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(283,90): warning C4244: '=': conversion from 'float' to 'reactphysics3d::uint64', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(260,14): message : while compiling class template member function 'void reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::reserve(reactphysics3d::uint64)'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\containers\Map.h(401,24): message : see the first reference to 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::reserve' in 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::add'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\CollisionDetectionSystem.h(425,41): message : see the first reference to 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>::add' in 'reactphysics3d::CollisionDetectionSystem::addCollider'
+          with
+          [
+              V=int
+          ]
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\systems\CollisionDetectionSystem.h(109,26): message : see reference to class template instantiation 'reactphysics3d::Map<int,reactphysics3d::Entity,std::hash<int>,std::equal_to<V>>' being compiled
+          with
+          [
+              V=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\algorithm(3456,24): warning C4244: '=': conversion from 'int' to 'char', possible loss of data
+E:\GDENG03\PersonalGDENG03\DirectXGame\Libs\ReactPhysics3D\include\reactphysics3d\utils\DefaultLogger.h(291,22): message : see reference to function template instantiation '_OutIt std::transform<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,int(__cdecl *)(int)>(const _InIt,const _InIt,_OutIt,_Fn)' being compiled
+          with
+          [
+              _OutIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Elem=char,
+              _InIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Fn=int (__cdecl *)(int)
+          ]
+  SwapChain.cpp
+E:\GDENG03\PersonalGDENG03\DirectXGame\SwapChain.cpp(37,16): warning C4189: 'dxFactory': local variable is initialized but not referenced
+E:\GDENG03\PersonalGDENG03\DirectXGame\SwapChain.cpp(79,11): warning C4189: 'depthStencilResult': local variable is initialized but not referenced
+  UIManager.cpp
+  VertexBuffer.cpp
+  VertexShader.cpp
+  Window.cpp
+E:\GDENG03\PersonalGDENG03\DirectXGame\Window.cpp(4,1): warning C4005: 'NOMINMAX': macro redefinition
+E:\GDENG03\PersonalGDENG03\DirectXGame\Window.cpp(4,1): message : 'NOMINMAX' previously declared on the command line
+  Generating Code...
+DirectXTK.lib(WICTextureLoader.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in AppWindow.obj
+DirectXTK.lib(pch.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in AppWindow.obj
+reactphysics3d.lib(Transform.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(Body.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(RigidBody.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(PhysicsWorld.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(PhysicsCommon.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(Quaternion.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(EntityManager.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(Components.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(Material.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(ColliderComponents.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(Collider.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(BroadPhaseSystem.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(CollisionDetectionSystem.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(OverlappingPairs.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(Joint.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(BodyComponents.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(RigidBodyComponents.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(TransformComponents.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(JointComponents.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(BallAndSocketJointComponents.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(FixedJointComponents.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(HingeJointComponents.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(SliderJointComponents.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(ConstraintSolverSystem.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(DynamicAABBTree.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(NarrowPhaseInfoBatch.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(CollisionDispatch.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(ContactSolverSystem.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(DynamicsSystem.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(DebugRenderer.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(BallAndSocketJoint.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(SliderJoint.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(HingeJoint.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(FixedJoint.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(PoolAllocator.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(HeapAllocator.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(SingleFrameAllocator.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(MemoryManager.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(HalfEdgeStructure.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(SphereShape.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(BoxShape.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(CapsuleShape.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(HeightField.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(HeightFieldShape.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(ConvexMesh.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(ConvexMeshShape.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(ConcaveMeshShape.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(TriangleMesh.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(DefaultLogger.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(PolygonVertexArray.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(QuickHull.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(Vector3.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(Entity.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(MemoryAllocator.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(RaycastInfo.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(ContactPoint.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(ContactManifold.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(SphereVsSphereAlgorithm.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(SphereVsConvexPolyhedronAlgorithm.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(SphereVsCapsuleAlgorithm.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(CapsuleVsCapsuleAlgorithm.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(CapsuleVsConvexPolyhedronAlgorithm.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(ConvexPolyhedronVsConvexPolyhedronAlgorithm.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(NarrowPhaseInput.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(CollisionCallback.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(OverlapCallback.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(TriangleShape.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(SolveBallAndSocketJointSystem.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(SolveFixedJointSystem.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(SolveHingeJointSystem.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(SolveSliderJointSystem.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(ConvexShape.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(AABB.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(CollisionShape.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(ConvexPolyhedronShape.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(ConcaveShape.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(TriangleVertexArray.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(QHHalfEdgeStructure.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(GJKAlgorithm.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(SATAlgorithm.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(Matrix3x3.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(Matrix2x2.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+reactphysics3d.lib(VoronoiSimplex.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in AppWindow.obj
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+E:\GDENG03\PersonalGDENG03\DirectXGame\x64\Debug\DirectXGame.exe : fatal error LNK1319: 85 mismatches detected

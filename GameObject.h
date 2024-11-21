@@ -1,92 +1,87 @@
 #pragma once
-#pragma message ("GO is defined")
-#include <iostream>
+using namespace std;
+
+#include <string>;
+#include <Windows.h>
 #include <vector>
 #include "Matrix4x4.h"
-#include "Vector3D.h"
-#include "Window.h"
-#include "Structs.h"
+#include <reactphysics3d/reactphysics3d.h>
+#include "PhysicsSystem.h"
 #include "Component.h"
-#include "GameObject.h"
-#include "VertexBuffer.h"
-#include "IndexBuffer.h"
-#include "ConstantBuffer.h"
-#include "GraphicsEngine.h"
-#include "InputSystem.h"
-#include "SwapChain.h"
-#include "DeviceContext.h"
-using namespace std;
 
 class VertexShader;
 class PixelShader;
-class VertexBuffer;
-class ConstantBuffer;
-class IndexBuffer;
-class Component;
+
+struct vertex
+{
+	Vector3D position;
+	Vector3D color;
+	Vector3D color1;
+};
+
+
+__declspec(align(16))
+struct CBData
+{
+	Matrix4x4 m_world;
+	Matrix4x4 m_view;
+	Matrix4x4 m_proj;
+	unsigned int m_time;
+};
 
 class GameObject
 {
-	public:
-		GameObject(string name);
-		~GameObject();
 
-		virtual void Update(float deltaTime, Matrix4x4 view, Matrix4x4 proj) = 0;
-		virtual void draw(Window* window) = 0;
+public:
+	typedef std::string String;
+	typedef std::vector<Component*> ComponentList;
 
-		void setPosition(float x, float y, float z);
-		void setPosition(Vector3D pos);
-		Vector3D getLocalPosition();
+	GameObject(String name);
+	~GameObject();
 
-		void setScale(float x, float y, float z);
-		void setScale(Vector3D scale);
-		Vector3D getLocalScale();
+	virtual void update(float deltaTime, RECT windowBounds) = 0;
+	virtual void draw(int width, int height, float deltaTime, VertexShader* vertexShader, PixelShader* pixelShader) = 0;
 
-		void setRotation(float x, float y, float z);
-		void setRotation(Vector3D rot);
-		void addRotation(float x, float y, float z);
-		Vector3D getLocalRotation();
+public:
+	void setPosition(float x, float y, float z);
+	void setPosition(Vector3D pos);
+	Vector3D getLocalPosition();
 
-		void setColor(float x, float y, float z);
-		Vector3D getColor();
+	void setScale(float x, float y, float z);
+	void setScale(Vector3D scale);
+	Vector3D getLocalScale();
 
-		Matrix4x4 getLocalMatrix();
-		float* getPhysicsLocalMatrix();
-		void setLocalMatrix(Matrix4x4 matrix);
-		void setLocalMatrix(float matrix[16]);
+	void setRotation(float x, float y, float z);
+	void setRotation(Vector3D rot);
+	Vector3D getLocalRotation();
 
-		void updateLocalMatrix();
+	Matrix4x4 getLocalMatrix();
+	float* getLocalPhysicsMatrix();
 
-		void recomputeMatrix(float matrix[16]);
-		void setWorldMat(float matrix[16]);
-		string getName();
+	void setLocalMatrix(const Matrix4x4& matrix);
+	void recomputeMatrix(float matrix[16]);
+	void setLocalPhysicsMatrix(const Matrix4x4& matrix);
 
-		void addComponent(Component* component);
-		void removeComponent(Component* component);
-	
-	protected:
-		string name;
-		Vector3D color;
-		Vector3D localPosition;
-		Vector3D localScale;
-		Vector3D localRotation;
-		Matrix4x4 localMatrix;
+	void attachComponent(Component* component);
+	void detachComponent(Component* component);
 
-		VertexBuffer* m_vb;
-		VertexShader* m_vs;
-		ConstantBuffer* m_cb;
-		PixelShader* m_ps;
-		IndexBuffer* m_ib;
-		CBData cbData;
-		float ticks = 0.0f;
-		float deltaPos = 0.0f;
-		float deltaScale = 0.0f;
-		float deltaTime = 0.0f;
-		float speed = 10.0f;
-		Matrix4x4 viewMat;
-		Matrix4x4 projMat;
+	Component* findComponentByName(String Name);
+	Component* findComponentofType(Component::ComponentType type, String name);
+	ComponentList getComponentsofType(Component::ComponentType type);
+	ComponentList getComponentsOfTypeRecursive(Component::ComponentType type);
 
-		std::vector<Component*> components;
-		bool overrideMatrix = false;
+	bool overrideMatrix = false;
+
+protected:
+	String name;
+	Vector3D localRotation;
+	Vector3D localPosition;
+	Vector3D localScale;
+	Matrix4x4 localMatrix;
+	Matrix4x4 localPhysicsMatrix;
+	ComponentList componentList;
+
+	virtual void Awake();
+
 };
-
 

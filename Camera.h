@@ -1,49 +1,57 @@
 #pragma once
-#pragma message ("Camera is defined")
 #include "GameObject.h"
-#include "InputListener.h"
 #include "InputSystem.h"
 #include "GraphicsEngine.h"
-#include "EngineTime.h"
+#include "VertexBuffer.h"
 #include "ConstantBuffer.h"
-#include "Structs.h"
+#include "DeviceContext.h"
+#include "Matrix4x4.h"
 
-class GameObject;
+
 class Camera : public GameObject, public InputListener
 {
-	public:
-		Camera();
-		~Camera();
+public:
+	Camera(String name);
+	~Camera();
+public:
+	Matrix4x4 getViewMatrix();
+	void update(float deltaTime, RECT windowBounds) override;
+	void draw(int width, int height, float deltaTime, VertexShader* vertexShader, PixelShader* pixelShader) override;
 
-		void Update(float deltaTime, Matrix4x4 view, Matrix4x4 proj) override;
-		void UpdateViewMatrix();
-		bool isActive();
-		void setActive(bool active);
-		void draw(Window* window) override;
-		
-		void ToggleOrtho();
-		Matrix4x4 getViewMatrix();
-		Matrix4x4 getProjMatrix();
+	virtual void onKeyDown(int key) override;
+	virtual void onKeyUp(int key) override;
+	virtual void onMouseMove(const Point mouse_pos) override;
 
-		void onKeyDown(int key) override;
-		void onKeyUp(int key) override;
+	virtual void onLeftMouseDown(const Point mouse_pos) override;
+	virtual void onLeftMouseUp(const Point mouse_pos) override;
 
-		//MOUSE pure virtual callback functions
-		void onMouseMove(const Point& mouse_pos) override;
+	virtual void onRightMouseDown(const Point mouse_pos) override;
+	virtual void onRightMouseUp(const Point mouse_pos) override;
 
-		void onLeftMouseDown(const Point& mouse_pos) override;
-		void onLeftMouseUp(const Point& mouse_pos) override;
+	bool release();
 
-		void onRightMouseDown(const Point& mouse_pos) override;
-		void onRightMouseUp(const Point& mouse_pos) override;
+private:
+	void updateViewMatrix();
 
-	private:
-		bool active;
-		bool isOrtho = false;
-		Matrix4x4 viewMatrix;
-		Matrix4x4 projMatrix;
-		Matrix4x4 worldMatrix;
-		float m_forward;
-		float m_rightward;
+private:
+
+	float ticks = 0.0f;
+
+	float mouseDown = false;
+
+	float m_delta_pos = 0.0f;
+	float m_delta_scale = 0.0f;
+	float m_delta_rot = 0.0f;
+
+	float m_rot_x = 0.0f;
+	float m_rot_y = 0.0f;
+
+	float m_scale_cube = 1;
+	float m_forward = 0.0f;
+	float m_rightward = 0.0f;
+
+	Matrix4x4 localMatrix;
+
+
 };
 

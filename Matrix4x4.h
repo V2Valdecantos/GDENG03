@@ -57,11 +57,6 @@ public:
 		m_mat[1][1] = cos(z);
 	}
 
-	void setMatrix(float matrix[4][4])
-	{
-		::memcpy(this->m_mat, matrix, sizeof(float) * 16);
-	}
-
 	float getDeterminant()
 	{
 		Vector4D minor, v1, v2, v3;
@@ -87,9 +82,9 @@ public:
 
 		det = this->getDeterminant();
 		if (!det) return;
-		for (i = 0; i<4; i++)
+		for (i = 0; i < 4; i++)
 		{
-			for (j = 0; j<4; j++)
+			for (j = 0; j < 4; j++)
 			{
 				if (j != i)
 				{
@@ -121,7 +116,7 @@ public:
 			for (int j = 0; j < 4; j++)
 			{
 				out.m_mat[i][j] =
-					m_mat[i][0] * matrix.m_mat[0][j] + m_mat[i][1] * matrix.m_mat[1][j] + 
+					m_mat[i][0] * matrix.m_mat[0][j] + m_mat[i][1] * matrix.m_mat[1][j] +
 					m_mat[i][2] * matrix.m_mat[2][j] + m_mat[i][3] * matrix.m_mat[3][j];
 			}
 		}
@@ -148,17 +143,19 @@ public:
 
 	void setPerspectiveFovLH(float fov, float aspect, float znear, float zfar)
 	{
+		this->setIdentity();
 		float yscale = 1.0f / tan(fov / 2.0f);
 		float xscale = yscale / aspect;
 		m_mat[0][0] = xscale;
 		m_mat[1][1] = yscale;
 		m_mat[2][2] = zfar / (zfar - znear);
 		m_mat[2][3] = 1.0f;
-		m_mat[3][2] = (-znear*zfar)/ (zfar - znear);
+		m_mat[3][2] = (-znear * zfar) / (zfar - znear);
+		
 	}
 
 
-	void setOrthoLH(float width,float height,float near_plane, float far_plane)
+	void setOrthoLH(float width, float height, float near_plane, float far_plane)
 	{
 		setIdentity();
 		m_mat[0][0] = 2.0f / width;
@@ -167,18 +164,13 @@ public:
 		m_mat[3][2] = -(near_plane / (far_plane - near_plane));
 	}
 
-	Matrix4x4 multiplyTo(Matrix4x4 matrix)
+	~Matrix4x4()
 	{
-		Matrix4x4 out;
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 4; j++) {
-				out.m_mat[i][j] =
-					this->m_mat[i][0] * matrix.m_mat[0][j] + this->m_mat[i][1] * matrix.m_mat[1][j] +
-					this->m_mat[i][2] * matrix.m_mat[2][j] + this->m_mat[i][3] * matrix.m_mat[3][j];
-			}
-		}
+	}
 
-		return out;
+	
+	const float* data() const {
+		return &m_mat[0][0];
 	}
 
 	float* getMatrix()
@@ -187,20 +179,24 @@ public:
 		return *this->m_mat;
 	}
 
-	void transpose() 
-	{
-		Matrix4x4 transpose;
-		for (int i = 0; i < 4; ++i)
-			for (int j = 0; j < 4; ++j) 
-			{
-				transpose.m_mat[i][j] = m_mat[j][i];
+	// Transposes the matrix in-place
+	void transpose() {
+		for (int i = 0; i < 4; ++i) {
+			for (int j = i + 1; j < 4; ++j) {
+				std::swap(m_mat[i][j], m_mat[j][i]);
 			}
-
-		::memcpy(m_mat, transpose.m_mat, sizeof(float) * 16);
+		}
 	}
 
-	~Matrix4x4()
-	{
+	// Converts to column-major order for OpenGL if stored row-major
+	float* toColumnMajor() {
+		static float columnMajor[16];
+		for (int i = 0; i < 4; ++i) {
+			for (int j = 0; j < 4; ++j) {
+				columnMajor[j * 4 + i] = m_mat[i][j];
+			}
+		}
+		return columnMajor;
 	}
 
 public:

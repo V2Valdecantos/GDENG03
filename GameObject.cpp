@@ -1,30 +1,22 @@
 #include "GameObject.h"
 
-GameObject::GameObject(string name)
+GameObject::GameObject(String name)
 {
 	this->name = name;
 	this->localPosition = Vector3D(0, 0, 0);
-	this->localScale = Vector3D(1, 1, 1);
 	this->localRotation = Vector3D(0, 0, 0);
-	this->color = Vector3D(0.8, 0.8, 0.8); 
+	this->localScale = Vector3D(1, 1, 1);
+
+
 }
 
 GameObject::~GameObject()
 {
 }
 
-void GameObject::Update(float deltaTime, Matrix4x4 view, Matrix4x4 proj)
-{
-
-}
-
-void GameObject::draw(Window* window)
-{
-}
-
 void GameObject::setPosition(float x, float y, float z)
 {
-	this->localPosition = Vector3D(x, y, z);
+	this->localPosition = Vector3D(x,y,z);
 }
 
 void GameObject::setPosition(Vector3D pos)
@@ -40,6 +32,7 @@ Vector3D GameObject::getLocalPosition()
 void GameObject::setScale(float x, float y, float z)
 {
 	this->localScale = Vector3D(x, y, z);
+
 }
 
 void GameObject::setScale(Vector3D scale)
@@ -62,26 +55,9 @@ void GameObject::setRotation(Vector3D rot)
 	this->localRotation = rot;
 }
 
-void GameObject::addRotation(float x, float y, float z)
-{
-	this->localRotation.m_x += x;
-	this->localRotation.m_y += y;
-	this->localRotation.m_z += z;
-}
-
 Vector3D GameObject::getLocalRotation()
 {
 	return this->localRotation;
-}
-
-void GameObject::setColor(float x, float y, float z)
-{
-	this->color = Vector3D(x, y, z);
-}
-
-Vector3D GameObject::getColor()
-{
-	return this->color;
 }
 
 Matrix4x4 GameObject::getLocalMatrix()
@@ -89,13 +65,31 @@ Matrix4x4 GameObject::getLocalMatrix()
 	return this->localMatrix;
 }
 
-float* GameObject::getPhysicsLocalMatrix()
+float* GameObject::getLocalPhysicsMatrix()
 {
+	//Matrix4x4 allMatrix; allMatrix.setIdentity();
+	//Matrix4x4 translationMatrix; translationMatrix.setIdentity(); translationMatrix.setTranslation(this->getLocalPosition());
+	//Matrix4x4 scaleMatrix; scaleMatrix.setIdentity(); scaleMatrix.setScale(this->getLocalScale());
+	//Vector3D rotation = this->getLocalRotation();
+	//Matrix4x4 zMatrix; zMatrix.setIdentity(); zMatrix.setRotationZ(rotation.m_z);
+	//Matrix4x4 xMatrix; xMatrix.setIdentity(); xMatrix.setRotationX(rotation.m_x);
+	//Matrix4x4 yMatrix; yMatrix.setIdentity(); yMatrix.setRotationY(rotation.m_y);
+
+	//allMatrix *= scaleMatrix;
+	//allMatrix *= zMatrix;
+	//allMatrix *= yMatrix;
+	//allMatrix *= xMatrix;
+	//allMatrix *= translationMatrix;
+	//this->localPhysicsMatrix.setIdentity();
+	//this->localPhysicsMatrix *= allMatrix;
+
+	//return this->localPhysicsMatrix;
+
 	Matrix4x4 allMatrix;
 	Matrix4x4 temp;
 
 	allMatrix.setIdentity();
-	allMatrix.setScale(Vector3D(1,1,1));
+	allMatrix.setScale(Vector3D(1, 1, 1));
 
 	temp.setIdentity();
 	temp.setRotationZ(this->localRotation.m_z);
@@ -117,100 +111,30 @@ float* GameObject::getPhysicsLocalMatrix()
 	return this->localMatrix.getMatrix();
 }
 
-void GameObject::setLocalMatrix(Matrix4x4 matrix)
+void GameObject::setLocalMatrix(const Matrix4x4& matrix)
 {
-	this->localMatrix = matrix;
+	
+		Matrix4x4 allMatrix; allMatrix.setIdentity();
+		Matrix4x4 translationMatrix; translationMatrix.setIdentity(); translationMatrix.setTranslation(this->getLocalPosition());
+		Matrix4x4 scaleMatrix; scaleMatrix.setIdentity(); scaleMatrix.setScale(this->getLocalScale());
+		Vector3D rotation = this->getLocalRotation();
+		Matrix4x4 zMatrix; zMatrix.setIdentity(); zMatrix.setRotationZ(rotation.m_z);
+		Matrix4x4 xMatrix; xMatrix.setIdentity(); xMatrix.setRotationX(rotation.m_x);
+		Matrix4x4 yMatrix; yMatrix.setIdentity(); yMatrix.setRotationY(rotation.m_y);
+
+		allMatrix *= scaleMatrix;
+		allMatrix *= zMatrix;
+		allMatrix *= yMatrix;
+		allMatrix *= xMatrix;
+		allMatrix *= translationMatrix;
+
+		this->localMatrix = matrix;
+		this->localMatrix *= allMatrix;
+	
 }
 
-void GameObject::setLocalMatrix(float matrix[16])
+void GameObject::recomputeMatrix(float matrix[16]) 
 {
-	int index = 0;
-	for (int i = 0; i < 4; i++) 
-	{
-		for (int j = 0; j < 4; j++) 
-		{
-			this->localMatrix.m_mat[i][j] = matrix[index];
-			index++;
-		}
-	}
-}
-
-void GameObject::updateLocalMatrix()
-{
-	Matrix4x4 allMatrix;
-	Matrix4x4 temp;
-
-	allMatrix.setIdentity();
-	allMatrix.setScale(this->localScale);
-
-	temp.setIdentity();
-	temp.setRotationZ(this->localRotation.m_z);
-	allMatrix *= temp;
-
-	temp.setIdentity();
-	temp.setRotationY(this->localRotation.m_y);
-	allMatrix *= temp;
-
-	temp.setIdentity();
-	temp.setRotationX(this->localRotation.m_x);
-	allMatrix *= temp;
-
-	temp.setIdentity();
-	temp.setTranslation(this->localPosition);
-	allMatrix *= temp;
-
-	this->localMatrix = allMatrix;
-}
-
-
-void GameObject::recomputeMatrix(float matrix[16])
-{
-	//float matrix4x4[4][4];
-	//matrix4x4[0][0] = matrix[0];
-	//matrix4x4[0][1] = matrix[1];
-	//matrix4x4[0][2] = matrix[2];
-	//matrix4x4[0][3] = matrix[3];
-
-	//matrix4x4[1][0] = matrix[4];
-	//matrix4x4[1][1] = matrix[5];
-	//matrix4x4[1][2] = matrix[6];
-	//matrix4x4[1][3] = matrix[7];
-
-	//matrix4x4[2][0] = matrix[8];
-	//matrix4x4[2][1] = matrix[9];
-	//matrix4x4[2][2] = matrix[10];
-	//matrix4x4[2][3] = matrix[11];
-
-	//matrix4x4[3][0] = matrix[12];
-	//matrix4x4[3][1] = matrix[13];
-	//matrix4x4[3][2] = matrix[14];
-	//matrix4x4[3][3] = matrix[15];
-
-	//Matrix4x4 newMatrix; 
-	//Matrix4x4 temp;
-	//newMatrix.setMatrix(matrix4x4);
-
-	//temp.setIdentity();
-	//temp.setTranslation(this->localPosition);
-	//newMatrix *= temp;
-
-	//newMatrix.setScale(this->localScale);
-	////temp.setIdentity();
-	////temp.setRotationZ(this->localRotation.m_z);
-	////newMatrix *= temp;
-
-	////temp.setIdentity();
-	////temp.setRotationY(this->localRotation.m_y);
-	////newMatrix *= temp;
-
-	////temp.setIdentity();
-	////temp.setRotationX(this->localRotation.m_x);
-	////newMatrix *= temp;
-
-
-
-	//this->localMatrix = newMatrix;
-	//this->overrideMatrix = true;
 
 	Matrix4x4 physMat;
 	physMat.setIdentity();
@@ -222,8 +146,6 @@ void GameObject::recomputeMatrix(float matrix[16])
 			index++;
 		}
 	}
-
-	this->cbData.m_world = physMat;
 
 
 	Matrix4x4 newMatrix;
@@ -239,35 +161,71 @@ void GameObject::recomputeMatrix(float matrix[16])
 
 	transMatrix *= newMatrix;
 	scaleMatrix *= transMatrix;
-	this->cbData.m_world.setMatrix(scaleMatrix);
-
-	this->overrideMatrix = true;
-}
-
-void GameObject::setWorldMat(float matrix[16])
-{
+	this->localMatrix = scaleMatrix;
 
 }
 
-string GameObject::getName()
+void GameObject::setLocalPhysicsMatrix(const Matrix4x4& matrix)
 {
-	return this->name;
+	this->localPhysicsMatrix = matrix;
 }
 
-void GameObject::addComponent(Component* component)
+void GameObject::attachComponent(Component* component)
 {
-	this->components.push_back(component);
+	component->attachOwner(this);
 }
 
-void GameObject::removeComponent(Component* component)
+void GameObject::detachComponent(Component* component)
 {
-	int index = 0;
-	for (Component* comp : this->components) 
-	{
-		if (comp == component) 
-		{
-			this->components.erase(this->components.begin() + index);
+	component->detachOwner();
+}
+
+Component* GameObject::findComponentByName(String Name)
+{
+	for (Component* component : this->componentList) {
+		if (component->getName() == Name) {
+			return component;
 		}
-		index++;
 	}
+}
+
+Component* GameObject::findComponentofType(Component::ComponentType type, String name)
+{
+	for (Component* component : this->componentList) {
+		if (component->getType() == type) {
+
+			if (component->getName() == name)
+				return component;
+		}
+	}
+	
+}
+
+GameObject::ComponentList GameObject::getComponentsofType(Component::ComponentType type)
+{
+	ComponentList list = {};
+	for (Component* component : this->componentList) {
+		if (component->getType() == type) {
+			list.push_back(component);
+		}
+	}
+
+	return list;
+}
+
+GameObject::ComponentList GameObject::getComponentsOfTypeRecursive(Component::ComponentType type)
+{
+	ComponentList list = {};
+	for (Component* component : this->componentList) {
+		if (component->getType() == type) {
+			list.push_back(component);
+			getComponentsofType(type);
+		}
+	}
+
+	return list;
+}
+
+void GameObject::Awake()
+{
 }

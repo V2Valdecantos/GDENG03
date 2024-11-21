@@ -1,0 +1,6 @@
+﻿DirectXTK.lib(WICTextureLoader.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in AppWindow.obj
+DirectXTK.lib(WICTextureLoader.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in AppWindow.obj
+DirectXTK.lib(pch.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in AppWindow.obj
+DirectXTK.lib(pch.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in AppWindow.obj
+LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+C:\Users\Vito\Desktop\GDENG03\GDENG03\x64\Debug\DirectXGame.exe : fatal error LNK1319: 4 mismatches detected

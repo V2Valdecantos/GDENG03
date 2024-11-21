@@ -41,7 +41,7 @@
 #include <reactphysics3d/utils/DefaultLogger.h>
 #include <reactphysics3d/collision/PolygonVertexArray.h>
 #include <reactphysics3d/collision/VertexArray.h>
-
+#include <vector>
 /// ReactPhysics3D namespace
 namespace reactphysics3d {
 

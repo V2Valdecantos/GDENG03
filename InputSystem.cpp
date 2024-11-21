@@ -1,14 +1,50 @@
 #include "InputSystem.h"
-#include <Windows.h>
 
+InputSystem* InputSystem::sharedInstance = nullptr;
 
-InputSystem::InputSystem()
+InputSystem* InputSystem::getInstance()
 {
+	return sharedInstance;
 }
 
+void InputSystem::initialize()
+{
+	sharedInstance = new InputSystem();
+}
+
+void InputSystem::destroy()
+{
+	if (sharedInstance != NULL) {
+		sharedInstance->release();
+		delete sharedInstance;
+	}
+}
+
+InputSystem::InputSystem() {
+
+}
 
 InputSystem::~InputSystem()
 {
+}
+
+void InputSystem::addListener(InputListener* listener)
+{
+	// Check if the listener is already in the list
+	if (std::find(inputListenerList.begin(), inputListenerList.end(), listener) == inputListenerList.end())
+	{
+		inputListenerList.push_back(listener);  // Add the listener if not already present
+	}
+}
+
+void InputSystem::removeListener(InputListener* listener)
+{
+	// Use std::remove to remove the listener and erase the "removed" element
+	std::vector<InputListener*>::iterator it = std::remove(inputListenerList.begin(), inputListenerList.end(), listener);
+	if (it != inputListenerList.end())
+	{
+		inputListenerList.erase(it, inputListenerList.end());
+	}
 }
 
 void InputSystem::update()
@@ -25,9 +61,9 @@ void InputSystem::update()
 	if (current_mouse_pos.x != m_old_mouse_pos.m_x || current_mouse_pos.y != m_old_mouse_pos.m_y)
 	{
 		//THERE IS MOUSE MOVE EVENT
-		std::unordered_set<InputListener*>::iterator it = m_set_listeners.begin();
+		std::vector<InputListener*>::iterator it = inputListenerList.begin();
 
-		while (it != m_set_listeners.end())
+		while (it != inputListenerList.end())
 		{
 			(*it)->onMouseMove(Point(current_mouse_pos.x, current_mouse_pos.y));
 			++it;
@@ -37,25 +73,25 @@ void InputSystem::update()
 
 
 
-	if (::GetKeyboardState(m_keys_state))
+	if (::GetKeyboardState(keyStates))
 	{
 		for (unsigned int i = 0; i < 256; i++)
 		{
 			// KEY IS DOWN
-			if (m_keys_state[i] & 0x80)
+			if (keyStates[i] & 0x80)
 			{
-				std::unordered_set<InputListener*>::iterator it = m_set_listeners.begin();
+				std::vector<InputListener*>::iterator it = inputListenerList.begin();
 
-				while (it != m_set_listeners.end())
+				while (it != inputListenerList.end())
 				{
 					if (i == VK_LBUTTON)
 					{
-						if (m_keys_state[i] != m_old_keys_state[i]) 
+						if (keyStates[i] != oldKeyStates[i])
 							(*it)->onLeftMouseDown(Point(current_mouse_pos.x, current_mouse_pos.y));
 					}
 					else if (i == VK_RBUTTON)
 					{
-						if (m_keys_state[i] != m_old_keys_state[i])
+						if (keyStates[i] != oldKeyStates[i])
 							(*it)->onRightMouseDown(Point(current_mouse_pos.x, current_mouse_pos.y));
 					}
 					else
@@ -66,11 +102,11 @@ void InputSystem::update()
 			}
 			else // KEY IS UP
 			{
-				if (m_keys_state[i] != m_old_keys_state[i])
+				if (keyStates[i] != oldKeyStates[i])
 				{
-					std::unordered_set<InputListener*>::iterator it = m_set_listeners.begin();
+					std::vector<InputListener*>::iterator it = inputListenerList.begin();
 
-					while (it != m_set_listeners.end())
+					while (it != inputListenerList.end())
 					{
 						if (i == VK_LBUTTON)
 							(*it)->onLeftMouseUp(Point(current_mouse_pos.x, current_mouse_pos.y));
@@ -87,21 +123,11 @@ void InputSystem::update()
 
 		}
 		// store current keys state to old keys state buffer
-		::memcpy(m_old_keys_state, m_keys_state, sizeof(unsigned char) * 256);
+		::memcpy(oldKeyStates, keyStates, sizeof(unsigned char) * 256);
 	}
 }
 
-void InputSystem::addListener(InputListener * listener)
-{
-	m_set_listeners.insert(listener);
-}
-
-void InputSystem::removeListener(InputListener * listener)
-{
-	m_set_listeners.erase(listener);
-}
-
-void InputSystem::setCursorPosition(const Point & pos)
+void InputSystem::setCursorPosition(const Point& pos)
 {
 	::SetCursorPos(pos.m_x, pos.m_y);
 }
@@ -111,8 +137,35 @@ void InputSystem::showCursor(bool show)
 	::ShowCursor(show);
 }
 
-InputSystem * InputSystem::get()
+bool InputSystem::isKeyDown(int key)
 {
-	static InputSystem system;
-	return &system;
+	if (::GetKeyboardState(keyStates))
+
+	if (keyStates[key] & 0x80) {
+		return true;
+	}
+
+	else
+		return false;
+}
+
+bool InputSystem::isKeyUp(int key)
+{
+	if (::GetKeyboardState(keyStates))
+
+		if (keyStates[key] & 0x80) {
+			return false;
+		}
+
+		else
+			return true;
+}
+
+
+bool InputSystem::release()
+{
+	if(!inputListenerList.empty())
+		inputListenerList.clear();
+	
+	return false;
 }

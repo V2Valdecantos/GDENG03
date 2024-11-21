@@ -1,17 +1,14 @@
 #include "Window.h"
 
-
-extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-
 //Window* window=nullptr;
-
+#define NOMINMAX // to avoid conflict with Window.h MIN and MAX declarations
 Window::Window()
 {
-	
+
 }
 
-
-LRESULT CALLBACK WndProc(HWND hwnd,UINT msg, WPARAM wparam, LPARAM lparam)
+extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 {
 	if (ImGui_ImplWin32_WndProcHandler(hwnd, msg, wparam, lparam))
 		return true;
@@ -30,6 +27,7 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT msg, WPARAM wparam, LPARAM lparam)
 		window->onCreate();
 		break;
 	}
+
 	case WM_SETFOCUS:
 	{
 		// Event fired when the window get focus
@@ -41,18 +39,18 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT msg, WPARAM wparam, LPARAM lparam)
 	{
 		// Event fired when the window lost focus
 		Window* window = (Window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
-		window->onKillFocus();
+		window->onDefocus();
 		break;
 	}
+
 	case WM_DESTROY:
 	{
 		// Event fired when the window is destroyed
-		Window* window =(Window*) GetWindowLongPtr(hwnd, GWLP_USERDATA);
+		Window* window = (Window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 		window->onDestroy();
 		::PostQuitMessage(0);
 		break;
 	}
-
 
 	default:
 		return ::DefWindowProc(hwnd, msg, wparam, lparam);
@@ -64,8 +62,6 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT msg, WPARAM wparam, LPARAM lparam)
 
 bool Window::init()
 {
-
-	EngineTime::initialize();
 	//Setting up WNDCLASSEX object
 	WNDCLASSEX wc;
 	wc.cbClsExtra = NULL;
@@ -76,8 +72,8 @@ bool Window::init()
 	wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
 	wc.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
 	wc.hInstance = NULL;
-	wc.lpszClassName = "MyWindowClass";
-	wc.lpszMenuName = "";
+	wc.lpszClassName = L"MyWindowClass";
+	wc.lpszMenuName = L"";
 	wc.style = NULL;
 	wc.lpfnWndProc = &WndProc;
 
@@ -87,13 +83,13 @@ bool Window::init()
 	/*if (!window)
 		window = this;*/
 
-	//Creation of the window
-	m_hwnd=::CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, "MyWindowClass", "Vito Valdecantos - XX22", 
-		WS_CAPTION|WS_SYSMENU, CW_USEDEFAULT, CW_USEDEFAULT, 1024, 768,
+		//Creation of the window
+	m_hwnd = ::CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, L"MyWindowClass", L"DirectX Application",
+		WS_CAPTION | WS_SYSMENU, CW_USEDEFAULT, CW_USEDEFAULT, 1024, 768,
 		NULL, NULL, NULL, this);
 
 	//if the creation fail return false
-	if (!m_hwnd) 
+	if (!m_hwnd)
 		return false;
 
 	//show up the window
@@ -101,7 +97,7 @@ bool Window::init()
 	::UpdateWindow(m_hwnd);
 
 
-	
+
 
 	//set this flag to true to indicate that the window is initialized and running
 	m_is_run = true;
@@ -113,9 +109,8 @@ bool Window::init()
 
 bool Window::broadcast()
 {
-	EngineTime::LogFrameStart();
 	MSG msg;
-
+	EngineTime::LogFrameStart();
 	this->onUpdate();
 
 	while (::PeekMessage(&msg, NULL, 0, 0, PM_REMOVE) > 0)
@@ -173,10 +168,9 @@ void Window::onFocus()
 {
 }
 
-void Window::onKillFocus()
+void Window::onDefocus()
 {
 }
-
 Window::~Window()
 {
 }

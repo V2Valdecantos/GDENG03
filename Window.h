@@ -1,11 +1,6 @@
 #pragma once
-#define NOMINMAX
-
 #include <Windows.h>
 #include "EngineTime.h"
-#include "imgui.h"
-#include "imgui_impl_win32.h"
-#include "imgui_impl_dx11.h"
 
 class Window
 {
@@ -27,11 +22,10 @@ public:
 	virtual void onUpdate();
 	virtual void onDestroy();
 	virtual void onFocus();
-	virtual void onKillFocus();
+	virtual void onDefocus();
 
 	~Window();
 protected:
 	HWND m_hwnd;
 	bool m_is_run;
 };
-
