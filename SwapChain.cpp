@@ -1,13 +1,16 @@
 #include "SwapChain.h"
-#include "GraphicsEngine.h"
 
-SwapChain::SwapChain()
-{
-}
+#include <exception>
 
-bool SwapChain::init(HWND hwnd, UINT width, UINT height)
+#include "RenderSystem.h"
+#include "RenderTexture.h"
+#include "Logger.h"
+
+using namespace GDEngine;
+
+SwapChain::SwapChain(RenderSystem* system, HWND hwnd, UINT width, UINT height) : m_system(system)
 {
-	ID3D11Device*device= GraphicsEngine::get()->m_d3d_device;
+	ID3D11Device* device = this->m_system->m_D3DDevice;
 
 	DXGI_SWAP_CHAIN_DESC desc;
 	ZeroMemory(&desc, sizeof(desc));
@@ -23,49 +26,62 @@ bool SwapChain::init(HWND hwnd, UINT width, UINT height)
 	desc.SampleDesc.Quality = 0;
 	desc.Windowed = TRUE;
 
-	//Create the swap chain for the window indicated by HWND parameter
-	HRESULT hr=GraphicsEngine::get()->m_dxgi_factory->CreateSwapChain(device, &desc, &m_swap_chain);
-	
-	if (FAILED(hr))
+	// Create the swap chain for the window indicated by HWND parameter
+	HRESULT hr = this->m_system->m_dxgiFactory->CreateSwapChain(device, &desc, &m_swapChain);
+
+	if (!Logger::log(this, hr))
+		Logger::throw_exception("SwapChain not created successfully");
+
+	try
 	{
-		return false;
+		m_renderTexture = new RenderTexture();
 	}
-
-	//Get the back buffer color and create its render target view
-	//--------------------------------
-	ID3D11Texture2D* buffer=NULL;
-	hr=m_swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&buffer);
-	
-	if (FAILED(hr))
-	{
-		return false;
-	}
-
-	hr=device->CreateRenderTargetView(buffer, NULL, &m_rtv);
-	buffer->Release();
-
-	if (FAILED(hr))
-	{
-		return false;
-	}
-
-	return true;
-}
-
-bool SwapChain::present(bool vsync)
-{
-	m_swap_chain->Present(vsync, NULL);
-
-	return true;
-}
-
-bool SwapChain::release()
-{
-	m_swap_chain->Release();
-	delete this;
-	return true;
+	catch(...) {}
 }
 
 SwapChain::~SwapChain()
 {
+	delete m_renderTexture;
+	m_swapChain->Release();
+}
+
+void SwapChain::cleanRenderTarget()
+{
+	if (m_renderTexture->m_renderTargetView)
+	{
+		m_renderTexture->m_renderTargetView->Release();
+		m_renderTexture->m_renderTargetView = nullptr;
+	}
+}
+
+void SwapChain::resizeBuffers(UINT bufferCount, UINT width, UINT height)
+{
+	m_renderTexture->resizeResources(width, height);
+	m_swapChain->ResizeBuffers(0, width, height, DXGI_FORMAT_UNKNOWN, 0);
+}
+
+void SwapChain::createRenderTarget()
+{
+	ID3D11Texture2D* buffer = NULL;
+	HRESULT result = m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&buffer);
+
+	if (!Logger::log(this, result))
+		Logger::throw_exception("Swap Chain Fail");
+
+	result = this->m_system->m_D3DDevice->CreateRenderTargetView(buffer, NULL, &m_renderTexture->m_renderTargetView);
+	if (!Logger::log(this, result))
+		Logger::throw_exception("Render Target View not created successfully.");
+
+	buffer->Release();
+}
+
+bool SwapChain::present(bool vsync)
+{
+	m_swapChain->Present(vsync, NULL);
+	return true;
+}
+
+RenderTexture* SwapChain::getRenderTexture()
+{
+	return this->m_renderTexture;
 }

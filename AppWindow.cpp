@@ -1,108 +1,299 @@
 #include "AppWindow.h"
 
-struct vec3
+#include <Windows.h>
+
+#include "ActionHistory.h"
+#include "imgui.h"
+
+#include "Random.h"
+#include "EngineTime.h"
+
+#include "GraphicsEngine.h"
+
+#include "BaseComponentSystem.h"
+#include "PhysicsSystem.h"
+
+#include "InputSystem.h"
+
+#include "GameObjectManager.h"
+#include "CameraManager.h"
+
+#include "UIManager.h"
+#include "ViewportManager.h"
+
+#include "DeviceContext.h"
+#include "ConstantBuffer.h"
+#include "EngineBackend.h"
+#include "ShaderLibrary.h"
+
+#include "Logger.h"
+
+using namespace GDEngine;
+
+__declspec(align(16))
+struct CBEditor
 {
-	float x, y, z;
+	int32_t wireframe;
 };
-
-struct vertex
-{
-	vec3 position;
-	vec3 color;
-};
-
-AppWindow::AppWindow()
-{
-}
-
-
-AppWindow::~AppWindow()
-{
-}
 
 void AppWindow::onCreate()
 {
 	Window::onCreate();
-	GraphicsEngine::get()->init();
-	m_swap_chain=GraphicsEngine::get()->createSwapChain();
-
-	RECT rc = this->getClientWindowRect();
-	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
-
-	vertex list[] = 
-	{
-		//RAINBOW QUAD
-		{0.1f,0.1f,0.0f,   1,0,0}, // POS1
-		{0.1f,0.9f,0.0f,    0,1,0}, // POS2
-		{0.9f,0.1f,0.0f,   0,0,1},// POS2
-		{0.9f,0.9f,0.0f,    1,1,1},
-
-		//RAINBOW TRIANGLE
-		{-0.9f,0.1f,0.0f,   1,0,0},
-		{-0.5f,0.9f,0.0f,   0,1,0}, // POS1
-		{-0.1f,0.1f,0.0f,    0,0,1}, // POS2
-		
-
-		//GREEN QUAD
-		{-0.5f,-0.9f,0.0f,   0,0,0}, // POS1
-		{-0.5f,-0.1,0.0f,    1,1,0}, // POS2
-		{0.5f,-0.9f,0.0f,   0,0,1},// POS2
-		{0.5f,-0.1f,0.0f,    1,1,1},
-	};
-
-	m_vb=GraphicsEngine::get()->createVertexBuffer();
-	UINT size_list = ARRAYSIZE(list);
-
-	void* shader_byte_code = nullptr;
-	size_t size_shader = 0;
-	GraphicsEngine::get()->compileVertexShader(L"VertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
-
-	m_vs=GraphicsEngine::get()->createVertexShader(shader_byte_code, size_shader);
-	m_vb->load(list, sizeof(vertex), size_list, shader_byte_code, size_shader);
-
-	GraphicsEngine::get()->releaseCompiledShader();
-
-	//RAINBOW PS
-	GraphicsEngine::get()->compilePixelShader(L"PixelShader.hlsl", "psmain", &shader_byte_code, &size_shader);
-	m_ps = GraphicsEngine::get()->createPixelShader(shader_byte_code, size_shader);
-	GraphicsEngine::get()->releaseCompiledShader();
-
-	//GREEN
-	GraphicsEngine::get()->compilePixelShader(L"GreenPixelShader.hlsl", "psmain", &shader_byte_code, &size_shader);
-	g_ps = GraphicsEngine::get()->createPixelShader(shader_byte_code, size_shader);
-	GraphicsEngine::get()->releaseCompiledShader();
+	InputSystem::initialize();
+	initializeEngine();
 }
 
 void AppWindow::onUpdate()
 {
 	Window::onUpdate();
-	//CLEAR THE RENDER TARGET 
-	GraphicsEngine::get()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain,
-		0, 0.3f,0.4f, 1);
-	//SET VIEWPORT OF RENDER TARGET IN WHICH WE HAVE TO DRAW
-	RECT rc = this->getClientWindowRect();
-	GraphicsEngine::get()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
-	//SET DEFAULT SHADER IN THE GRAPHICS PIPELINE TO BE ABLE TO DRAW
-	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexShader(m_vs);
-	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(m_ps);
-	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
 
-	// draw the rainbow quad and triangle
-	GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(7, 0);
+	float deltaTime = EngineTime::getDeltaTime();
 
-	//switch shaders and draw the quad
-	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(g_ps);
-	GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(4, 7);
+	RenderSystem* renderSystem = GraphicsEngine::getInstance()->getRenderSystem();
 
-	m_swap_chain->present(true);
+	RECT windowRect = this->getClientWindowRect();
+
+	FLOAT width = windowRect.right - windowRect.left;
+	FLOAT height = windowRect.bottom - windowRect.top;
+
+	renderSystem->getImmediateDeviceContext()->setViewportSize(width, height);
+
+	EngineBackend* backend = EngineBackend::getInstance();
+	if (backend->getMode() == EngineBackend::EditorMode::PLAY)
+	{
+		GameObjectManager::getInstance()->setPhysics(true);
+		GameObjectManager::getInstance()->update(deltaTime);
+		BaseComponentSystem::getInstance()->getPhysicsSystem()->updateAllComponents();
+	}
+	else if (backend->getMode() == EngineBackend::EditorMode::EDITOR)
+	{
+		GameObjectManager::getInstance()->setPhysics(false);
+		GameObjectManager::getInstance()->update(deltaTime);
+
+	}
+	else if (backend->getMode() == EngineBackend::EditorMode::PAUSED)
+	{
+		if (backend->insideFrameStep())
+		{
+			GameObjectManager::getInstance()->update(deltaTime);
+			BaseComponentSystem::getInstance()->getPhysicsSystem()->updateAllComponents();
+			backend->endFrameStep();
+		}
+	}
+	
+	
+
+	UIManager::getInstance()->draw();
+
+	if (UIManager::RESIZE_WIDTH != 0 && UIManager::RESIZE_HEIGHT != 0)
+	{
+		swapChain->cleanRenderTarget();
+		swapChain->resizeBuffers(0, UIManager::RESIZE_WIDTH, UIManager::RESIZE_HEIGHT);
+		UIManager::RESIZE_WIDTH = UIManager::RESIZE_HEIGHT = 0;
+		swapChain->createRenderTarget();
+	}
+
+	InputSystem::getInstance()->update();
+	swapChain->present(false);
 }
 
 void AppWindow::onDestroy()
 {
 	Window::onDestroy();
-	m_vb->release();
-	m_swap_chain->release();
-	m_vs->release();
-	m_ps->release();
-	GraphicsEngine::get()->release();
+
+	InputSystem::getInstance()->removeListener(this);
+
+	GameObjectManager::getInstance()->deleteAllObjects();
+
+	delete swapChain;
+
+	UIManager::destroy();
+	CameraManager::destroy();
+	BaseComponentSystem::destroy();
+	GameObjectManager::destroy();
+	ViewportManager::destroy();
+	ActionHistory::destroy();
+	EngineBackend::destroy();
+	ShaderLibrary::destroy();
+	GraphicsEngine::destroy();
+	InputSystem::destroy();
+}
+
+void AppWindow::onFocus()
+{
+	Window::onFocus();
+	//InputSystem::getInstance()->startUpdate();
+}
+
+void AppWindow::onKillFocus()
+{
+	Window::onKillFocus();
+	//InputSystem::getInstance()->stopUpdate();
+}
+
+void AppWindow::onKeyDown(int key)
+{
+	if (key == VK_SHIFT)
+	{
+		// Multiple Selection 
+		GameObjectManager::getInstance()->setMultiselectMode(true);
+	}
+}
+
+void AppWindow::onKeyUp(int key)
+{
+	if (key == 90) 
+	{
+		if (ActionHistory::getInstance()->hasRemainingUndoActions()) 
+		{
+			GameObjectManager::getInstance()->applyAction(ActionHistory::getInstance()->undoAction());
+		}
+	}
+
+	if (key == 89) 
+	{
+		if (ActionHistory::getInstance()->hasRemainingRedoActions())
+		{
+			GameObjectManager::getInstance()->applyAction(ActionHistory::getInstance()->redoAction());
+		}
+	}
+
+	if (key == VK_SHIFT)
+	{
+		// Multiple Selection 
+		GameObjectManager::getInstance()->setMultiselectMode(false);
+	}
+}
+
+void AppWindow::onMouseMove(const Vector2D& deltaMousePosition)
+{
+}
+
+void AppWindow::onLeftMouseDown(const Vector2D& mousePosition)
+{
+}
+
+void AppWindow::onLeftMouseUp(const Vector2D& mousePosition)
+{
+}
+
+void AppWindow::onRightMouseDown(const Vector2D& mousePosition)
+{
+}
+
+void AppWindow::onRightMouseUp(const Vector2D& mousePosition)
+{
+}
+
+void AppWindow::initializeEngine()
+{
+	// Try Initializing Managers
+	try
+	{
+		GraphicsEngine::initialize();
+		ShaderLibrary::initialize();
+		EngineBackend::initialize();
+		ActionHistory::initialize();
+		Random::initialize();
+		InputSystem::getInstance()->addListener(this);
+		ViewportManager::initialize();
+		GameObjectManager::initialize();
+		BaseComponentSystem::initialize();
+		CameraManager::initialize();
+		UIManager::initialize(m_windowHandle);
+		
+	}
+	catch (...)
+	{
+		m_isRunning = false;
+	}
+
+	RenderSystem* renderSystem = GraphicsEngine::getInstance()->getRenderSystem();
+
+	// Initialize the Swap Chain
+	RECT windowRect = this->getClientWindowRect();
+
+	FLOAT width = windowRect.right - windowRect.left;
+	FLOAT height = windowRect.bottom - windowRect.top;
+
+	this->swapChain = renderSystem->createSwapChain(this->m_windowHandle, width, height);
+
+	// Initialize the Constant Buffer
+	CBEditor cbData;
+	cbData.wireframe = false;
+
+	this->constantBuffer = renderSystem->createConstantBuffer(&cbData, sizeof(CBEditor));
+
+	// Initialize Rasterizer States
+	this->solidState = renderSystem->createRasterizerState(D3D11_FILL_SOLID, D3D11_CULL_BACK);
+	this->wireframeState = renderSystem->createRasterizerState(D3D11_FILL_WIREFRAME, D3D11_CULL_NONE);
+
+	GDEngine::Logger::log(this, "Initialized Engine");
+}
+
+void AppWindow::draw(int width, int height, EFillMode fillMode)
+{
+	DeviceContext* context = GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext();
+
+	CBEditor cbData;
+	switch (fillMode)
+	{
+	default:
+		context->setRasterizerState(solidState);
+		cbData.wireframe = false;
+		break;
+	case WIREFRAME:
+		context->setRasterizerState(wireframeState);
+		cbData.wireframe = true;
+		break;
+	case SOLID_WIREFRAME:
+		context->setRasterizerState(solidState);
+		this->draw(width, height, SOLID);
+		context->setRasterizerState(wireframeState);
+		cbData.wireframe = true;
+		break;
+	}
+
+	context->setConstantBuffer(constantBuffer, 2);
+	this->constantBuffer->update(context, &cbData);
+
+	GameObjectManager::getInstance()->draw(width, height);
+}
+
+void AppWindow::update()
+{
+}
+
+SwapChain* AppWindow::getSwapChain()
+{
+	return this->swapChain;
+}
+
+AppWindow* AppWindow::P_SHARED_INSTANCE = NULL;
+AppWindow::AppWindow()
+{
+	GDEngine::Logger::log(this, "Initialized");
+}
+AppWindow::~AppWindow() {}
+AppWindow::AppWindow(const AppWindow&) {}
+
+AppWindow* AppWindow::getInstance() {
+	return P_SHARED_INSTANCE;
+}
+
+void AppWindow::initialize()
+{
+	if (P_SHARED_INSTANCE)
+		GDEngine::Logger::throw_exception("App Window already created");
+	P_SHARED_INSTANCE = new AppWindow();
+	
+}
+
+void AppWindow::destroy()
+{
+	if (P_SHARED_INSTANCE != NULL)
+	{
+		delete P_SHARED_INSTANCE->constantBuffer;
+		GDEngine::Logger::log(P_SHARED_INSTANCE, "Released");
+	}
 }

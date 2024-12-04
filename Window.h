@@ -1,32 +1,32 @@
 #pragma once
+
+#define NOMINMAX
+
 #include <Windows.h>
 
-
-
-class Window
+namespace GDEngine
 {
-public:
-	Window();
-	//Initialize the window
-	bool init();
-	bool broadcast();
-	//Release the window
-	bool release();
-	bool isRun();
+	class Window
+	{
+	protected:
+		HWND m_windowHandle;
+		bool m_isRunning = false;
+		bool m_isInitialized = false;
 
-	RECT getClientWindowRect();
-	void setHWND(HWND hwnd);
+	public:
+		Window();
+		~Window();
 
+	public:
+		virtual void onCreate();
+		virtual void onUpdate();
+		virtual void onDestroy();
+		virtual void onFocus();
+		virtual void onKillFocus();
 
-	//EVENTS
-	virtual void onCreate();
-	virtual void onUpdate();
-	virtual void onDestroy();
+		bool broadcast();
+		bool isRunning();
 
-
-	~Window();
-protected:
-	HWND m_hwnd;
-	bool m_is_run;
-};
-
+		RECT getClientWindowRect();
+	};
+}

@@ -1,28 +1,47 @@
 #pragma once
+
 #include <d3d11.h>
+#include "Prerequisites.h"
 
-class SwapChain;
-class VertexBuffer;
-class VertexShader;
-class PixelShader;
-
-class DeviceContext
+namespace GDEngine
 {
-public:
-	DeviceContext(ID3D11DeviceContext* device_context);
-	void clearRenderTargetColor(SwapChain* swap_chain,float red, float green, float blue, float alpha);
-	void setVertexBuffer(VertexBuffer* vertex_buffer);
-	void drawTriangleList(UINT vertex_count, UINT start_vertex_index);
-	void drawTriangleStrip(UINT vertex_count, UINT start_vertex_index);
+	class DeviceContext
+	{
+	private:
+		RenderSystem* m_system = nullptr;
+		ID3D11DeviceContext* m_deviceContext;
 
-	void setViewportSize(UINT width, UINT height);
+	private:
+		friend class ConstantBuffer;
 
-	void setVertexShader(VertexShader* vertex_shader);
-	void setPixelShader(PixelShader* pixel_shader);
+	public:
+		DeviceContext(RenderSystem* system, ID3D11DeviceContext* deviceContext);
+		~DeviceContext();
 
-	bool release();
-	~DeviceContext();
-private:
-	ID3D11DeviceContext * m_device_context;
-};
+	public:
+		ID3D11DeviceContext* getContext();
+
+		//void clearRenderTargetColor(SwapChain* swap_chain, float red, float green, float blue, float alpha);
+		void clearRenderTargetColor(const RenderTexture* renderTexture, float red, float green, float blue, float alpha);
+		void setRenderTarget(const RenderTexture* renderTexture);
+		void setVertexBuffer(const VertexBuffer* vertexBuffer);
+		void setIndexBuffer(const IndexBuffer* indexBuffer);
+
+		void drawTriangleList(UINT vertexCount, UINT startVertexIndex);
+		void drawIndexedTriangleList(UINT indexCount, UINT startVertexIndex, UINT startIndexLocation);
+		void drawTriangleStrip(UINT vertexCount, UINT startVertexIndex);
+		void drawLineStrip(UINT vertexCount, UINT startVertexIndex);
+
+		void setViewportSize(UINT width, UINT height);
+		void setViewport(const Viewport* vp);
+
+		void setVertexShader(const VertexShader* vertexShader);
+		void setPixelShader(const PixelShader* pixelShader);
+
+		void setTexture(const Texture* texture, int index = 0);
+
+		void setConstantBuffer(const ConstantBuffer* buffer, int index = 0);
+		void setRasterizerState(const RasterizerState* rasterizerState);
+	};
+}
 

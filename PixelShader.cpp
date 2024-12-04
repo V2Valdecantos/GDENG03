@@ -1,27 +1,19 @@
 #include "PixelShader.h"
-#include "GraphicsEngine.h"
 
+#include <exception>
 
-PixelShader::PixelShader()
+#include "RenderSystem.h"
+#include "Logger.h"
+
+using namespace GDEngine;
+
+PixelShader::PixelShader(RenderSystem* system, const void* shader_byte_code, size_t byte_code_size) : m_system(system)
 {
+	if (!Logger::log(this, this->m_system->m_D3DDevice->CreatePixelShader(shader_byte_code, byte_code_size, nullptr, &m_pixelShader)))
+		Logger::throw_exception("PixelShader not created successfully");
 }
-
-void PixelShader::release()
-{
-	m_ps->Release();
-	delete this;
-}
-
-bool PixelShader::init(const void* shader_byte_code, size_t byte_code_size)
-{
-	if (!SUCCEEDED(GraphicsEngine::get()->m_d3d_device->CreatePixelShader(shader_byte_code, byte_code_size, nullptr, &m_ps)))
-		return false;
-
-	return true;
-}
-
-
 
 PixelShader::~PixelShader()
 {
+	m_pixelShader->Release();
 }

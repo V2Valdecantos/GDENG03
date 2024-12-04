@@ -1,23 +1,32 @@
 #pragma once
+
 #include <d3d11.h>
+#include "Prerequisites.h"
 
-class DeviceContext;
-
-class VertexBuffer
+namespace GDEngine
 {
-public:
-	VertexBuffer();
-	bool load(void* list_vertices, UINT size_vertex, UINT size_list, void*shader_byte_code, size_t size_byte_shader);
-	UINT getSizeVertexList();
-	bool release();
-	~VertexBuffer();
-private:
-	UINT m_size_vertex;
-	UINT m_size_list;
-private:
-	ID3D11Buffer * m_buffer;
-	ID3D11InputLayout* m_layout;
-private:
-	friend class DeviceContext;
-};
+	class VertexBuffer
+	{
+	protected:
+		RenderSystem* m_system = nullptr;
 
+		UINT m_sizeVertex;
+		UINT m_sizeList;
+
+		ID3D11InputLayout* m_layout;
+		ID3D11Buffer* m_buffer;
+
+	protected:
+		friend class DeviceContext;
+
+	public:
+		VertexBuffer(RenderSystem* system);
+		virtual ~VertexBuffer();
+
+	public:
+		virtual void load(void* list_vertices, UINT size_vertex, UINT size_list, void* shader_byte_code, UINT size_byte_shader);
+
+	public:
+		UINT getSizeVertexList();
+	};
+}
