@@ -66,6 +66,7 @@ namespace GDEngine
 		void setViewableObjects(std::vector<AGameObject*> viewables);
 
 		AGameObject* createObjectFromFile(std::string objectGuid, std::string objectName, std::string classType, Vector3D position, Vector3D rotation, Vector3D scale);
+		AGameObject* createObjectFromTextFile(std::string objectName, std::string classType, Vector3D position, Vector3D rotation, Vector3D scale, bool rb, int physType);
 
 	private:
 		static GameObjectManager* P_SHARED_INSTANCE;

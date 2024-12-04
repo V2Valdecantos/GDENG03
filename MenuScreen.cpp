@@ -14,11 +14,11 @@ namespace GDEngine {
     {
         m_openSceneDialog = new ImGui::FileBrowser();
         m_openSceneDialog->SetTitle("Open Scene");
-        m_openSceneDialog->SetTypeFilters({".level" });
+        m_openSceneDialog->SetTypeFilters({".txt" });
 
         m_saveSceneDialog = new ImGui::FileBrowser(ImGuiFileBrowserFlags_EnterNewFilename);
         m_saveSceneDialog->SetTitle("Save Scene");
-        m_saveSceneDialog->SetTypeFilters({".level" });
+        m_saveSceneDialog->SetTypeFilters({".txt" });
         Logger::log(this, "Initialized");
     }
 
@@ -196,7 +196,7 @@ namespace GDEngine {
         if (m_saveSceneDialog->HasSelected())
         {
             SceneWriter writer = SceneWriter(m_saveSceneDialog->GetSelected().string());
-            writer.writeToJson();
+            writer.writeToFile();
 
             m_saveSceneDialog->ClearSelected();
             m_saveSceneDialog->Close();
@@ -204,7 +204,7 @@ namespace GDEngine {
 
         else if (m_openSceneDialog->HasSelected()) {
             SceneReader reader = SceneReader(m_openSceneDialog->GetSelected().string());
-            reader.readFromJson();
+            reader.readFromFile();
 
             m_openSceneDialog->ClearSelected();
             m_openSceneDialog->Close();

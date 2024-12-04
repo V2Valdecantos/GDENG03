@@ -26,8 +26,8 @@ namespace GDEngine
 
 	void SceneReader::readFromFile()
 	{
-		std::string fileDirectory = m_directory + ".iet";
-		if (m_directory.find(".iet") != std::string::npos)
+		std::string fileDirectory = m_directory + ".txt";
+		if (m_directory.find(".txt") != std::string::npos)
 		{
 			fileDirectory = m_directory;
 		}
@@ -38,41 +38,76 @@ namespace GDEngine
 		int index = 0;
 		std::string readLine;
 
-		std::string objectGuid;
+		
 		std::string objectName;
-
+		std::string objectType;
 		Vector3D position;
 		Vector3D rotation;
 		Vector3D scale;
+		bool rb = false;
+		int physType = 0;
 		while (std::getline(sceneFile, readLine))
 		{
 			if (index == 0)
 			{
-				objectGuid = readLine;
-				index++;
+				if (readLine == "{")
+					index++;
 			}
 			else if (index == 1)
 			{
-				std::vector<std::string> stringSplit = StringUtility::split(readLine, ' ');
-				objectName = stringSplit[1];
+				index++; //skip "GameObject"
+			}
+			else if (index == 2)
+			{
+				objectName = readLine;
 				index++;
 			}
-			else if (index == 2) {
-				std::vector<std::string> stringSplit = StringUtility::split(readLine, ' ');
-				position = Vector3D(std::stof(stringSplit[1]), std::stof(stringSplit[2]), std::stof(stringSplit[3]));
+			else if (index == 3)
+			{
+				objectType = readLine;
 				index++;
 			}
-			else if (index == 3) {
-				std::vector<std::string> stringSplit = StringUtility::split(readLine, ' ');
-				rotation = Vector3D(std::stof(stringSplit[1]), std::stof(stringSplit[2]), std::stof(stringSplit[3]));
+			else if (index == 4) 
+			{
+				index++; //skip isActive
+			}
+			else if (index == 5) {
+				std::vector<std::string> stringSplit = StringUtility::split(readLine, ',');
+				position = Vector3D(std::stof(stringSplit[0]), std::stof(stringSplit[1]), std::stof(stringSplit[2]));
 				index++;
 			}
-			else if (index == 4) {
-				std::vector<std::string> stringSplit = StringUtility::split(readLine, ' ');
-				scale = Vector3D(std::stof(stringSplit[1]), std::stof(stringSplit[2]), std::stof(stringSplit[3]));
-				index = 0;
+			else if (index == 6) {
+				std::vector<std::string> stringSplit = StringUtility::split(readLine, ',');
+				scale = Vector3D(std::stof(stringSplit[0]), std::stof(stringSplit[1]), std::stof(stringSplit[2]));
+				index++;
+			}
+			else if (index == 7) {
+				std::vector<std::string> stringSplit = StringUtility::split(readLine, ',');
+				rotation = Vector3D(std::stof(stringSplit[0]), std::stof(stringSplit[1]), std::stof(stringSplit[2]));
+				index++;
+			}
+			else if (index == 8)
+			{
+				if (readLine == "PhysicsComponent " + objectName)
+					rb = true;
 
-				//GameObjectManager::getInstance()->createObjectFromFile(objectGuid, objectName, position, rotation, scale);
+				index++;
+				
+			}
+			else if (index == 9) 
+			{
+				if (rb = true) 
+				{
+					physType = std::stoi(readLine);
+				}
+				index++;
+			}
+			else if (index == 10) 
+			{
+				if (readLine == "}")
+					index = 0;
+
+				GameObjectManager::getInstance()->createObjectFromTextFile(objectName, objectType, position, rotation, scale, rb, physType);
 			}
 		}
 	}

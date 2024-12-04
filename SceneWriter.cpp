@@ -24,9 +24,9 @@ namespace GDEngine
 
 	void SceneWriter::writeToFile()
 	{
-		std::string fileDirectory = m_directory + ".iet";
+		std::string fileDirectory = m_directory + ".txt";
 
-		if (m_directory.find(".iet") != std::string::npos)
+		if (m_directory.find(".txt") != std::string::npos)
 		{
 			
 		}
@@ -40,16 +40,30 @@ namespace GDEngine
 
 		for (AGameObject* gameObject : objectList)
 		{
-			sceneFile <<  gameObject->getGuidString() << std::endl;
-			sceneFile << "Name: " << gameObject->getName() << std::endl;
+			sceneFile << "{" << std::endl;
+			sceneFile << "Game Object" << std::endl;
+			sceneFile << "" << gameObject->getName() << std::endl;
+			sceneFile << gameObject->getType() << std::endl;
+			sceneFile << "1" << std::endl;
 
 			Vector3D position = gameObject->getLocalPosition();
-			Vector3D rotation = gameObject->getLocalRotation();
 			Vector3D scale = gameObject->getLocalScale();
+			Vector3D rotation = gameObject->getLocalRotation();
+			
+			sceneFile << position.x << "," << position.y << "," << position.z << "," << std::endl;
+			sceneFile << scale.x << "," << scale.y << ", " << scale.z << "," << std::endl;
+			sceneFile << rotation.x << "," << rotation.y << "," << rotation.z << "," << std::endl;
 
-			sceneFile << "Position: " << position.x << " " << position.y << " " << position.z << std::endl;
-			sceneFile << "Rotation: " << rotation.x << " " << rotation.y << " " << rotation.z << std::endl;
-			sceneFile << "Scale: " << scale.x << " " << scale.y << " " << scale.z << std::endl;
+			AGameObject::ComponentList physicsList = gameObject->getComponentsOfType(AComponent::ComponentType::Physics);
+			for (AComponent* component : physicsList)
+			{
+				PhysicsComponent* physicsComponent = dynamic_cast<PhysicsComponent*>(component);
+				std::string componentGuid = component->getGuidString();
+				sceneFile << physicsComponent->getName() << std::endl;
+				sceneFile << (int)physicsComponent->getBodyType() << std::endl;
+			}
+
+			sceneFile << "}" << std::endl;
 		}
 		sceneFile.close();
 	}
